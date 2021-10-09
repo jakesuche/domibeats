@@ -1,0 +1,32 @@
+.apexcharts-toolbar {
+    display: none!important;
+}
+.mx-input-wrapper {
+   
+   width: 138%;
+}
+.dataTable-sorter {
+    color: #808080;
+    text-decoration: none;
+  }
+
+  .form-label {
+    text-align: left;
+    letter-spacing: 0.32px;
+    color: #8990ad!important;
+    opacity: 1;
+    font-family: 'Poppins', sans-serif!important;
+    font-weight: 400;
+}
+
+.split-ratio-header {
+  text-align: left;
+
+  letter-spacing: 0.32px;
+  color: #8990ad;
+  text-transform: uppercase;
+  opacity: 1;
+  border-bottom: 1px solid;
+  padding-bottom: 14px;
+  font-size: 1rem;
+}

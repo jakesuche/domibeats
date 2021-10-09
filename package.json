@@ -1,0 +1,101 @@
+{
+  "name": "give-raffle-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "  vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@chenfengyuan/vue-countdown": "^2.0.0-rc",
+    "all": "^0.0.0",
+    "animate.css": "^4.1.1",
+    "apexcharts": "3.19.3",
+    "awesome-bootstrap-checkbox": "^1.0.1",
+    "axios": "^0.21.1",
+    "bootstrap": "4.5.3",
+    "bootstrap-vue": "2.21.2",
+    "chart.js": "2.9.4",
+    "core-js": "^3.6.5",
+    "css-loader": "1.0.1",
+    "echarts": "4.9.0",
+    "expose-loader": "^3.0.0",
+    "express-validator": "5.3.0",
+    "firebase": "^8.9.0",
+    "font-awesome": "^4.7.0",
+    "fuse.js": "^6.4.6",
+    "fusioncharts": "^3.17.0",
+    "glyphicons-halflings": "^1.9.1",
+    "highcharts": "7.2.2",
+    "highcharts-vue": "^1.4.0",
+    "import-loader": "^1.0.1",
+    "line-awesome": "^1.3.0",
+    "moment": "^2.29.1",
+    "node-sass": "4.14.1",
+    "pure-vue-chart": "^0.4.0",
+    "rickshaw": "^1.7.1",
+    "sass-loader": "7.3.1",
+    "secure-ls": "^1.2.6",
+    "v-tag-list": "^0.0.2",
+    "vue": "^2.6.11",
+    "vue-apexcharts": "1.6.0",
+    "vue-chartjs": "^3.5.1",
+    "vue-echarts": "4.1.0",
+    "vue-fuse": "2.2.1",
+    "vue-fusioncharts": "^3.1.0",
+    "vue-json-csv": "^1.2.12",
+    "vue-meta": "^2.4.0",
+    "vue-month-picker": "^1.5.0",
+    "vue-multiselect": "^2.1.6",
+    "vue-quill-editor": "^3.0.6",
+    "vue-router": "^3.5.2",
+    "vue-sweetalert2": "^5.0.2",
+    "vue-toasted": "^1.1.28",
+    "vue-touch": "2.0.0-beta.4",
+    "vue2-datepicker": "^3.10.1",
+    "vue2-google-maps": "^0.10.7",
+    "vue2-timepicker": "^1.1.6",
+    "vueditor": "^0.3.1",
+    "vuejs-datepicker": "^1.6.2",
+    "vuesax": "^4.0.1-alpha.25",
+    "vuetrend": "^0.3.4",
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^4.0.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {
+      "vue/no-unused-components": "warn",
+      "no-unused-vars": "warn",
+      "vue/no-side-effects-in-computed-properties":"warn",
+      "no-unreachable":"warn",
+      "vue/return-in-computed-property":"warn"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
