@@ -12,11 +12,7 @@ import '@/assets/css/give-raffle-variable.css'
 import Fuse from 'fuse.js'
 // import 'vuesax/dist/vuesax.css' //Vuesax styles
 import moment from 'moment'
-import Export from '@/components/export/export.vue'
-import Pagetitle from '@/components/pagetitle/pagetitle.vue'
-import TagList from '@/components/tags/tag.vue'
-import vsTable from '@/components/vs-table/vsTable.vue'
-import CustomInput from '@/components/CustomInput/Custominput'
+
 
 
 
@@ -82,7 +78,7 @@ import store from './store';
 import router from './Routes';
 import App from './App';
 import layoutMixin from './mixins/layout';
-import Widget from './components/Widget/Widget';
+
 import VueSweetalert2 from 'vue-sweetalert2';
 
 
@@ -105,14 +101,12 @@ Vue.use(MonthPicker)
 Vue.use(MonthPickerInput)
 
 Vue.use(VueSweetalert2);
-Vue.component('TagList', TagList)
+
 Vue.use(BootstrapVue);
-Vue.use(VueTouch);
+
 Vue.use(Trend);
-Vue.component('Export', Export)
-Vue.component('Widget', Widget);
-Vue.component('Pagetitle', Pagetitle)
-Vue.component('CustomInput', CustomInput)
+
+
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg',
@@ -120,7 +114,7 @@ Vue.use(VueGoogleMaps, {
 });
 import VTagList from 'v-tag-list'
 Vue.component('VTagList', VTagList)
-Vue.component('UTable', vsTable)
+
 // Vue.use(VueApexCharts)
 // Vue.component('apexchart', VueApexCharts);
 
