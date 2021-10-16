@@ -29,7 +29,7 @@
 <script>
 import { mapActions } from "vuex";
 import Footer from "@/components/footer/footer.vue"
-import Header from "@/components/header/header.vue";
+import Header from "@/components/Header/Header.vue";
 export default {
   components: {
     Header,

@@ -88,9 +88,9 @@
     "rules": {
       "vue/no-unused-components": "warn",
       "no-unused-vars": "warn",
-      "vue/no-side-effects-in-computed-properties":"warn",
-      "no-unreachable":"warn",
-      "vue/return-in-computed-property":"warn"
+      "vue/no-side-effects-in-computed-properties": "warn",
+      "no-unreachable": "warn",
+      "vue/return-in-computed-property": "warn"
     }
   },
   "browserslist": [
