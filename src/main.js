@@ -10,8 +10,11 @@ import VueApexCharts from 'vue-apexcharts';
 import Vuesax from 'vuesax'
 import '@/assets/css/give-raffle-variable.css'
 import Fuse from 'fuse.js'
+import '@/assets/css/global.css'
 // import 'vuesax/dist/vuesax.css' //Vuesax styles
 import moment from 'moment'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 
 
@@ -128,6 +131,11 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   store,
+  mounted() {
+    AOS.init({
+      once: false,
+    })
+  },
   router,
   render: h => h(App),
 });

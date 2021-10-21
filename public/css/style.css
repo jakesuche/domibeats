@@ -1,34 +1,4 @@
-/******************************************************************
-Theme Name: Megapod
-Description: Mogapod Music Tamplate
-Author: Colorib
-Author URI: https://www.colorib.com/
-Version: 1.0
-Created: Colorib
-******************************************************************/
 
-/*------------------------------------------------------------------
-[Table of contents]
-
-1.  Template default CSS
-	1.1	Variables
-	1.2	Mixins
-	1.3	Flexbox
-	1.4	Reset
-2.  Helper Css
-3.  Header Section
-4.  Hero Section
-5.  Services Section
-6.  Track Section
-7.  Countdown Section
-8.  Team Section
-9.  Contact
-10.  Footer Style
--------------------------------------------------------------------*/
-
-/*----------------------------------------*/
-/* Template default CSS
-/*----------------------------------------*/
 
 html,
 body {
@@ -47,7 +17,8 @@ h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
-	font-family: "Nunito", sans-serif;
+	font-family: "philosopher", sans-serif;
+	/* font-family: "Nunito", sans-serif; */
 }
 
 h1 {
@@ -76,7 +47,7 @@ h6 {
 
 p {
 	font-size: 15px;
-	font-family: "Nunito", sans-serif;
+	font-family: "Philosopher", sans-serif;
 	color: #8d8d8d;
 	font-weight: 400;
 	line-height: 25px;
@@ -118,7 +89,7 @@ ol {
 
 .section-title h2 {
 	font-size: 40px;
-	color: #353535;
+	color: var(--primary-color);
 	font-weight: 700;
 }
 
@@ -150,25 +121,27 @@ ol {
 
 .primary-btn {
 	display: inline-block;
-	font-size: 15px;
-	font-weight: 700;
-	padding: 14px 25px 12px;
-	color: #ffffff;
-	background: #6763fd;
-	border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 25px 12px;
+    color: var(--humber-black);
+    border-radius: 5px;
+    background: var(--gradient-primary);
 }
 
 .primary-btn.white-btn {
-	background: #ffffff;
-	margin-left: 6px;
-	color: #232323;
+	background: transparent;
+    margin-left: 6px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+
 }
 
 .site-btn {
 	font-size: 15px;
 	color: #ffffff;
 	font-weight: 700;
-	background: #6763fd;
+	background: var(--gradient-secondary);
 	display: inline-block;
 	padding: 9px 26px 8px;
 	border-radius: 50px;
@@ -348,7 +321,7 @@ ol {
 	bottom: -2px;
 	width: 100%;
 	height: 2px;
-	background: #6763fd;
+	background: red;
 	content: "";
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
@@ -452,6 +425,7 @@ ol {
 	padding-top: 240px;
 	padding-bottom: 260px;
 	position: relative;
+	margin-bottom: -10px;
 }
 
 .hero .container {
@@ -496,7 +470,7 @@ ol {
 }
 
 .single__track {
-	background: rgba(104, 99, 253, 0.2);
+	background: rgb(13 12 21 / 20%);
 	padding: 35px 0;
 	position: absolute;
 	left: 0;
@@ -542,11 +516,11 @@ ol {
 	width: 36px;
 	background: transparent;
 	border: none;
-	background: #6763fd;
+	 background: var(--gradient-primary);
 	border-radius: 50%;
 }
 
-.jp-play:after {
+/* .jp-play:after {
 	position: absolute;
 	display: block;
 	left: 3px;
@@ -555,7 +529,7 @@ ol {
 	font-family: "ElegantIcons";
 	font-size: 30px;
 	color: #ffffff;
-}
+} */
 
 .jp-state-playing .jp-play:after {
 	content: "`" !important;
@@ -591,7 +565,7 @@ ol {
 .jp-play-bar {
 	position: relative;
 	height: 100%;
-	background: #6763fd;
+	background: var(--primary-color);;
 	overflow: visible !important;
 }
 
@@ -851,6 +825,7 @@ ol {
 .callto {
 	padding-top: 110px;
 	padding-bottom: 120px;
+	margin-bottom: -3px;
 }
 
 .callto__text {
@@ -988,11 +963,13 @@ ol {
 }
 
 .footer__subscriber {
-	background: #6763fd;
-	padding: 40px;
-	border-radius: 10px;
-	top: -65px;
-	position: relative;
+	background: var(--humber-dark);
+    padding: 40px;
+    border-radius: 10px;
+    top: -65px;
+    position: relative;
+    border: 1px solid #ffffff40;
+
 }
 
 .footer__subscriber__text h3 {
@@ -1205,7 +1182,7 @@ ol {
 }
 
 .about__text h2 {
-	color: #353535;
+    color: var(--humber-golden);
 	font-size: 40px;
 	font-weight: 700;
 	margin-bottom: 14px;
@@ -1213,6 +1190,7 @@ ol {
 
 .about__text p {
 	margin-bottom: 35px;
+	color: var(--humber-light);
 }
 
 .about__item {
@@ -1220,7 +1198,7 @@ ol {
 }
 
 .about__item h6 {
-	color: #353535;
+	color: var(--humber-light);
 	font-size: 17px;
 	font-weight: 700;
 	line-height: 26px;
@@ -1229,6 +1207,7 @@ ol {
 
 .about__item p {
 	margin-bottom: 0;
+	color: var(--humber-light);
 }
 
 .about__pic {
@@ -2184,6 +2163,7 @@ ol {
 
 .contact {
 	padding-bottom: 165px;
+	background: var(--humber-black);
 }
 
 .contact__map {
@@ -2200,13 +2180,14 @@ ol {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	padding: 55px 40px 40px;
 	margin-bottom: 30px;
+	border: 1px solid var(--humber-golden);
 }
 
 .contact__widget__item h4 {
-	color: #353535;
-	font-weight: 700;
-	margin-top: 25px;
-	margin-bottom: 10px;
+	color: var(--humber-light);
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
 .contact__widget__item p {
@@ -2222,22 +2203,23 @@ ol {
 }
 
 .contact__form h2 {
-	color: #353535;
-	font-size: 40px;
-	font-weight: 700;
-	margin-bottom: 45px;
-	text-align: center;
+	color: var(--humber-light);
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 45px;
+    text-align: center;
 }
 
 .contact__form form input {
-	height: 50px;
-	width: 100%;
-	font-size: 15px;
-	color: #8d8d8d;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	padding-left: 20px;
-	border-radius: 5px;
-	margin-bottom: 30px;
+    height: 50px;
+    width: 100%;
+    font-size: 15px;
+    color: var(--humber-light);
+    border: 1px solid var(--humber-golden);
+    padding-left: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    background: transparent;
 }
 
 .contact__form form input::-webkit-input-placeholder {
@@ -2261,16 +2243,17 @@ ol {
 }
 
 .contact__form form textarea {
-	height: 150px;
-	width: 100%;
-	font-size: 15px;
-	color: #8d8d8d;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	padding-left: 20px;
-	border-radius: 5px;
-	margin-bottom: 34px;
-	padding-top: 14px;
-	resize: none;
+    height: 150px;
+    width: 100%;
+    font-size: 15px;
+    color: var(--humber-light);
+    border: 1px solid var(--humber-golden);
+    padding-left: 20px;
+    border-radius: 5px;
+    margin-bottom: 34px;
+    padding-top: 14px;
+    resize: none;
+    background: var(--humber-black);
 }
 
 .contact__form form textarea::-webkit-input-placeholder {

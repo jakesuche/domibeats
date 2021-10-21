@@ -1,32 +1,46 @@
-.apexcharts-toolbar {
-    display: none!important;
-}
-.mx-input-wrapper {
-   
-   width: 138%;
-}
-.dataTable-sorter {
-    color: #808080;
-    text-decoration: none;
-  }
+:root{
+  --black-color:#0c0d0e;
+  --primary-color:#cba775;
+  --gradient-primary:linear-gradient(180deg, #FCF5D3 0%, #643A08 100%);
+  --gradient-secondary:linear-gradient(183deg, #887C37 7.47%, #504400 58.25%);
+  --light-color:#ffffff;
+  --humber-primary:#131414;
+  --humber-golden:#F5E697;
+  --humber-secondary:#8A0000;
+  --humber-tertiary:#FAF1BB;
+  --humber-link:#FC6464;
+  
+  --humber-dark:#161616;
+  --humber-dark-brown:#151010;
+  --border-color:#F5E697;
+  --border-color-light:#ffffff;
+  --humber-light:#ffffff;
+  --humber-black:#000000;
+  --gradient-primary:linear-gradient(180deg, #FCF5D3 0%, #643A08 100%);
+  --gradient-secondary:linear-gradient(183deg, #887C37 7.47%, #504400 58.25%);
 
-  .form-label {
-    text-align: left;
-    letter-spacing: 0.32px;
-    color: #8990ad!important;
-    opacity: 1;
-    font-family: 'Poppins', sans-serif!important;
-    font-weight: 400;
+
 }
 
-.split-ratio-header {
+.nav-tabs > .nav-item .nav-link.active, .nav-tabs > .nav-item .nav-link.active:hover, .nav-tabs > .nav-item .nav-link.active:focus {
+  margin: 1px;
+  background: none;
+  border: none;
+  /* box-shadow: 1px 1px 2px #ccc; */
+  border-bottom: 5px solid var(--humber-golden);
   text-align: left;
-
-  letter-spacing: 0.32px;
-  color: #8990ad;
-  text-transform: uppercase;
+  font: normal normal normal 24px/25px Poppins;
+  letter-spacing: 0px;
+  color: var(--humber-light);
   opacity: 1;
-  border-bottom: 1px solid;
-  padding-bottom: 14px;
-  font-size: 1rem;
+  box-shadow: none !important;
+}
+
+.nav-tabs .nav-link {
+  font-size: 20px;
+  border: 1px solid transparent;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  color: white;
+  opacity: .6;
 }

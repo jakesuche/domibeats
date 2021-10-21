@@ -2,7 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import store from "./store/index";
 import home from './pages/home/home.vue'
-
+import Contact from './pages/contact/contact.vue'
+import About from './pages/about/about.vue'
 
 
 
@@ -21,6 +22,16 @@ const router =  new Router({
       component: home,
       meta:{onlyGuestUser:true}
     },
+    {
+      path:'/contact',
+      name:'contact',
+      component: Contact,
+    },
+    {
+      path:'/about',
+      name:'about',
+      component: About,
+    }
     
     // {
     //   path: "*",

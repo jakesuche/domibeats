@@ -1,60 +1,132 @@
 <template>
-<!-- sss -->
-  <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                    </div>
-                    <nav class="header__menu mobile-menu">
-                        <ul>
-                            <li class="active"><a href="#">Beatstore</a></li>
-                            <li><a href="#">Sound</a></li>
-                            <li><a href="#">Episodes</a></li>
-                             <li><a href="#">Contact</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Episodes</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-4">
-                    <div class="header__right">
-                        <div class="header__right__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search and hit enter...">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                        <div class="header__right__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+  <nav class="navbar navbar-expand-lg navbar-light ">
+    
+    <!-- bg-dark -->
+    <a class="navbar-brand" href="#"
+      ><router-link to="/"
+        ><img class="logo" src="img/logo2.png" alt=""/></router-link
+    ></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li @click="routerName = 'home'" class="nav-item" :class="routerName == 'home' ? 'active' : ''">
+          <router-link class="nav-link" to="/"
+            >Home <span class="sr-only">(current)</span></router-link
+          >
+        </li>
+        <li @click="routerName = 'about'" class="nav-item" :class="routerName == 'about' ? 'active' : ''">
+          <router-link to="/about"  class="nav-link">About</router-link>
+        </li>
+        <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdownpa
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
         </div>
-    </header>
+      </li> -->
+        <li @click="routerName = 'contact'" class="nav-item" :class="routerName == 'contact' ? 'active' : ''">
+          <router-link to="/contact" class="nav-link " href="#"
+            >Contact</router-link
+          >
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search...."
+          aria-label="Search"
+        />
+      </form>
+      <div class="header__right__social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
 export default {
+  data(){
+    return {
+      routerName:''
+    }
+  },
+  created(){
+    this.routerName = this.$route.name 
+  }
 
-}
+};
 </script>
 
-<style>
+<style scoped>
+.active{
+  border-bottom: 1px solid var(--humber-golden);
+}
+.nav-item {
+  margin-left: 26px;
+  font-size: 19px;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) ease-in-out !important;
+}
 
+.nav-item {
+  color: #666;
+  display: inline-block;
+  margin: 0;
+  text-transform: uppercase;
+}
+.nav-item:after {
+  display: block;
+  content: "";
+  border-bottom: 1px solid var(--humber-golden);
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+.nav-item:hover:after {
+  transform: scaleX(1);
+}
+.nav-item.fromRight:after {
+  transform-origin: 100% 50%;
+}
+.nav-item.fromLeft:after {
+  transform-origin: 0% 50%;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+.navbar {
+  /* background-color: var(--black-color)!important; */
+  border-bottom: 1px solid var(--primary-color);
+  /* height: 77px; */
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.logo {
+  width: 87%;
+}
+.form-control {
+  background: none;
+  border: none !important;
+}
 </style>

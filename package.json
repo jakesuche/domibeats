@@ -1,5 +1,5 @@
 {
-  "name": "give-raffle-admin",
+  "name": "intellectual-property",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "@chenfengyuan/vue-countdown": "^2.0.0-rc",
     "all": "^0.0.0",
     "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "apexcharts": "3.19.3",
     "awesome-bootstrap-checkbox": "^1.0.1",
     "axios": "^0.21.1",
@@ -42,6 +43,7 @@
     "vue-apexcharts": "1.6.0",
     "vue-chartjs": "^3.5.1",
     "vue-echarts": "4.1.0",
+    "vue-feather-icons": "^5.1.0",
     "vue-fuse": "2.2.1",
     "vue-fusioncharts": "^3.1.0",
     "vue-json-csv": "^1.2.12",
