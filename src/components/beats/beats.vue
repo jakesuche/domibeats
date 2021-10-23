@@ -9,22 +9,31 @@
         <div class="col-lg-12">
           <ul class="list-group">
             <li
-              v-for="num in 8"
-              :key="num"
+              v-for="(audio, i) in auidioList"
+              :key="i"
               class="list-group-item d-flex justify-content-between align-items-center"
             >
               <div
                 class="d-flex  gap-1 justify-content-start align-items-center"
-              >
-                <span style="font-size:22px;" class="text-light">sombody</span>
+              > 
+                <span
+                  type="button"
+                  @click="play(audio)"
+                  style="font-size:22px;"
+                  class="text-light"
+                  >{{ audio.songName }}</span
+                >
               </div>
               <div
                 class="d-flex gap-3 justify-content-center align-items-center  hide"
               >
-                <span class="text-light">10.:30</span>
+                <span @click="pause()" class="text-light">{{audio.songDuration}}</span>
                 <div class="d-flex  gap-1">
-                  <span class="text-center text-muted tags">#sombody</span
-                  ><span class="text-center  text-muted tags">#sombody</span>
+                  <span @click="next()" class="text-center text-muted tags"
+                    >#sombody</span
+                  ><span @click="prev()" class="text-center  text-muted tags"
+                    >#sombody</span
+                  >
                 </div>
               </div>
               <div class="d-flex justify-content-end align-items-center gap-1">
@@ -78,7 +87,7 @@
                 ><CopyIcon size="18"
               /></span>
             </div>
-             <label for="basic-url" class="form-label">Your shot URL</label>
+            <label for="basic-url" class="form-label">Your shot URL</label>
             <div class="input-group mb-3">
               <input
                 id="myInput"
@@ -102,105 +111,128 @@
         <b-tab title="Embed"><p>Embed</p></b-tab>
       </b-tabs>
     </CustomModal>
-     <div class="tract_selected bg-light">
-         
-    
-    <div class="single__track bg-danger"> ">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="single__track__item">
-              <div class="single__track__item__pic">
-                <img src="img/hero/hero-track.jpg" alt="" />
-              </div>
-              <div class="single__track__item__text">
-                <h5>Understanding Operating</h5>
-                <span>Kyle Hawkins</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="single__track__option">
-              <div
-                class="jp-jplayer jplayer"
-                data-ancestor=".jp_container"
-                data-url="music-files/2.mp3"
-              ></div>
-              <div
-                class="jp-audio jp_container"
-                role="application"
-                aria-label="media player"
-              >
-                <div class="jp-gui jp-interface">
-                
-                  <div class="player_controls_box">
-                    <button class="jp-play player_button" tabindex="0">
-                      <i class="fas fa-play"></i>
-                    </button>
-                  </div>
-                  
-                  <div class="player_bars">
-                    <div class="jp-progress">
-                      <div class="jp-seek-bar">
-                        <div>
-                          <div class="jp-play-bar">
-                            <div
-                              class="jp-current-time"
-                              role="timer"
-                              aria-label="time"
-                            >
-                              0:00
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="jp-duration ml-auto"
-                      role="timer"
-                      aria-label="duration"
-                    >
-                      00:00
-                    </div>
-                  </div>
-                 
-                  <div class="jp-volume-controls">
-                    <button class="jp-mute" tabindex="0">
-                      <span class="icon_volume-high"></span>
-                    </button>
-                    <div class="jp-volume-bar">
-                      <div class="jp-volume-bar-value" style="width: 0%;"></div>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="jp-btns">
-                  <a href="#"><i class="fas fa-share-alt"></i> Share</a>
-                  <a><i class="fas fa-download"></i> Download</a>
-                </div> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <AudioPlayer :playlist="auidioList">
+      
+      
+    </AudioPlayer>
 
-    
-  </div>
+    <!-- <div class="tract_selected bg-light">
+      <div class="container">
+        <p class="track">Erlandsson <span>Memories (Radio Edit)</span></p>
+        <button data-am-button="small" id="btn-mute">
+          <i class="fa fa-volume-off"></i>
+        </button>
+        <button data-am-button="large" id="btn-play-pause">
+          <i class="fa fa-play"></i>
+        </button>
+        <button data-am-button="small" id="btn-stop">
+          <i class="fa fa-stop"></i>
+        </button>
+        <div id="progress-bar"><span id="progress"></span></div>
+      </div>
+
+      <footer>
+        &#169; Music by Erlandsson (aka
+        <a href="https://soundcloud.com/tr1ll1on" target="_blank">Trillion</a>)
+        avaible on
+        <a
+          href="https://itunes.apple.com/se/album/memories-single/id648712939?l=en"
+          target="_blank"
+          >iTunes</a
+        >,
+        <a
+          href="https://open.spotify.com/track/7qnVbMFkP2yCkiQ2XJCDOp"
+          target="_blank"
+          >Spotify</a
+        >
+        &
+        <a
+          href="https://www.beatport.com/ensisrecordsofficial1/tracks/kg8s2rgsrunc/memories-original-mix"
+          target="_blank"
+          >BeatPort</a
+        >
+      </footer>
+    </div> -->
+  
+ 
   </section>
 </template>
 
 <script>
+
 import CustomModal from "@/components/modal/modal.vue";
 import { CopyIcon } from "vue-feather-icons";
+import { mapState } from "vuex";
+import AudioPlayer from '@/components/visualizer/audioplayer'
 export default {
   components: {
     CopyIcon,
     CustomModal,
+    AudioPlayer
+   
   },
+  data() {
+    return {
+      current: {},
+      index: 0,
+      player: new Audio(),
+      isPlaying: false,
+    };
+  },
+  created() {
+    this.current = this.auidioList[this.index];
+    this.player.src = this.current.src;
+  },
+  computed: {
+    ...mapState({
+      auidioList: (state) => state.audios.audioList,
+    }),
+  },
+
   methods: {
-      play(){
-          
-      },
+    play(song) {
+      console.log(song );
+      console.log(this.player)
+      if (song.songLive != "underfined") {
+        this.current = song;
+        this.player.src = this.current.songLive;
+      }
+
+      this.player.play();
+      this.player.addEventListener(
+        "ended",
+        function() {
+          this.index++;
+          if (this.index > this.auidioList.length - 1) {
+            this.index = 0;
+          }
+          this.current = this.auidioList[this.index];
+          this.play(this.current);
+        }.bind(this)
+      );
+      this.isPlaying = true;
+    },
+    pause() {
+      this.player.pause();
+      this.isPlaying = false;
+    },
+    next() {
+      this.index++;
+      if (this.index > this.auidioList.length - 1) {
+        this.index = 0;
+      }
+      this.current = this.auidioList[this.index];
+      this.play(this.current);
+    },
+    prev() {
+      this.index--;
+      if (this.index < 0) {
+        this.index = this.auidioList.length - 1;
+      }
+      this.current = this.auidioList[this.index];
+      this.play(this.current);
+    },
+
     copyLink() {
       var copyText = document.getElementById("myInput");
 
@@ -310,11 +342,87 @@ export default {
   border-radius: 0.25rem;
 }
 
-.tract_selected{
-    position: fixed;
-    width: 100%;
-    bottom: 0px;
-    z-index: 9999999;
-    background:white!important
+.tract_selected {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  z-index: 9999999;
+  background: white !important;
+}
+
+/* .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+} */
+p.track {
+  text-transform: uppercase;
+  color: #fff;
+}
+p.track span {
+  color: #999;
+}
+button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #fff;
+ 
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  transition: all 0.2s ease 0;
+}
+button[data-am-button^="large"] {
+  width: 60px;
+  height: 60px;
+  margin: 0 5px;
+}
+button[data-am-button^="large"] i {
+  font-size: 25px;
+}
+button[data-am-button^="small"] {
+  width: 40px;
+  height: 40px;
+}
+button[data-am-button^="small"] i {
+  font-size: 14px;
+}
+button:hover {
+  color: #999;
+  border-color: #999;
+}
+button:focus {
+  outline: none;
+}
+#progress-bar {
+  width: 100%;
+  background-color: #000;
+  height: 5px;
+  position: relative;
+  margin: 1em 0;
+}
+#progress-bar #progress {
+  background-color: #999;
+  height: 5px;
+  position: absolute;
+  left: 0;
+  transition: width 2.5s linear 0;
+}
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 15px;
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+}
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #fff;
 }
 </style>

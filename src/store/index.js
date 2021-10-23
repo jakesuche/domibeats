@@ -20,7 +20,8 @@ export default new Vuex.Store({
         removeItem: (key) => ls.remove(key),
       },
       paths: [
-        "transaction",
+        
+        "audios"
         
       ],
     }),

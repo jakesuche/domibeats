@@ -19,7 +19,6 @@ import 'aos/dist/aos.css'
 
 
 
-
 // make sure we can use it in our components
 
 

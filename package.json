@@ -30,6 +30,7 @@
     "glyphicons-halflings": "^1.9.1",
     "highcharts": "7.2.2",
     "highcharts-vue": "^1.4.0",
+    "howler": "^2.2.3",
     "import-loader": "^1.0.1",
     "line-awesome": "^1.3.0",
     "moment": "^2.29.1",
@@ -41,6 +42,7 @@
     "v-tag-list": "^0.0.2",
     "vue": "^2.6.11",
     "vue-apexcharts": "1.6.0",
+    "vue-audio-visual": "^2.3.0",
     "vue-chartjs": "^3.5.1",
     "vue-echarts": "4.1.0",
     "vue-feather-icons": "^5.1.0",
@@ -92,7 +94,8 @@
       "no-unused-vars": "warn",
       "vue/no-side-effects-in-computed-properties": "warn",
       "no-unreachable": "warn",
-      "vue/return-in-computed-property": "warn"
+      "vue/return-in-computed-property": "warn",
+      "no-mixed-spaces-and-tabs": "warn"
     }
   },
   "browserslist": [

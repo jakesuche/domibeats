@@ -56,8 +56,8 @@
                 <img src="img/hero/hero-track.jpg" alt="" />
               </div>
               <div class="single__track__item__text">
-                <h5>Understanding Operating</h5>
-                <span>Kyle Hawkins</span>
+                <h5>{{audios[0].artistName}} {{audios[0].songDuration}}</h5>
+                <span>{{audios[0].songName}}</span>
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@
                       role="timer"
                       aria-label="duration"
                     >
-                      00:00
+                      {{duration}} 
                     </div>
                   </div>
                   <!-- Volume Controls -->
@@ -127,6 +127,11 @@
     </div>
     </Hero>
     <Beats />
+     <!-- <audio-visualizer
+     avHeight="82px"
+     :playlist="playlist"
+     :canvas="true"
+    ></audio-visualizer> -->
 
     <!-- Call To Action Section Begin -->
     <section
@@ -197,11 +202,7 @@
         </div>
       </div>
     </section>
-    <!-- Episodes Section End -->
-
-    <!-- Footer Section Begin -->
-
-    <!-- Footer Section End -->
+ 
   </div>
 </template>
 
@@ -210,6 +211,7 @@ import { episode_items } from "@/components/datas/card_data.js";
 import Beats from '@/components/beats/beats'
 import Hero from "@/components/hero/hero.vue";
 import image from "@/assets/img/hero/hero-video1.png";
+import { mapState } from 'vuex'
 export default {
   components: { Hero, Beats },
   data() {
@@ -217,9 +219,34 @@ export default {
       loading: true,
       episode_items,
       image,
+      myAudio:new Audio(),
+      duration:''
     };
   },
+  computed:{
+    ...mapState({
+      audios:state=>state.audios.audioList
+    })
+  },
+  methods: {
+    getDuration(song){
+      
+      this.myAudio.src = this.audios[0].songLive
+       console.log('caled')
+      
+      this.myAudio.addEventListener('loadedmetadata', function(){
+        
+        const time = (this.myAudio.duration / 60);
+        
+        this.duration =  time.toFixed(2)
+      }.bind(this))
+    }
+  },
+  mounted(){
+    this.getDuration()
+  },  
   created() {
+   
     setTimeout(() => {
       this.loading = false;
     }, 2000);

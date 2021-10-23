@@ -541,7 +541,7 @@ ol {
 }
 
 .jp-audio .jp-play:focus:after {
-	content: "E";
+	content: "";
 	font-family: "ElegantIcons";
 }
 
