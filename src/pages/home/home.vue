@@ -230,7 +230,7 @@ export default {
   },
   methods: {
     getDuration(song){
-      
+      //
       this.myAudio.src = this.audios[0].songLive
        console.log('caled')
       
