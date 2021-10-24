@@ -15,8 +15,8 @@ import '@/assets/css/global.css'
 import moment from 'moment'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-
-
+const eventBus = new Vue()
+Vue.prototype.$eventBus = eventBus 
 
 
 // make sure we can use it in our components

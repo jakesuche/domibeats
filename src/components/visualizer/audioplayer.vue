@@ -135,6 +135,11 @@ export default {
     this.setAnalyser();
     this.updateVolumeBar();
   },
+  created() {
+      this.$eventBus.$on('chooseSong', (event)=>{
+        this.chooseSong(event)
+      })
+  },
   props: {
     avHeight: {
       type: String,

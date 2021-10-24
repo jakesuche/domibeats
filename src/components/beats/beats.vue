@@ -18,7 +18,7 @@
               > 
                 <span
                   type="button"
-                  @click="play(audio)"
+                  @click="$eventBus.$emit('chooseSong', i)"
                   style="font-size:22px;"
                   class="text-light"
                   >{{ audio.songName }}</span
@@ -27,11 +27,11 @@
               <div
                 class="d-flex gap-3 justify-content-center align-items-center  hide"
               >
-                <span @click="pause()" class="text-light">{{audio.songDuration}}</span>
+                <span class="text-light">{{audio.songDuration}}</span>
                 <div class="d-flex  gap-1">
-                  <span @click="next()" class="text-center text-muted tags"
+                  <span  class="text-center text-muted tags"
                     >#sombody</span
-                  ><span @click="prev()" class="text-center  text-muted tags"
+                  ><span  class="text-center  text-muted tags"
                     >#sombody</span
                   >
                 </div>
@@ -182,6 +182,7 @@ export default {
   created() {
     this.current = this.auidioList[this.index];
     this.player.src = this.current.src;
+    
   },
   computed: {
     ...mapState({

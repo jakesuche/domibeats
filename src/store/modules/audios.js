@@ -13,7 +13,7 @@ export default {
         songDuration: '3:45'
       },
       {
-        songName: 'TaKillya (Baby Driver Soundtrack)',
+        songName: 'TaKillya',
         songLive: audio2,
         artistName: 'Vinnie Maniscalco',
         songImg: 'https://adamology.net/wp-content/uploads/2017/07/Baby-Driver.jpg',
