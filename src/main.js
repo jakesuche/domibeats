@@ -11,12 +11,15 @@ import Vuesax from 'vuesax'
 import '@/assets/css/give-raffle-variable.css'
 import Fuse from 'fuse.js'
 import '@/assets/css/global.css'
+// import firebase from "firebase";
 // import 'vuesax/dist/vuesax.css' //Vuesax styles
 import moment from 'moment'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import 'animate.css';
 const eventBus = new Vue()
 Vue.prototype.$eventBus = eventBus 
+
 
 
 // make sure we can use it in our components

@@ -20,12 +20,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li @click="routerName = 'home'" class="nav-item" :class="routerName == 'home' ? 'active' : ''">
+        <li @click="routerName = 'home', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'home' ? 'active' : ''">
           <router-link class="nav-link" to="/"
             >Home <span class="sr-only">(current)</span></router-link
           >
         </li>
-        <li @click="routerName = 'about'" class="nav-item" :class="routerName == 'about' ? 'active' : ''">
+        <li @click="routerName = 'about', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'about' ? 'active' : ''">
           <router-link to="/about"  class="nav-link">About</router-link>
         </li>
         <!-- <li class="nav-item dropdown">
@@ -39,7 +39,7 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li> -->
-        <li @click="routerName = 'contact'" class="nav-item" :class="routerName == 'contact' ? 'active' : ''">
+        <li @click="routerName = 'contact', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'contact' ? 'active' : ''">
           <router-link to="/contact" class="nav-link " href="#"
             >Contact</router-link
           >

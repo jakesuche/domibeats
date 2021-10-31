@@ -4,6 +4,7 @@ import store from "./store/index";
 import home from './pages/home/home.vue'
 import Contact from './pages/contact/contact.vue'
 import About from './pages/about/about.vue'
+import Admin from './pages/admin/admin.vue'
 
 
 
@@ -31,6 +32,11 @@ const router =  new Router({
       path:'/about',
       name:'about',
       component: About,
+    },
+    {
+      path:'/admin',
+      name:'admin',
+      component: Admin,
     }
     
     // {

@@ -6,7 +6,8 @@
           'url(' + require('@/assets/img/footer-bg1.png') + ')',
       }"
     >
-      <div class="container">
+      <div class="container" data-aos="fade-up"
+     data-aos-anchor-placement="top-bottom">
         <div class="footer__subscriber">
           <div class="row">
             <div class="col-lg-5">

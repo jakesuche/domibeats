@@ -1,6 +1,6 @@
 <template>
   <div :style="{ '--av-height': avHeight }">
-    <div class="av" ref="av" v-if="playlist">
+    <div class="av" :class="showAudio ? 'bottom':''" ref="av" v-if="playlist">
       <!-- The canvas component with visualizations -->
       <av-canvas
         :audioAnalyser="myAnalyser"
@@ -139,6 +139,9 @@ export default {
       this.$eventBus.$on('chooseSong', (event)=>{
         this.chooseSong(event)
       })
+      this.$eventBus.$on('stop', (event)=>{
+          this.pauseSong()
+      })
   },
   props: {
     avHeight: {
@@ -157,7 +160,7 @@ export default {
   components: { AudioControls, AudioPlaylist, AvCanvas },
   data() {
     return {
-     
+      showAudio:false,
       volumeBar: null,
       myAnalyser: null,
       currentSong: 0,
@@ -220,7 +223,7 @@ export default {
     },
     playSong() {
         console.log(this.myAudio)
-     
+        this.showAudio = true
         this.myAudio.src = this.playlist[this.currentSong].songLive
           this.myAudio.play();
           this.songControls.songPaused = false;
@@ -365,13 +368,17 @@ export default {
 </script>
 
 <style scoped>
+.bottom{
+  bottom:0!important
+}
 .av {
   width: 100vw;
   position: fixed;
-  bottom: 0;
+  bottom: -74px;
   color: white;
   user-select: none;
-  z-index:999
+  z-index:999;
+  transition: all cubic-bezier(1, -0.01, 0.6, 0.57) .7s;
 }
 .av__audio {
   width: 100%;

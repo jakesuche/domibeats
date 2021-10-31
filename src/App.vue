@@ -20,9 +20,9 @@
         <a href="#"><i class="fa fa-dribbble"></i></a>
       </div>
     </div>
-    <Header />
+    <Header v-if="$route.name !== 'admin'" />
     <router-view />
-    <Footer/>
+    <Footer v-if="$route.name !== 'admin'"/>
   </div>
 </template>
 
@@ -38,10 +38,7 @@ export default {
 
   name: "App",
   created() {
-    this.$store.dispatch("game/getGames");
-    this.$store.dispatch("analitics/getStats");
-
-    this.$store.dispatch("staff/getAllStaff");
+   console.log(this.$route)
     const currentPath = this.$router.history.current.path;
 
     // if (window.localStorage.getItem("authenticated") === "false") {

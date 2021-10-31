@@ -5,23 +5,23 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="hero__text">
-            <h5>
+            <h5 class="animate__animated animate__slideInLeft">
               <span class="fas fa-headphones-alt"></span> Mustard on the beat,
               hoe
             </h5>
-            <h2>Intellectual:"Property"</h2>
+            <h2 class="animate__animated animate__slideInLeft">Intellectual:"Property"</h2>
             <a
               style="margin-right:30px"
               href="https://soundbetter.com/profiles/449673-intellectualproperty"
-              class="primary-btn white-btn"
+              class="primary-btn white-btn animate__zoomIn animate__animated"
               >Click to Hire</a
             >
-            <a
+            <a 
               href="https://soundbetter.com/profiles/449673-intellectualproperty"
               rel="noopener noreferrer"
               target="_blank"
               title="Intellectualproperty profile on SoundBetter"
-              ><img
+              ><img class="animate__zoomIn animate__animated"
                 alt="Intellectualproperty on SoundBetter"
                 src="https://d2p6ecj15pyavq.cloudfront.net/assets/SoundBetterBadge-c84cb3e75c4267f5bee41f7f617a81d9.svg"
                 style="max-width: 130px;"
@@ -29,8 +29,8 @@
             <!-- <a href="#" class="primary-btn">Subscribe with iTunes</a> -->
           </div>
         </div>
-        <div class="col-lg-6">
-          <div
+        <div class="col-lg-6 animate__slideInRight animate__animated">
+          <div 
             class="hero__pic set-bg"
             data-setbg="img/hero/hero-video.png"
             :style="{
@@ -47,84 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="single__track">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="single__track__item">
-              <div class="single__track__item__pic">
-                <img src="img/hero/hero-track.jpg" alt="" />
-              </div>
-              <div class="single__track__item__text">
-                <h5>{{audios[0].artistName}} {{audios[0].songDuration}}</h5>
-                <span>{{audios[0].songName}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="single__track__option">
-              <div
-                class="jp-jplayer jplayer"
-                data-ancestor=".jp_container"
-                data-url="music-files/2.mp3"
-              ></div>
-              <div
-                class="jp-audio jp_container"
-                role="application"
-                aria-label="media player"
-              >
-                <div class="jp-gui jp-interface">
-                  <!-- Player Controls -->
-                  <div class="player_controls_box">
-                    <button class="jp-play player_button" tabindex="0">
-                      <i class="fas fa-play"></i>
-                    </button>
-                  </div>
-                  <!-- Progress Bar -->
-                  <div class="player_bars">
-                    <div class="jp-progress">
-                      <div class="jp-seek-bar">
-                        <div>
-                          <div class="jp-play-bar">
-                            <div
-                              class="jp-current-time"
-                              role="timer"
-                              aria-label="time"
-                            >
-                              0:00
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="jp-duration ml-auto"
-                      role="timer"
-                      aria-label="duration"
-                    >
-                      {{duration}} 
-                    </div>
-                  </div>
-                  <!-- Volume Controls -->
-                  <div class="jp-volume-controls">
-                    <button class="jp-mute" tabindex="0">
-                      <span class="icon_volume-high"></span>
-                    </button>
-                    <div class="jp-volume-bar">
-                      <div class="jp-volume-bar-value" style="width: 0%;"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="jp-btns">
-                  <a href="#"><i class="fas fa-share-alt"></i> Share</a>
-                  <a><i class="fas fa-download"></i> Download</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
     </Hero>
     <Beats />
      <!-- <audio-visualizer
@@ -147,7 +70,7 @@
         <div class="row">
           <div class="col-lg-12" data-aos="zoom-in">
             <div class="callto__text">
-              <h2>Support The Beat</h2>
+              <h2 >Support The Beat</h2>
               <p>Enjoy listening to our beats? Consider making a donation!</p>
               <a href="#" class="primary-btn">Make a Donation</a>
             </div>
@@ -168,12 +91,13 @@
         </div>
 
         <div class="row">
-          <div
+          <div data-aos="fade-up"
+     data-aos-duration="3000"
             class="col-lg-4 col-md-6"
             v-for="(item, i) in episode_items"
             :key="i + 'uchech'"
           >
-            <div
+            <div 
               class="episodes__item set-bg"
               :style="{
                 'background-image':

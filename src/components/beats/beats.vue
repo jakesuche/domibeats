@@ -9,13 +9,15 @@
         <div class="col-lg-12">
           <ul class="list-group">
             <li
+              data-aos="fade-up"
+              data-aos-duration="3000"
               v-for="(audio, i) in auidioList"
               :key="i"
               class="list-group-item d-flex justify-content-between align-items-center"
             >
               <div
-                class="d-flex  gap-1 justify-content-start align-items-center"
-              > 
+                class="d-flex  gap-1 justify-content-start align-items-center left"
+              >
                 <span
                   type="button"
                   @click="$eventBus.$emit('chooseSong', i)"
@@ -27,16 +29,15 @@
               <div
                 class="d-flex gap-3 justify-content-center align-items-center  hide"
               >
-                <span class="text-light">{{audio.songDuration}}</span>
+                <span class="text-light">{{ audio.songDuration }}</span>
                 <div class="d-flex  gap-1">
-                  <span  class="text-center text-muted tags"
-                    >#sombody</span
-                  ><span  class="text-center  text-muted tags"
-                    >#sombody</span
-                  >
+                  <span class="text-center text-muted tags">#sombody</span
+                  ><span class="text-center  text-muted tags">#sombody</span>
                 </div>
               </div>
-              <div class="d-flex justify-content-end align-items-center gap-1">
+              <div
+                class="d-flex justify-content-end align-items-center gap-1 right"
+              >
                 <div
                   type="button"
                   data-toggle="modal"
@@ -60,8 +61,16 @@
       </div>
     </div>
     <CustomModal title="free down load" target="exampleModalCenter">
-      <div class="center">
+      <div class="center" v-if="user">
         <button type="button" class="btn ">Download</button>
+      </div>
+      <div class="container" v-else>
+        <div class="form-group d-flex justify-content-center mt-5 mb-5">
+          <!-- <button class="btn auth_btn">Login</button> -->
+          <button @click="signInGoogle()" class="btn  auth_btn_google">
+            <i class="fab fa-google"></i> Sign up with google to continue
+          </button>
+        </div>
       </div>
     </CustomModal>
     <CustomModal title="free down load" target="ShareModal">
@@ -111,10 +120,7 @@
         <b-tab title="Embed"><p>Embed</p></b-tab>
       </b-tabs>
     </CustomModal>
-    <AudioPlayer :playlist="auidioList">
-      
-      
-    </AudioPlayer>
+    <AudioPlayer :playlist="auidioList" />
 
     <!-- <div class="tract_selected bg-light">
       <div class="container">
@@ -153,23 +159,20 @@
         >
       </footer>
     </div> -->
-  
- 
   </section>
 </template>
 
 <script>
-
+import { signInGoogle, onAuthStateChanged, signOut, auth } from "@/firebase";
 import CustomModal from "@/components/modal/modal.vue";
 import { CopyIcon } from "vue-feather-icons";
 import { mapState } from "vuex";
-import AudioPlayer from '@/components/visualizer/audioplayer'
+import AudioPlayer from "@/components/visualizer/audioplayer";
 export default {
   components: {
     CopyIcon,
     CustomModal,
-    AudioPlayer
-   
+    AudioPlayer,
   },
   data() {
     return {
@@ -177,12 +180,13 @@ export default {
       index: 0,
       player: new Audio(),
       isPlaying: false,
+      user: null,
     };
   },
   created() {
+    // this.getAuthenticatedUser();
     this.current = this.auidioList[this.index];
     this.player.src = this.current.src;
-    
   },
   computed: {
     ...mapState({
@@ -191,9 +195,31 @@ export default {
   },
 
   methods: {
+    // getAuthenticatedUser() {
+    //   onAuthStateChanged(auth, (user) => {
+    //     if (user) {
+    //       const uid = user.uid;
+    //       this.user = user;
+    //     } else {
+    //       console.log("no user");
+    //     }
+    //   });
+    // },
+    signInGoogle() {
+      this.$store.dispatch('audios/signInGoogle')
+      // signInGoogle()
+      //   .then((res) => {
+      //     console.log(res);
+      //     this.$toasted.success("Successfully sign in with Google");
+      //     this.getAuthenticatedUser();
+      //   })
+      //   .catch((err) => {
+      //     this.$toasted.error("An error occurred while sigining the Google");
+      //   });
+    },
     play(song) {
-      console.log(song );
-      console.log(this.player)
+      console.log(song);
+      console.log(this.player);
       if (song.songLive != "underfined") {
         this.current = song;
         this.player.src = this.current.songLive;
@@ -313,7 +339,7 @@ export default {
 
 .btn {
   background: var(--gradient-primary);
-  width: 117px;
+  /* width: 117px; */
   color: var(--humber-black);
 }
 .form-label {
@@ -323,6 +349,7 @@ export default {
 .form-control {
   background: none;
   border: 1px solid var(--humber-golden);
+  color: var(--humber-light);
 }
 
 .input-group-text {
@@ -368,7 +395,7 @@ p.track span {
 button {
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid #fff;
- 
+
   color: #fff;
   text-align: center;
   display: inline-block;
@@ -425,5 +452,25 @@ footer a {
 }
 footer a:hover {
   color: #fff;
+}
+
+.left,
+.right {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.label {
+  color: var(--humber-light);
+}
+
+.auth_btn_google,
+.auth_btn {
+  width: 65%;
+}
+
+.auth_btn_google {
+  background: var(--humber-light) !important;
+  color: var(--humber-link);
 }
 </style>
