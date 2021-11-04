@@ -1,7 +1,7 @@
 <template>
     <div class="modal fade"  :id="target" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div :style="{ backgroundImage: `${bgImg ? `url(${bgImg})` : 'var(--humber-black)'}` }" class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">{{title}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -23,7 +23,7 @@
 <script>
 import { AirplayIcon, AtSignIcon, XCircleIcon } from 'vue-feather-icons'
 export default {
-    props:['title', 'target'],
+    props:['title', 'target', 'bgImg'],
     components: {
         XCircleIcon, 
     }
@@ -36,6 +36,10 @@ export default {
     .modal-content{
         background: var(--humber-black);
         border: 1px solid #f5e6973b;
+            background-position: center;
+    background-repeat: no-repeat;
+       /* background-origin: content-box; */
+    background-size: cover;
 }
 
 .btn{

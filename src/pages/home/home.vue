@@ -6,16 +6,16 @@
         <div class="col-lg-6">
           <div class="hero__text">
             <h5 class="animate__animated animate__slideInLeft">
-              <span class="fas fa-headphones-alt"></span> Mustard on the beat,
-              hoe
+              <span class="fas fa-headphones-alt"></span> Beat master,
+            
             </h5>
-            <h2 class="animate__animated animate__slideInLeft">Intellectual:"Property"</h2>
-            <a
+            <h2 class="animate__animated animate__slideInLeft">Intellectual Property</h2>
+            <!-- <a
               style="margin-right:30px"
               href="https://soundbetter.com/profiles/449673-intellectualproperty"
               class="primary-btn white-btn animate__zoomIn animate__animated"
               >Click to Hire</a
-            >
+            > -->
             <a 
               href="https://soundbetter.com/profiles/449673-intellectualproperty"
               rel="noopener noreferrer"
@@ -57,7 +57,7 @@
     ></audio-visualizer> -->
 
     <!-- Call To Action Section Begin -->
-    <section
+    <!-- <section
       class="callto spad set-bg"
       :style="{
         'background-attachment': 'fixed',
@@ -77,10 +77,11 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- Call To Action Section End -->
     <!-- Episodes Section Begin -->
-    <section class="episodes spad">
+  
+     <section class="episodes spad">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -94,31 +95,26 @@
           <div data-aos="fade-up"
      data-aos-duration="3000"
             class="col-lg-4 col-md-6"
-            v-for="(item, i) in episode_items"
+            v-for="(item, i) in audios"
             :key="i + 'uchech'"
           >
             <div 
               class="episodes__item set-bg"
-              :style="{
-                'background-image':
-                  'url(' +
-                  require(`@/assets/img/episodes/episodes-${i + 1}.jpg`) +
-                  ')',
-              }"
+              :style="{ backgroundImage: `${item.songImg ? `url(${item.songImg })` : 'var(--humber-black)'}` }"
             >
               <div class="tags">
-                <span class="icon_tags_alt"></span> Music, Radio
+                <i class="fas fa-hashtag"></i> {{item.genre}}
               </div>
               <div class="time">
-                <span class="icon_clock_alt"></span> 40 mins
+                <i class="fas fa-clock"></i> 40 mins
               </div>
               <a
-                href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/249690664&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+                :href="item.link"
                 class="play-btn video-popup"
                 ><img src="img/play.png" alt=""
               /></a>
               <div class="episodes__text">
-                <h4>Episode 02: Dealing With Technical Support 10</h4>
+                <h4>{{item.songName}}</h4>
                 <p><span class="icon_calendar"></span> 16 Feb 2019</p>
               </div>
             </div>
@@ -126,6 +122,7 @@
         </div>
       </div>
     </section>
+   
  
   </div>
 </template>
@@ -170,7 +167,7 @@ export default {
     this.getDuration()
   },  
   created() {
-   
+    this.$store.dispatch('audios/getAllBeats')
     setTimeout(() => {
       this.loading = false;
     }, 2000);

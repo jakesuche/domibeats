@@ -1,37 +1,38 @@
-\<template>
+<template>
    <div class="table-resposive">
             <table class="table">
               <thead>
                 <tr>
                   <th class="hidden-sm-down">#</th>
-                   <th class="hidden-sm-down">Image</th>
-                  <th> Song Name</th>
-                  <th class="hidden-sm-down">Artist name</th>
-                  <th class="hidden-sm-down">Link</th>
-                  <th class="hidden-sm-down">Actions</th>
+                  
+                  <th>Email</th>
+                  <th class="hidden-sm-down">Display Name</th>
+                  <th class="hidden-sm-down">Phone</th>
+                 
+                 
                 </tr>
               </thead>
               <tbody>
-                <tr  style="color:var(--humber-light)">
+                <tr v-for="(user, i) in users" :key="user.uid + i" style="color:var(--humber-light)">
                   <td><p class="mb-0">
-                    1
+                    {{i + 1}} 
                     </p></td>
                  
                   <td>
                     
                     <p class="mb-0">
-                     dhhhhw
+                     {{user.email}}
                     </p>
                   </td>
                   <td>
                     <p class="mb-0">
-                       dhhhhw
+                     {{user.displayName}}
                     </p>
                     
                   </td>
                   <td >
                     <p class="mb-0">
-                      dhhhhw
+                     {{user.phoneNumber || 'N/A'}}
                     </p>
                   </td>
                   

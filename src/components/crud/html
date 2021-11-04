@@ -1,0 +1,46 @@
+<template>
+  <div class="card mt-4">
+    <table class="table m-0">
+      <thead>
+        <tr>
+          <th scope="col">SN</th>
+          <th scope="col">Email</th>
+          <th scope="col">Dispaly Name</th>
+          <th scope="col">Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(user, i) in users" :key="user.uid + i">
+          <td>{{i + 1}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.displayName}}</td>
+           <td>{{user.phoneNumber || 'N/A'}}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+// import { useLoadUsers, deleteUser } from '@/firebase'
+export default {
+    props:['users']
+};
+</script>
+
+<style scoped>
+.card {
+  min-height: 399px;
+  min-height: 399px;
+  background: var(--humber-dark);
+  border: 1px solid var(--humber-golden);
+}
+
+.table td {
+  color: var(--humber-light);
+}
+.table th {
+  color: var(--humber-light);
+}
+</style>

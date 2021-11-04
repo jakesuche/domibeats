@@ -6,39 +6,88 @@
   >
     <div class="container">
       <div class="row">
+        <div class="col-md-12 ">
+          <div class="d-flex mb-5 justify-content-between">
+            <select @change="selectGenre($event)" class="form-control filter">
+             
+               <option selected disabled>Filter  genre</option>
+          <option value="afrobeat">Afrobeat</option>
+          <option value="dance hall">Dance hall</option>
+           <option value="hip hop">Hip hop</option>
+            <option value="gospel">Gospel</option>
+            <option value="R and B">R and B</option>
+            </select>
+           
+          </div>
+        </div>
         <div class="col-lg-12">
-          <ul class="list-group">
+          <ul class="list-group" data-aos="fade-up"
+              data-aos-duration="3000">
             <li
-              data-aos="fade-up"
-              data-aos-duration="3000"
-              v-for="(audio, i) in auidioList"
+             
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <div
+                class="d-flex  gap-1 justify-content-start align-items-center left"
+              >
+                <span type="button" style="font-size:1rem;" class="text-light"
+                  >Song Name</span
+                >
+              </div>
+
+              <div
+                class="d-flex gap-3 justify-content-center align-items-center  hide"
+              >
+                <span class="text-light">Duration</span>
+                <div class="d-flex  gap-1">
+                  <span class="text-center text-muted ">genre</span>
+                  <!-- <span class="text-center  text-muted tags">#sombody</span> -->
+                </div>
+              </div>
+              <div
+                class="d-flex justify-content-end align-items-center gap-1 right"
+              >
+                Actions
+              </div>
+            </li>
+            <li
+              
+              v-for="(audio, i) in filterSongs"
               :key="i"
               class="list-group-item d-flex justify-content-between align-items-center"
             >
               <div
                 class="d-flex  gap-1 justify-content-start align-items-center left"
               >
+                <img class="songImg" :src="audio.songImg" alt="Song image">
                 <span
                   type="button"
                   @click="$eventBus.$emit('chooseSong', i)"
-                  style="font-size:22px;"
+                  style="font-size:1rem;"
                   class="text-light"
                   >{{ audio.songName }}</span
                 >
               </div>
+
               <div
                 class="d-flex gap-3 justify-content-center align-items-center  hide"
               >
-                <span class="text-light">{{ audio.songDuration }}</span>
+                <span class="text-light"
+                  >{{ audio.songDuration
+                  }}{{ getDuration(audio.songLive) }}</span
+                >
                 <div class="d-flex  gap-1">
-                  <span class="text-center text-muted tags">#sombody</span
-                  ><span class="text-center  text-muted tags">#sombody</span>
+                  <span class="text-center badge badge-secondary"
+                    >#{{ audio.genre }}</span
+                  >
+                  <!-- <span class="text-center  text-muted tags">#sombody</span> -->
                 </div>
               </div>
               <div
                 class="d-flex justify-content-end align-items-center gap-1 right"
               >
                 <div
+                  @click="selected = audio"
                   type="button"
                   data-toggle="modal"
                   data-target="#exampleModalCenter"
@@ -49,7 +98,7 @@
                 <div
                   type="button"
                   data-toggle="modal"
-                  data-target="#ShareModal"
+                  data-target="#1ShareModal"
                   class="beat_actions"
                 >
                   <i class="fas fa-share-alt"></i>
@@ -58,18 +107,41 @@
             </li>
           </ul>
         </div>
+        <!-- <div class="col-md-12 mt-5 ">
+          <div class="d-flex mb-5 justify-content-center gap-3">
+           <button class="btn pagination-btn">
+             Previouse
+           </button>
+           <button class="btn pagination-btn">
+             Next
+           </button>
+          </div>
+        </div> -->
       </div>
     </div>
-    <CustomModal title="free down load" target="exampleModalCenter">
-      <div class="center" v-if="user">
-        <button type="button" class="btn ">Download</button>
-      </div>
-      <div class="container" v-else>
-        <div class="form-group d-flex justify-content-center mt-5 mb-5">
-          <!-- <button class="btn auth_btn">Login</button> -->
-          <button @click="signInGoogle()" class="btn  auth_btn_google">
-            <i class="fab fa-google"></i> Sign up with google to continue
+    <CustomModal
+      :bgImg="selected.songImg"
+      :title="` free download: ${selected.songName}`"
+      target="exampleModalCenter"
+    >
+      <div>
+        <div class="center" v-if="user">
+          <!-- {{selected}} -->
+          <button
+            @click.prevent="downloadsample(selected.songLive)"
+            type="button"
+            class="btn "
+          >
+            Download
           </button>
+        </div>
+        <div class="container" v-else>
+          <div class="form-group d-flex justify-content-center mt-5 mb-5">
+            <!-- <button class="btn auth_btn">Login</button> -->
+            <button @click="signInGoogle()" class="btn  auth_btn_google">
+              <i class="fab fa-google"></i> Sign up with google to continue
+            </button>
+          </div>
         </div>
       </div>
     </CustomModal>
@@ -168,12 +240,19 @@ import CustomModal from "@/components/modal/modal.vue";
 import { CopyIcon } from "vue-feather-icons";
 import { mapState } from "vuex";
 import AudioPlayer from "@/components/visualizer/audioplayer";
+import Fuse from 'fuse.js'
+import axios from "axios";
 export default {
   components: {
     CopyIcon,
     CustomModal,
     AudioPlayer,
   },
+
+  // const indexOfLastPost2 = currentPage * postPerPage;
+  // const indexOfFirstPost2 = indexOfLastPost2 - postPerPage2;
+  // const currentPosts2 = coinsHistory?.slice(indexOfFirstPost2, indexOfLastPost2);
+  
   data() {
     return {
       current: {},
@@ -181,32 +260,66 @@ export default {
       player: new Audio(),
       isPlaying: false,
       user: null,
+      selected: {},
+      searchTerm:'',
+      currentPage:1,
+      postPerPage:10,
+
     };
   },
   created() {
-    // this.getAuthenticatedUser();
+    this.getAuthenticatedUser();
     this.current = this.auidioList[this.index];
     this.player.src = this.current.src;
+    this.$store.dispatch("audios/getAllBeats");
   },
   computed: {
     ...mapState({
       auidioList: (state) => state.audios.audioList,
     }),
+    filterSongs(){
+       if(this.auidioList){
+  
+        const fuse = new Fuse(this.auidioList, {keys: ['genre'],
+      })
+      
+      const results = fuse.search(this.searchTerm).map(({item})=>item);
+  
+      if(this.auidioList.length > 0 && this.searchTerm.length > 3 && results.length > 0){
+        return results
+        }else{
+          return this.auidioList
+        }
+      }
+    },
   },
 
   methods: {
-    // getAuthenticatedUser() {
-    //   onAuthStateChanged(auth, (user) => {
-    //     if (user) {
-    //       const uid = user.uid;
-    //       this.user = user;
-    //     } else {
-    //       console.log("no user");
-    //     }
-    //   });
-    // },
+    getDuration(audio) {},
+    pagination(){
+
+    },
+
+    selectGenre(event){
+        const {value} = event.target
+        console.log(value)
+        this.searchTerm = value
+    },
+    downloadsample(url) {
+    window.location.href = url;
+    },
+    getAuthenticatedUser() {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          this.user = user;
+        } else {
+          console.log("no user");
+        }
+      });
+    },
     signInGoogle() {
-      this.$store.dispatch('audios/signInGoogle')
+      this.$store.dispatch("audios/signInGoogle");
       // signInGoogle()
       //   .then((res) => {
       //     console.log(res);
@@ -273,6 +386,24 @@ export default {
 </script>
 
 <style scoped>
+.filter {
+  width: 20%;
+  background: var(--gradient-primary) !important;
+  border: 1px solid var(--humber-golden) !important;
+  color: var(--humber-black) !important;
+  height: 45px;
+}
+.songImg{
+  max-width: 10%;
+}
+.pagination-btn{
+  min-width: 100px;
+}
+
+.option {
+  background: var(--gradient-primary);
+}
+
 .podcast_item_text {
   border: 1px solid #ebebeb;
   padding: 10px 32px 10px 54px;
@@ -318,7 +449,7 @@ export default {
   position: relative;
   display: block;
   padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid var(--primary-color);
+  border-bottom: 1px  solid #cba7758f;
   background: none !important;
   /* background-color: #fff; */
   /* border: 1px solid rgba(0,0,0,.125); */
@@ -472,5 +603,19 @@ footer a:hover {
 .auth_btn_google {
   background: var(--humber-light) !important;
   color: var(--humber-link);
+}
+
+
+.badge {
+    display: inline-block;
+    padding: 0.75em  0.9em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.55rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 </style>

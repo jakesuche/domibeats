@@ -24,7 +24,12 @@ export default {
 
   state: {
     user: [],
+    beatsList: [],
+
     audioList: [
+     
+    ],
+    falbackList: [
       {
         songName: "Agnes",
         songLive: audio1,
@@ -69,6 +74,26 @@ export default {
   },
 
   actions: {
+    async getAllBeats({ commit, state }) {
+      const array = [];
+      const querySnapshot = await getDocs(collection(db, "beat_samples"));
+     
+      querySnapshot.forEach((doc) => {
+        
+
+        const data = { id: doc.id, ...doc.data() };
+        array.push(data);
+     
+      });
+      // commit("StoreBeats", array);
+      if(array.length > 0){
+        commit("StoreBeats", array);
+      }else{
+        console.log(state.falbackList)
+        commit("StoreBeats", state.falbackList);
+      }
+      
+    },
     async signInGoogle() {
       signInGoogle()
         .then((res) => {
@@ -88,7 +113,7 @@ export default {
               console.log(doc.data());
               usersArray.push(doc.data());
             });
-            
+
             const ifUser = usersArray.find((user) => user.uid == res.user.uid);
             if (ifUser) {
               return;
@@ -101,8 +126,24 @@ export default {
                   console(err.response);
                 });
             }
-            
           });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    getUsers({ commit }) {
+      getDocs(collection(db, "users"))
+        .then((docs) => {
+          let usersArray = [];
+
+          docs.forEach((doc) => {
+            
+            usersArray.push(doc.data());
+          });
+          
+          commit("StoreUser", usersArray);
         })
         .catch((err) => {
           console.log(err);
@@ -110,6 +151,12 @@ export default {
     },
   },
   mutations: {
-    StoreUser(state, user) {},
+    StoreUser(state, users) {
+      state.users = users;
+    },
+    StoreBeats(state, beats) {
+      state.beatsList = beats;
+      state.audioList = beats;
+    },
   },
 };

@@ -8,6 +8,7 @@
           <i class="fa fa-clock-o"></i>
         </span>
       </span>
+
       <span v-for="(song, index) in playlist" :key="index">
         <span class="songNum" @click="$emit('chooseSong', index)">
           <span v-if="!song.isPlaying">{{ index + 1 }}</span>
@@ -16,7 +17,7 @@
         <span class="songName" @click="$emit('chooseSong', index)">{{
           song.songName
         }}</span>
-        <span class="songDuration">{{ song.songDuration }}</span>
+        <span class="songDuration"> {{ getDuration(song.songLive) }}</span>
       </span>
     </div>
   </transition>
@@ -26,6 +27,22 @@
 export default {
   name: "AudioPlaylist",
   props: ["playlist"],
+
+  methods: {
+    getDuration(src) {
+      var audio = new Audio();
+    let durationTime = "";
+      audio.addEventListener("loadedmetadata", function(event) {
+        const duration = audio.duration;
+        const format = (val) => `0${Math.floor(val)}`.slice(-2);
+        const hours = duration / 3600;
+        const minutes = (duration % 3600) / 60;
+
+        return [hours, minutes, duration % 60].map(format).join(":");
+      });
+      audio.src = src;
+    },
+  },
 };
 </script>
 

@@ -34,10 +34,11 @@ export default {
   components: {
     Header,
     Footer
-  },
+},
 
   name: "App",
   created() {
+  this.$store.dispatch('audios/getUsers')
    console.log(this.$route)
     const currentPath = this.$router.history.current.path;
 
