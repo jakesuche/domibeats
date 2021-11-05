@@ -25,44 +25,44 @@
         </div>
         <div class="row mt-5 mb-5">
           <div class="col-md-6 academy-box mb-5 ">
-            <div class="card" style="width: 80%">
+            <router-link to="/academy/overview" class="card" style="width: 80%">
               <div class="card-body">
                 <div class="academy">
                   <h5>Music Production & Vocal performance</h5>
                   <p>9 Months</p>
                 </div>
               </div>
-            </div>
+            </router-link>
           </div>
            <div class="col-md-6 academy-box mb-5 ">
-            <div class="card" style="width: 80%">
+            <router-link to="/academy/overview" class="card" style="width: 80%">
               <div class="card-body">
                 <div class="academy">
                   <h5>Music Production & Vocal performance</h5>
                   <p>9 Months</p>
                 </div>
               </div>
-            </div>
+            </router-link>
           </div>
            <div class="col-md-6 academy-box mb-5 ">
-            <div class="card" style="width: 80%">
+            <router-link to="/academy/overview" class="card" style="width: 80%">
               <div class="card-body">
                 <div class="academy">
                   <h5>Music Production & Vocal performance</h5>
                   <p>9 Months</p>
                 </div>
               </div>
-            </div>
+            </router-link>
           </div>
            <div class="col-md-6 academy-box mb-5 ">
-            <div class="card" style="width: 80%">
+            <router-link to="/academy/overview" class="card" style="width: 80%">
               <div class="card-body">
                 <div class="academy">
                   <h5>Music Production & Vocal performance</h5>
                   <p>9 Months</p>
                 </div>
               </div>
-            </div>
+            </router-link>
           </div>
         </div>
       </div>
