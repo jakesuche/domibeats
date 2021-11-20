@@ -19,20 +19,21 @@
     </Hero>
 
     <section class="about spad">
-      <div class="container position-relative">
-        <button
+      <div class="container">
+         <router-link :to="`/academy/overview/${postDetails.id}/enroll/${postDetails.title}`" 
           class="btn enroll_btn"
-          data-toggle="modal"
-          data-target="#exampleModal"
+         
         >
           ENROLL NOW!
-        </button>
+        </router-link>
         <div class="d-flex justify-content-start">
           <h2 style="color:var(--humber-light)">COURSE OVERVIEW</h2>
         </div>
-        <div class="row mt-5 mb-5">
+        <div class="row mt-5 mb-5 position-relative">
+         
           <div class="col-md-12">
             <p style="color:#ffffffb8">
+              <!-- {{postDetails}} -->
               This course is an intensive and practical approach help you
               develop your skills as both a vocalist/performer and music
               producer. Designed for those who want to produce their own music,
@@ -142,13 +143,24 @@ export default {
       loading: true,
       episode_items,
       image,
+      postDetails:{}
     };
   },
   created() {
     setTimeout(() => {
       this.loading = false;
     }, 2000);
+    this.populatedDetails()
   },
+  methods:{
+      populatedDetails() {
+      this.postDetails = {
+        ...this.postDetails,
+        ...this.$store.getters["audios/isPost"](this.$route.params.id),
+      };
+     
+    },
+  }
 };
 </script>
 
@@ -194,8 +206,12 @@ export default {
 .enroll_btn {
   background: var(--gradient-primary);
   border: none;
-  position: fixed;
-  right: 40px;
+  position:sticky;
+  right: 195px;
   z-index: 99;
+  visibility: visible;
+      left: 100%;
+    top: 30px;
 }
 </style>
+

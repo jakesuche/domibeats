@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, doc } from "firebase/firestore";
 import {
   getStorage,
   ref,
@@ -30,6 +30,10 @@ const docRef = (beats) => {
   return addDoc(collection(db, "beat_samples"), beats);
 };
 
+const PostRef = (post) => {
+  return addDoc(collection(db, "post"), post)
+}
+
 const UserRef = (userData) => {
   return addDoc(collection(db, "users"), userData)
 }
@@ -57,5 +61,7 @@ export {
   onAuthStateChanged,
   auth,
   signOut,
-  UserRef
+  UserRef,
+  PostRef,
+  doc
 };

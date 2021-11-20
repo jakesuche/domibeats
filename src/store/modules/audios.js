@@ -3,32 +3,41 @@ import audio1 from "@/assets/audio/Kalimba.mp3";
 import audio2 from "@/assets/audio/somebody_9130811.mp3";
 import audio3 from "@/assets/audio/Egedege-ft.-Theresa-Onuorah-Flavour-Phyno.mp3";
 import {
-  firebaseApp,
-  docRef,
-  ref,
-  storage,
-  uploadBytesResumable,
-  getDownloadURL,
+  // firebaseApp,
+  // docRef,
+  // ref,
+  // storage,
+  // uploadBytesResumable,
+  // getDownloadURL,
   getDocs,
   db,
   UserRef,
   collection,
   auth,
   signInGoogle,
-  onAuthStateChanged,
-  signOut,
+  // onAuthStateChanged,
+  // signOut,
+  // PostRef,
+  // doc,
 } from "@/firebase.js";
 
 export default {
   namespaced: true,
+  getters: { 
+    isPost:state=>postId=>{
+      const isGame = post => post.id == postId
+      const post = state.posts.find(isGame)
+      console.log(post)
+      
+      return post
 
+  },
+     },
   state: {
     user: [],
     beatsList: [],
-
-    audioList: [
-     
-    ],
+    posts: [],
+    audioList: [],
     falbackList: [
       {
         songName: "Agnes",
@@ -77,22 +86,18 @@ export default {
     async getAllBeats({ commit, state }) {
       const array = [];
       const querySnapshot = await getDocs(collection(db, "beat_samples"));
-     
-      querySnapshot.forEach((doc) => {
-        
 
+      querySnapshot.forEach((doc) => {
         const data = { id: doc.id, ...doc.data() };
         array.push(data);
-     
       });
       // commit("StoreBeats", array);
-      if(array.length > 0){
+      if (array.length > 0) {
         commit("StoreBeats", array);
-      }else{
-        console.log(state.falbackList)
+      } else {
+        console.log(state.falbackList);
         commit("StoreBeats", state.falbackList);
       }
-      
     },
     async signInGoogle() {
       signInGoogle()
@@ -139,15 +144,26 @@ export default {
           let usersArray = [];
 
           docs.forEach((doc) => {
-            
             usersArray.push(doc.data());
           });
-          
+
           commit("StoreUser", usersArray);
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+
+    async getPost({ state, commit }) {
+      const array = [];
+      // const document = doc()
+      const querySnapshot = await getDocs(collection(db, "post"));
+
+      querySnapshot.forEach((doc) => {
+        const data = { id: doc.id, ...doc.data() };
+        array.push(data);
+      });
+      commit("storePost", array);
     },
   },
   mutations: {
@@ -157,6 +173,9 @@ export default {
     StoreBeats(state, beats) {
       state.beatsList = beats;
       state.audioList = beats;
+    },
+    storePost(state, posts) {
+      state.posts = posts;
     },
   },
 };

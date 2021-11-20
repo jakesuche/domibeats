@@ -7,6 +7,7 @@ import About from './pages/about/about.vue'
 import Admin from './pages/admin/admin.vue'
 import Academy from './pages/academy/academy.vue'
 import Overview from './pages/academy/overview.vue'
+import Enroll from './pages/enroll/enroll'
 
 
 
@@ -46,9 +47,14 @@ const router =  new Router({
       component: Admin,
     },
     {
-      path:'/academy/overview',
+      path:'/academy/overview/:id',
       name:'Overview',
       component:Overview
+    },
+    {
+      path:'/academy/overview/:id/enroll/:title',
+      name:'Overview',
+      component:Enroll
     },
     
     

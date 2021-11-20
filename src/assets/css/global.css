@@ -44,3 +44,40 @@
   color: white;
   opacity: .6;
 }
+/* .ql-snow .ql-stroke {
+  fill: none;
+  stroke: #fff!important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+.ql-toolbar .ql-stroke {
+  fill: none;
+  stroke: #fff!important;
+}
+
+.ql-toolbar .ql-fill {
+  fill: #fff!important;
+  stroke: none;
+}
+
+.ql-toolbar .ql-picker {
+  color: #fff;
+}
+
+.ql-snow .ql-picker-label {
+  cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  padding-left: 8px;
+
+  padding-right: 2px;
+
+  position: relative;
+  width: 100%;
+  color: white;
+}
+
+.ql-editor p {
+  color:#d4d0d0;
+} */

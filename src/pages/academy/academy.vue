@@ -24,7 +24,18 @@
           <h2 style="color:var(--humber-light)">PROFESSIONAL COURSES</h2>
         </div>
         <div class="row mt-5 mb-5">
-          <div class="col-md-6 academy-box mb-5 ">
+
+          <div v-for="post in posts" :key="post.id" class="col-md-6  mb-5 ">
+            <router-link :to="`/academy/overview/${post.id}`" class="card" style="width: 80%">
+              <div class="card-body academy-box">
+                <div class="academy">
+                  <h5>{{post.title}}</h5>
+                  <p>{{post.duration}}</p>
+                </div>
+              </div>
+            </router-link>
+          </div>
+           <!-- <div class="col-md-6 academy-box mb-5 ">
             <router-link to="/academy/overview" class="card" style="width: 80%">
               <div class="card-body">
                 <div class="academy">
@@ -33,8 +44,8 @@
                 </div>
               </div>
             </router-link>
-          </div>
-           <div class="col-md-6 academy-box mb-5 ">
+          </div> -->
+           <!-- <div class="col-md-6 academy-box mb-5 ">
             <router-link to="/academy/overview" class="card" style="width: 80%">
               <div class="card-body">
                 <div class="academy">
@@ -43,8 +54,9 @@
                 </div>
               </div>
             </router-link>
-          </div>
-           <div class="col-md-6 academy-box mb-5 ">
+          </div> -->
+         
+           <!-- <div class="col-md-6 academy-box mb-5 ">
             <router-link to="/academy/overview" class="card" style="width: 80%">
               <div class="card-body">
                 <div class="academy">
@@ -53,17 +65,7 @@
                 </div>
               </div>
             </router-link>
-          </div>
-           <div class="col-md-6 academy-box mb-5 ">
-            <router-link to="/academy/overview" class="card" style="width: 80%">
-              <div class="card-body">
-                <div class="academy">
-                  <h5>Music Production & Vocal performance</h5>
-                  <p>9 Months</p>
-                </div>
-              </div>
-            </router-link>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -75,6 +77,7 @@ import { episode_items } from "@/components/datas/card_data.js";
 import Beats from "@/components/beats/beats";
 import Hero from "@/components/hero/hero.vue";
 import image from "@/assets/img/hero/hero-video1.png";
+import { mapState } from 'vuex'
 export default {
   components: { Hero, Beats },
   data() {
@@ -88,7 +91,19 @@ export default {
     setTimeout(() => {
       this.loading = false;
     }, 2000);
+
+    this.$store.dispatch('audios/getPost')
   },
+  computed:{
+    ...mapState({
+      posts:state=>state.audios.posts
+    })
+  },
+  methods:{
+    getAllPost(){
+      
+    }
+  }
 };
 </script>
 

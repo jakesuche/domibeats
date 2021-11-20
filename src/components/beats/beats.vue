@@ -388,10 +388,11 @@ export default {
 <style scoped>
 .filter {
   width: 20%;
-  background: var(--gradient-primary) !important;
+  /* background: var(--gradient-primary) !important; */
   border: 1px solid var(--humber-golden) !important;
-  color: var(--humber-black) !important;
+  /* color: var(--humber-black) !important; */
   height: 45px;
+  border-radius: 13px;
 }
 .songImg{
   max-width: 10%;
@@ -617,5 +618,12 @@ footer a:hover {
     vertical-align: baseline;
     border-radius: 0.55rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+option{
+  background-color:var(--humber-dark)
+}
+option:hover{
+    background-color:var(--humber-dark)!important;
 }
 </style>

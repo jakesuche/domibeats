@@ -1,9 +1,9 @@
 <template>
     <div class="modal fade"  :id="target" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div :style="{ backgroundImage: `${bgImg ? `url(${bgImg})` : 'var(--humber-black)'}` }" class="modal-content">
+    <div :style="{ backgroundImage: `${bgImg ? `url(${bgImg})` : ``}`, background:`${bgColor ? bgColor : ``}` }" class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">{{title}}</h5>
+        <h5 class="modal-title" :style="{color:bgColor ? '#000'  : null}" id="exampleModalCenterTitle">{{title}} {{bgColor}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"><XCircleIcon class="close-icon" size="39" /></span>
         </button>
@@ -23,7 +23,7 @@
 <script>
 import { AirplayIcon, AtSignIcon, XCircleIcon } from 'vue-feather-icons'
 export default {
-    props:['title', 'target', 'bgImg'],
+    props:['title', 'target', 'bgImg', 'bgColor', ],
     components: {
         XCircleIcon, 
     }

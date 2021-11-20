@@ -4,8 +4,8 @@
       <div class="audio__controls__controls">
         <i @click="$emit('toggleShuffle')" class="fa fa-random"></i>
         <i @click="$emit('prevSong')" class="fa fa-step-backward"></i>
-        <i v-if="songControls.songPaused" @click="$emit('evalSong')" class="fa fa-play-circle fa-2x"></i>
-        <i v-else @click="$emit('evalSong')" class="fa fa-pause-circle fa-2x"></i>
+        <span v-if="songControls.songPaused" @click="$emit('evalSong')" class="fa fa-play-circle fa-2x"></span>
+        <span v-else @click="$emit('evalSong')" class="fa fa-pause-circle fa-2x"></span>
         <i @click="$emit('nextSong')" class="fa fa-step-forward"></i>
         <i @click="$emit('toggleRepeat')" class="fa fa-repeat"></i>
       </div>
