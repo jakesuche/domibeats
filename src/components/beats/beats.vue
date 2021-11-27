@@ -9,22 +9,18 @@
         <div class="col-md-12 ">
           <div class="d-flex mb-5 justify-content-between">
             <select @change="selectGenre($event)" class="form-control filter">
-             
-               <option selected disabled>Filter  genre</option>
-          <option value="afrobeat">Afrobeat</option>
-          <option value="dance hall">Dance hall</option>
-           <option value="hip hop">Hip hop</option>
-            <option value="gospel">Gospel</option>
-            <option value="R and B">R and B</option>
+              <option selected disabled>Filter genre</option>
+              <option value="afrobeat">Afrobeat</option>
+              <option value="dance hall">Dance hall</option>
+              <option value="hip hop">Hip hop</option>
+              <option value="gospel">Gospel</option>
+              <option value="R and B">R and B</option>
             </select>
-           
           </div>
         </div>
         <div class="col-lg-12">
-          <ul class="list-group" data-aos="fade-up"
-              data-aos-duration="3000">
+          <ul class="list-group" data-aos="fade-up" data-aos-duration="3000">
             <li
-             
               class="list-group-item d-flex justify-content-between align-items-center"
             >
               <div
@@ -51,7 +47,6 @@
               </div>
             </li>
             <li
-              
               v-for="(audio, i) in filterSongs"
               :key="i"
               class="list-group-item d-flex justify-content-between align-items-center"
@@ -59,7 +54,7 @@
               <div
                 class="d-flex  gap-1 justify-content-start align-items-center left"
               >
-                <img class="songImg" :src="audio.songImg" alt="Song image">
+                <img class="songImg" :src="audio.songImg" alt="Song image" />
                 <span
                   type="button"
                   @click="$eventBus.$emit('chooseSong', i)"
@@ -193,9 +188,7 @@
       </b-tabs>
     </CustomModal>
     <div>
-      <div>
-
-      </div>
+      <div></div>
     </div>
     <AudioPlayer :playlist="auidioList" />
 
@@ -245,7 +238,7 @@ import CustomModal from "@/components/modal/modal.vue";
 import { CopyIcon } from "vue-feather-icons";
 import { mapState } from "vuex";
 import AudioPlayer from "@/components/visualizer/audioplayer";
-import Fuse from 'fuse.js'
+import Fuse from "fuse.js";
 import axios from "axios";
 export default {
   components: {
@@ -257,7 +250,7 @@ export default {
   // const indexOfLastPost2 = currentPage * postPerPage;
   // const indexOfFirstPost2 = indexOfLastPost2 - postPerPage2;
   // const currentPosts2 = coinsHistory?.slice(indexOfFirstPost2, indexOfLastPost2);
-  
+
   data() {
     return {
       current: {},
@@ -266,10 +259,9 @@ export default {
       isPlaying: false,
       user: null,
       selected: {},
-      searchTerm:'',
-      currentPage:1,
-      postPerPage:10,
-
+      searchTerm: "",
+      currentPage: 1,
+      postPerPage: 10,
     };
   },
   created() {
@@ -282,18 +274,20 @@ export default {
     ...mapState({
       auidioList: (state) => state.audios.audioList,
     }),
-    filterSongs(){
-       if(this.auidioList){
-  
-        const fuse = new Fuse(this.auidioList, {keys: ['genre'],
-      })
-      
-      const results = fuse.search(this.searchTerm).map(({item})=>item);
-  
-      if(this.auidioList.length > 0 && this.searchTerm.length > 3 && results.length > 0){
-        return results
-        }else{
-          return this.auidioList
+    filterSongs() {
+      if (this.auidioList) {
+        const fuse = new Fuse(this.auidioList, { keys: ["genre"] });
+
+        const results = fuse.search(this.searchTerm).map(({ item }) => item);
+
+        if (
+          this.auidioList.length > 0 &&
+          this.searchTerm.length > 3 &&
+          results.length > 0
+        ) {
+          return results;
+        } else {
+          return this.auidioList;
         }
       }
     },
@@ -301,17 +295,15 @@ export default {
 
   methods: {
     getDuration(audio) {},
-    pagination(){
+    pagination() {},
 
-    },
-
-    selectGenre(event){
-        const {value} = event.target
-        console.log(value)
-        this.searchTerm = value
+    selectGenre(event) {
+      const { value } = event.target;
+      console.log(value);
+      this.searchTerm = value;
     },
     downloadsample(url) {
-    window.location.href = url;
+      window.location.href = url;
     },
     getAuthenticatedUser() {
       onAuthStateChanged(auth, (user) => {
@@ -400,15 +392,15 @@ export default {
   border-radius: 13px;
 }
 
-@media (max-width:600px){
-  .filter{
+@media (max-width: 600px) {
+  .filter {
     width: 45%;
   }
 }
-.songImg{
+.songImg {
   max-width: 10%;
 }
-.pagination-btn{
+.pagination-btn {
   min-width: 100px;
 }
 
@@ -461,7 +453,7 @@ export default {
   position: relative;
   display: block;
   padding: 0.75rem 1.25rem;
-  border-bottom: 1px  solid #cba7758f;
+  border-bottom: 1px solid #cba7758f;
   background: none !important;
   /* background-color: #fff; */
   /* border: 1px solid rgba(0,0,0,.125); */
@@ -617,24 +609,24 @@ footer a:hover {
   color: var(--humber-link);
 }
 
-
 .badge {
-    display: inline-block;
-    padding: 0.75em  0.9em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.55rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  display: inline-block;
+  padding: 0.75em 0.9em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.55rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-option{
-  background-color:var(--humber-dark)
+option {
+  background-color: var(--humber-dark);
 }
-option:hover{
-    background-color:var(--humber-dark)!important;
+option:hover {
+  background-color: var(--humber-dark) !important;
 }
 </style>

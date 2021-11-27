@@ -5,18 +5,18 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="hero__text">
-            <h5 class="animate__animated animate__slideInLeft">
+            <!-- <h5 class="animate__animated animate__slideInLeft">
               <span class="fas fa-headphones-alt"></span> Beat master,
             
-            </h5>
-            <h2 class="animate__animated animate__slideInLeft">Intellectual Property</h2>
+            </h5> -->
+          
             <!-- <a
               style="margin-right:30px"
               href="https://soundbetter.com/profiles/449673-intellectualproperty"
               class="primary-btn white-btn animate__zoomIn animate__animated"
               >Click to Hire</a
             > -->
-            <a 
+            <!-- <a 
               href="https://soundbetter.com/profiles/449673-intellectualproperty"
               rel="noopener noreferrer"
               target="_blank"
@@ -25,11 +25,11 @@
                 alt="Intellectualproperty on SoundBetter"
                 src="https://d2p6ecj15pyavq.cloudfront.net/assets/SoundBetterBadge-c84cb3e75c4267f5bee41f7f617a81d9.svg"
                 style="max-width: 130px;"
-            /></a>
+            /></a> -->
             <!-- <a href="#" class="primary-btn">Subscribe with iTunes</a> -->
           </div>
         </div>
-        <div class="col-lg-6 animate__slideInRight animate__animated">
+        <!-- <div class="col-lg-6 animate__slideInRight animate__animated">
           <div 
             class="hero__pic set-bg"
             data-setbg="img/hero/hero-video.png"
@@ -44,7 +44,7 @@
               ><img src="img/hero/play-btn.png" alt=""
             /></a>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
    
