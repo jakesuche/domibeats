@@ -5,19 +5,56 @@
     data-setbg="img/call-bg.jpg"
   >
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 ">
-          <div class="d-flex mb-5 justify-content-between">
-            <select @change="selectGenre($event)" class="form-control filter">
-              <option selected disabled>Filter genre</option>
-              <option value="afrobeat">Afrobeat</option>
-              <option value="dance hall">Dance hall</option>
-              <option value="hip hop">Hip hop</option>
-              <option value="gospel">Gospel</option>
-              <option value="R and B">R and B</option>
-            </select>
-          </div>
+      <div class="row mb-4">
+        <div class= " col-sm-6 col-md-3 mb-4 custom-col ">
+          <select @change="selectGenre($event)" class="form-control ">
+            <option selected disabled>All Moods</option>
+            <option value="afrobeat">Afrobeat</option>
+            <option value="dance hall">Dance hall</option>
+            <option value="hip hop">Hip hop</option>
+            <option value="gospel">Gospel</option>
+            <option value="R and B">R and B</option>
+          </select>
         </div>
+        <div class="col-sm-6 col-md-3 mb-4 custom-col ">
+          <select @change="selectGenre($event)" class="form-control ">
+            <option selected disabled>All Bpm</option>
+            <option value="afrobeat">Afrobeat</option>
+            <option value="dance hall">Dance hall</option>
+            <option value="hip hop">Hip hop</option>
+            <option value="gospel">Gospel</option>
+            <option value="R and B">R and B</option>
+          </select>
+        </div>
+         <div class=" col-xs-6 col-md-3 mb-4  custom-col ">
+          <select @change="selectGenre($event)" class="form-control ">
+            <option selected disabled>All genre</option>
+            <option value="afrobeat">Afrobeat</option>
+            <option value="dance hall">Dance hall</option>
+            <option value="hip hop">Hip hop</option>
+            <option value="gospel">Gospel</option>
+            <option value="R and B">R and B</option>
+          </select>
+        </div>
+         <div class=" col-xs-6 col-md-3 mb-4 custom-col ">
+          <select @change="selectGenre($event)" class="form-control ">
+            <option selected disabled>Sort</option>
+            <option value="afrobeat">Afrobeat</option>
+            <option value="dance hall">Dance hall</option>
+            <option value="hip hop">Hip hop</option>
+            <option value="gospel">Gospel</option>
+            <option value="R and B">R and B</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <input type="text" name="search" placeholder="Search.." />
+        </div>
+      </div>
+
+      <div class="row">
         <div class="col-lg-12">
           <ul class="list-group" data-aos="fade-up" data-aos-duration="3000">
             <li
@@ -383,8 +420,26 @@ export default {
 </script>
 
 <style scoped>
+
+input[type=text] {
+  width: 250px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  /* background-image: url('searchicon.png'); */
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
 .filter {
-  width: 20%;
+  /* width: 20%; */
   /* background: var(--gradient-primary) !important; */
   border: 1px solid var(--humber-golden) !important;
   /* color: var(--humber-black) !important; */
@@ -393,9 +448,9 @@ export default {
 }
 
 @media (max-width: 600px) {
-  .filter {
+  /* .filter {
     width: 45%;
-  }
+  } */
 }
 .songImg {
   max-width: 10%;
@@ -482,9 +537,11 @@ export default {
 }
 
 .form-control {
-  background: none;
-  border: 1px solid var(--humber-golden);
-  color: var(--humber-light);
+  background: #7b7b7b;
+  border: none;
+  color: white;
+  font-size:1.2rem;
+  font-weight: 600;
 }
 
 .input-group-text {
@@ -629,4 +686,13 @@ option {
 option:hover {
   background-color: var(--humber-dark) !important;
 }
+
+@media (max-width: 576px){
+.col-sm-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+}
+
 </style>
