@@ -41,6 +41,18 @@ export default {
 	 display: flex;
 	 flex-direction: column;
 }
+
+@media (max-width:544px){
+	.audio__controls{
+		height: 67%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 55px;
+    background: #282828;
+	}
+}
  .audio__controls__controls {
 	 align-self: center;
 	 color: rgba(255, 255, 255, .6);
@@ -49,7 +61,7 @@ export default {
 	 display: flex;
 	 justify-content: space-evenly;
 	 align-items: center;
-	 cursor: pointer;
+	
 }
  .audio__controls__progress {
 	 height: 20px;
@@ -78,7 +90,7 @@ export default {
 	 border-radius: 5px;
 	 content: "";
 	 background: white;
-	 z-index: 5;
+	 z-index: 0;
 }
  
 </style>

@@ -54,6 +54,9 @@
           :isShuffling="isShuffling"
           :songControls="songControls"
         ></audio-controls>
+        <!-- <Controls>
+
+        </Controls> -->
 
         <!-- Page Togglers on the right side -->
         <div class="av__audio__togglers">
@@ -123,6 +126,7 @@ import AvCanvas from './AvCanvas/AvCanvas'
 // uueueueu
 import AudioControls from "./AudioControls";
 import AudioPlaylist from "./AudioPlaylist";
+import Controls from './Controls.vue'
 import * as Utils from "../../utils/utils.js";
 //
 
@@ -157,7 +161,7 @@ export default {
       default: null,
     },
   },
-  components: { AudioControls, AudioPlaylist, AvCanvas },
+  components: { AudioControls, AudioPlaylist, AvCanvas, Controls },
   data() {
     return {
       showAudio:false,
@@ -371,12 +375,19 @@ export default {
 .bottom{
   bottom:0!important
 }
+
+@media (max-width:544px){
+  .bottom{
+  bottom:30px!important
+}
+}
 .av {
   width: 100vw;
   position: fixed;
   bottom: -74px;
   color: white;
-  user-select: none;
+  /* user-select: auto; */
+  /* user-select: none; */
   z-index:999;
   transition: all cubic-bezier(1, -0.01, 0.6, 0.57) .7s;
 }
@@ -497,7 +508,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  /* cursor: pointer; */
   position: relative;
 }
 .active-fa {
@@ -506,7 +517,7 @@ export default {
 input[type="range"] {
   -webkit-appearance: none;
   background-color: gray;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 input[type="range"]:focus {
   outline: none;
@@ -541,18 +552,19 @@ input[type="range"]::-webkit-slider-thumb {
     }
     .av {
     width: 100vw;
-    position: fixed;
-    bottom: 4px;
+    /* position: fixed; */
+    /* bottom: 5px; */
     color: white;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+  
+    user-select: auto;
     z-index: 999;
     
 }
 .av__audio{
-    padding-bottom: 89px;
+    /* padding-bottom: 89px; */
 }
 
 

@@ -14,8 +14,11 @@
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      
     >
-      <span class="navbar-toggler-icon"></span>
+    <i style="color:var(--humber-light); font-size: 28px;
+" class="fas fa-bars"></i>
+      <!-- <span style="background-color:red" class="navbar-toggler-icon"></span> -->
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -62,6 +65,7 @@
         <a href="#"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
+    
   </nav>
 </template>
 
@@ -124,6 +128,13 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
+}
+
+@media (max-width: 968px){
+  .navbar{
+    background:black;
+  }
+
 }
 .logo {
   width: 87%;

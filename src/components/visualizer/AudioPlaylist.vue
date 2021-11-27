@@ -60,7 +60,7 @@ export default {
   box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.15);
   font-size: 12px;
   overflow: auto;
-  z-index: 999;
+  z-index: 1000;
 }
 .audio__playlist > span {
   display: flex;

@@ -192,6 +192,11 @@
         <b-tab title="Embed"><p>Embed</p></b-tab>
       </b-tabs>
     </CustomModal>
+    <div>
+      <div>
+
+      </div>
+    </div>
     <AudioPlayer :playlist="auidioList" />
 
     <!-- <div class="tract_selected bg-light">
@@ -393,6 +398,12 @@ export default {
   /* color: var(--humber-black) !important; */
   height: 45px;
   border-radius: 13px;
+}
+
+@media (max-width:600px){
+  .filter{
+    width: 45%;
+  }
 }
 .songImg{
   max-width: 10%;
