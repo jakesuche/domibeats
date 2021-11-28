@@ -17,7 +17,7 @@ h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
-	font-family: "philosopher", sans-serif;
+	font-family: "", sans-serif;
 	/* font-family: "Nunito", sans-serif; */
 }
 
@@ -88,8 +88,8 @@ ol {
 }
 
 .section-title h2 {
-	font-size: 40px;
-	color: var(--primary-color);
+	font-size: 45px;
+	color: white;
 	font-weight: 700;
 }
 
@@ -868,6 +868,8 @@ ol {
 	-ms-flex-pack: center;
 	justify-content: center;
 	margin-bottom: 30px;
+	background: #313438ed;
+	background-repeat: no-repeat;
 }
 
 .episodes__item:hover .play-btn {
@@ -2180,7 +2182,8 @@ ol {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	padding: 55px 40px 40px;
 	margin-bottom: 30px;
-	border: 1px solid var(--humber-golden);
+	background: #3d3d3d;
+    border-radius: 10px;
 }
 
 .contact__widget__item h4 {

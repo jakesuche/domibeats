@@ -22,18 +22,29 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul style="gap:20px" class="navbar-nav ml-auto">
         <li @click="routerName = 'home', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'home' ? 'active' : ''">
           <router-link class="nav-link" to="/"
             >Home <span class="sr-only">(current)</span></router-link
           >
         </li>
+         <li @click="routerName = 'about', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'exclusive' ? 'active' : ''">
+          <router-link to="/exclusive"  class="nav-link">Exclusive Beats</router-link>
+        </li>
+        <li @click="routerName = 'academy', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'academy' ? 'active' : ''">
+          <router-link to="/academy"  class="nav-link">Academy</router-link>
+        </li>
         <li @click="routerName = 'about', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'about' ? 'active' : ''">
           <router-link to="/about"  class="nav-link">About</router-link>
         </li>
-         <li @click="routerName = 'academy', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'academy' ? 'active' : ''">
-          <router-link to="/academy"  class="nav-link">Academy</router-link>
+        <li @click="routerName = 'about', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'about' ? 'active' : ''">
+          <router-link to="/about"  class="nav-link">Hire</router-link>
         </li>
+       
+        <li @click="routerName = 'gadgets', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'gadgets' ? 'active' : ''">
+          <router-link to="/gadgets"  class="nav-link">Buy studio Gadgets</router-link>
+        </li>
+         
         <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdownpa
@@ -52,6 +63,7 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
+        <!-- <input type="text" name="search" placeholder="Search the track you are looking..." /> -->
         <input
           class="form-control mr-sm-2"
           type="search"
@@ -59,11 +71,11 @@
           aria-label="Search"
         />
       </form>
-      <div class="header__right__social">
+      <!-- <div class="header__right__social">
         <a href="#"><i class="fab fa-facebook-f"></i></a>
 
         <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
+      </div> -->
     </div>
     
   </nav>
@@ -97,7 +109,7 @@ export default {
   color: #666;
   display: inline-block;
   margin: 0;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .nav-item:after {
   display: block;
@@ -142,5 +154,24 @@ export default {
 .form-control {
   background: none;
   border: none !important;
+}
+
+input[type=text] {
+  width: 50%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: none;
+  /* background-image: url('searchicon.png'); */
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+  
 }
 </style>

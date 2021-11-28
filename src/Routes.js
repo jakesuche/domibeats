@@ -8,6 +8,8 @@ import Admin from './pages/admin/admin.vue'
 import Academy from './pages/academy/academy.vue'
 import Overview from './pages/academy/overview.vue'
 import Enroll from './pages/enroll/enroll'
+import Exclusive from './pages/exclusive/exclusive.vue'
+import Instrument from './pages/Instruments/Instrument.vue'
 
 
 
@@ -56,6 +58,25 @@ const router =  new Router({
       name:'Overview',
       component:Enroll
     },
+    {
+      path:'/exclusive',
+      name:'exclusive',
+      component: Exclusive
+
+    },
+    {
+      path:'/exclusive',
+      name:'exclusive',
+      component: Exclusive
+
+    },
+    {
+      path:'/gadgets',
+      name:'gadgets',
+      component: Instrument
+
+    }
+    
     
     
     // {

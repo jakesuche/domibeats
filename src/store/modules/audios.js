@@ -38,6 +38,7 @@ export default {
     beatsList: [],
     posts: [],
     audioList: [],
+    products:[],
     falbackList: [
       {
         songName: "Agnes",
@@ -98,6 +99,20 @@ export default {
         console.log(state.falbackList);
         commit("StoreBeats", state.falbackList);
       }
+    },
+    async getAllGadgets({ commit, state }) {
+      const array = [];
+      const querySnapshot = await getDocs(collection(db, "product"));
+
+      querySnapshot.forEach((doc) => {
+        const data = { id: doc.id, ...doc.data() };
+        array.push(data);
+      });
+      // commit("StoreBeats", array);
+      if (array.length > 0) {
+        commit("storeProducts", array);
+      }
+      
     },
     async signInGoogle() {
       signInGoogle()
@@ -176,6 +191,9 @@ export default {
     },
     storePost(state, posts) {
       state.posts = posts;
+    },
+    storeProducts(state, posts) {
+      state.products = posts;
     },
   },
 };

@@ -38,6 +38,10 @@ const UserRef = (userData) => {
   return addDoc(collection(db, "users"), userData)
 }
 
+const Contact = (contact) => {
+  return addDoc(collection(db, "contact"), contact)
+}
+
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   login_hint: "user@example.com",
@@ -63,5 +67,6 @@ export {
   signOut,
   UserRef,
   PostRef,
-  doc
+  doc,
+  Contact
 };

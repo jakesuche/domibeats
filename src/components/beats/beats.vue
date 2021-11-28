@@ -50,7 +50,7 @@
 
       <div class="row mb-4">
         <div class="col-md-12">
-          <input type="text" name="search" placeholder="Search.." />
+          <input type="text" name="search" placeholder="Search the track you are looking..." />
         </div>
       </div>
 
@@ -422,7 +422,7 @@ export default {
 <style scoped>
 
 input[type=text] {
-  width: 250px;
+  width: 100%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -437,7 +437,68 @@ input[type=text] {
 
 input[type=text]:focus {
   width: 100%;
+  
 }
+input::placeholder { 
+  color:rgb(22, 21, 21);
+  opacity: 1; 
+  font-size:1rem;
+  font-weight: 600;
+  transition: padding 0.5s;
+}
+
+input::-webkit-input-placeholder {
+  color: #CCCCCC;
+  position: relative;
+  padding-left: 0;
+  -webkit-transition: padding 0.5s;
+  /* For Safari 3.1 to 6.0 */
+  transition: padding 0.5s;
+}
+
+input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #CCCCCC;
+  position: relative;
+  padding-left: 0;
+  -moz-transition: padding 0.5s;
+  /* For Safari 3.1 to 6.0 */
+  transition: padding 0.5s;
+}
+
+input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #CCCCCC;
+  position: relative;
+  padding-left: 0;
+  -moz-transition: padding 0.5s;
+  /* For Safari 3.1 to 6.0 */
+  transition: padding 0.5s;
+}
+
+input:-ms-input-placeholder {
+  color: #CCCCCC;
+  position: relative;
+  padding-left: 0;
+  -ms-transition: padding 0.5s;
+  /* For Safari 3.1 to 6.0 */
+  transition: padding 0.5s;
+}
+
+input:hover::-moz-placeholder,
+input:focus::-moz-placeholder {
+  /* Firefox 19+ */
+  padding-left: 90px;
+}
+
+input:hover:-ms-input-placeholder,
+input:focus:-ms-input-placeholder {
+  padding-left: 90px;
+}
+
+input:hover:placeholder{
+    padding-left: 90px;
+} 
 .filter {
   /* width: 20%; */
   /* background: var(--gradient-primary) !important; */
