@@ -61,16 +61,20 @@
             >Contact</router-link
           >
         </li>
+        <li @click="routerName = 'contact', $eventBus.$emit('stop'), $router.push('/cart')" class="nav-item" :class="routerName == 'contact' ? 'active' : ''">
+         <i class="fas fa-cart-plus position-relative" style="font-size: 20px;color:white;margin-top: 9px;"><span style="top: -12px;
+    left: 23px;" class="position-absolute">{{cartTotal()}}</span></i>
+        </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <!-- <input type="text" name="search" placeholder="Search the track you are looking..." /> -->
+      <!-- <form class="form-inline my-2 my-lg-0">
+
         <input
           class="form-control mr-sm-2"
           type="search"
           placeholder="Search...."
           aria-label="Search"
         />
-      </form>
+      </form> -->
       <!-- <div class="header__right__social">
         <a href="#"><i class="fab fa-facebook-f"></i></a>
 
@@ -82,11 +86,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data(){
     return {
       routerName:''
     }
+  },
+  methods:{
+    ...mapState({
+      cartTotal:state=>state.audios.cart.length
+    })
   },
   created(){
     this.routerName = this.$route.name 
@@ -109,6 +119,7 @@ export default {
   color: #666;
   display: inline-block;
   margin: 0;
+  font-size:1rem;
   /* text-transform: uppercase; */
 }
 .nav-item:after {

@@ -25,8 +25,12 @@
             </div>
           </div>
         </div>
-
-        <div class="row">
+       <Spinner v-if="loading" />
+      
+        <Nodata title="Data not found gadgets" v-else-if="audios.length === 0" >
+            
+        </Nodata>
+        <div class="row" v-else>
           <div data-aos="fade-up"
      data-aos-duration="3000"
             class="col-lg-4 col-md-6"
@@ -44,7 +48,7 @@
                 total:{{item.qty}}
               </div>
               <a
-                :href="item.link"
+                type="button" @click="addTocart(item)"
                 class="play-btn video-popup"
                 ><i class="fas fa-cart-plus" style="font-size: 60px;color:white"></i></a>
               <div class="episodes__text">
@@ -85,6 +89,22 @@ export default {
     })
   },
   methods: {
+    addTocart(item){
+      console.log(item)
+     this.$store.dispatch('audios/addTocart', item)
+      this.$toasted.show(`Item added to cart`, {duration:3000})
+      
+    },
+    getAllGadgets(){
+      this.loading = true
+       this.$store.dispatch('audios/getAllGadgets')
+       .then(()=>{
+         this.loading = false
+       })
+       .catch((err)=>{
+          this.loading = false
+       })
+    },
     getDuration(song){
       //
       this.myAudio.src = this.audios[0].songLive
@@ -102,10 +122,10 @@ export default {
     this.getDuration()
   },  
   created() {
-    this.$store.dispatch('audios/getAllGadgets')
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+   this.getAllGadgets()
+    // setTimeout(() => {
+    //   this.loading = false;
+    // }, 2000);
   },
 };
 </script>

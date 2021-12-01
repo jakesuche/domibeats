@@ -32,6 +32,21 @@ export default {
       return post
 
   },
+  totalMoney(state) {
+    return state.cart.reduce(function(acc, obj) {
+      return acc + obj.price * obj.qty;
+    }, 0); 
+   
+  },
+  getAddedItem:(state)=>(id)=>{
+    for(var i =0; i < state.cart.length; i++){
+      if(state.cart[i]._id == id){
+        console.log(id)
+        return state.cart[i].qty
+      }
+    }
+
+  }
      },
   state: {
     user: [],
@@ -39,6 +54,7 @@ export default {
     posts: [],
     audioList: [],
     products:[],
+    cart:[],
     falbackList: [
       {
         songName: "Agnes",
@@ -84,6 +100,26 @@ export default {
   },
 
   actions: {
+    removeItem({commit}, id){
+      commit('removeItem', id)
+      console.log(id)
+    },
+    addTocart({ commit, state }, payload) {
+      payload = { ...payload, qty: 1 };
+      console.log(payload);
+      commit("setItemTcart", payload);
+    },
+    decreaseQuatity({commit}, {id}){
+      console.log(id)
+      commit('decreaseQty', {id})
+    },
+    increaseQuatity({commit}, {id}){
+      console.log(id) 
+       commit('setQuatity',  {id})
+    },
+    clearCart({commit}){
+      commit('clearCart')
+    },
     async getAllBeats({ commit, state }) {
       const array = [];
       const querySnapshot = await getDocs(collection(db, "beat_samples"));
@@ -111,6 +147,9 @@ export default {
       // commit("StoreBeats", array);
       if (array.length > 0) {
         commit("storeProducts", array);
+      }else {
+        
+        commit("storeProducts", []);
       }
       
     },
@@ -195,5 +234,73 @@ export default {
     storeProducts(state, posts) {
       state.products = posts;
     },
+    setItemTcart(state, payload) {
+      
+      const index = state.cart.findIndex(
+        (product) => product.id === payload.id
+      );
+        console.log(index)
+     
+
+      console.log(index)
+      if (index == -1) {
+        state.cart.push(payload);
+      } else {
+        state.cart[index].qty += 1;
+      }
+    },
+
+    decreaseQty(state, { id}){
+      const isLargeNumber = (element) => element._id == id;
+      const index = state.cart.findIndex(isLargeNumber)
+      
+    if(index > -1){
+        console.log(index)
+        
+        state.cart[index].qty -=  1
+
+        if(state.cart[index].qty <= 0 ){
+          state.cart[index].qty +=  1
+        }else{
+          state.cart[index].qty -= 1
+        }
+    }
+    },
+    setQuatity(state,{id}){
+        
+        const isLargeNumber = (element) => element._id == id;
+        const index = state.cart.findIndex(isLargeNumber)
+        
+      if(index > -1){
+          console.log(index)
+         
+          state.cart[index].qty +=  1
+          // if(qty <= 0 ){
+          //   state.cart[index].qty +=  1
+          // }else{
+          //   state.cart[index].qty += Number(qty)
+          // }
+      }
+      
+      
+      
+    },
+    clearCart(state){
+      console.log('cleared')
+      // state.cart = []
+      for(var i = 0; i < state.cart.length; i++){
+        state.cart.splice(i,1)
+      }
+    },
+    removeItem(state, id){
+      console.log(id)
+      // arr.splice(i, 1); 
+      for(var i =0; i < state.cart.length; i++){
+        if(state.cart[i]._id == id){
+          console.log(id)
+          state.cart.splice(i,1)
+        }
+      }
+    }
   },
 };

@@ -17,6 +17,8 @@ import moment from 'moment'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import 'animate.css';
+import Nodata from '@/components/NoItem'
+import Spinner from '@/components/Spinner'
 const eventBus = new Vue()
 Vue.prototype.$eventBus = eventBus 
 
@@ -58,7 +60,8 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
-
+Vue.component('Nodata', Nodata)
+Vue.component('Spinner', Spinner)
 Vue.use(VueQuillEditor, /* { default global options } */)
 Vue.filter("formatMoney", function(x){
   

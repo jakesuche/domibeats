@@ -98,7 +98,8 @@
       "vue/no-side-effects-in-computed-properties": "warn",
       "no-unreachable": "warn",
       "vue/return-in-computed-property": "warn",
-      "no-mixed-spaces-and-tabs": "warn"
+      "no-mixed-spaces-and-tabs": "warn",
+      "no-irregular-whitespace":"off"
     }
   },
   "browserslist": [

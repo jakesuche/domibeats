@@ -10,6 +10,7 @@ import Overview from './pages/academy/overview.vue'
 import Enroll from './pages/enroll/enroll'
 import Exclusive from './pages/exclusive/exclusive.vue'
 import Instrument from './pages/Instruments/Instrument.vue'
+import Cart from './pages/Cart/Cart.vue'
 
 
 
@@ -75,6 +76,11 @@ const router =  new Router({
       name:'gadgets',
       component: Instrument
 
+    },
+    {
+      path:'/cart',
+      name:'cart',
+      component: Cart
     }
     
     
