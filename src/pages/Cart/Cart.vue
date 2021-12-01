@@ -19,664 +19,75 @@
             </div>
           </div>
         </div>
-        <Spinner v-if="false" />
+        
 
-        <Nodata title="Data not found gadgets" v-else-if="false"> </Nodata>
+        <Nodata title="There is no item in the cart" v-if="carts.length === 0"> </Nodata>
         <div class="row" v-else>
-          <table
-            bgcolor="#F5F5F5"
-            cellpadding="0"
-            cellspacing="0"
-            class="nl-container"
-            role="presentation"
-            style="table-layout: fixed; vertical-align: top; min-width: 320px; Margin: 0 auto; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #F5F5F5; width: 100%;"
-            valign="top"
-            width="100%"
-          >
-            <tbody>
-              <tr style="vertical-align: top;" valign="top">
-                <td
-                  style="word-break: break-word; vertical-align: top;"
-                  valign="top"
-                >
-                  <div style="background-color:transparent;">
-                    <div
-                      class="block-grid"
-                      style="Margin: 0 auto; min-width: 320px;  overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;"
-                    >
-                      <div
-                        style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;"
-                      >
-                        <div
-                          class="col num12"
-                          style="min-width: 320px; display: table-cell; vertical-align: top; width: 650px;"
-                        >
-                          <div style="width:100% !important;">
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <table
-                                border="0"
-                                cellpadding="0"
-                                cellspacing="0"
-                                class="divider"
-                                role="presentation"
-                                style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
-                                valign="top"
-                                width="100%"
-                              >
-                                <tbody>
-                                  <tr style="vertical-align: top;" valign="top">
-                                    <td
-                                      class="divider_inner"
-                                      style="word-break: break-word; vertical-align: top; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"
-                                      valign="top"
-                                    >
-                                      <table
-                                        align="center"
-                                        border="0"
-                                        cellpadding="0"
-                                        cellspacing="0"
-                                        class="divider_content"
-                                        height="10"
-                                        role="presentation"
-                                        style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-top: 0px solid transparent; height: 10px;"
-                                        valign="top"
-                                        width="100%"
-                                      >
-                                        <tbody>
-                                          <tr
-                                            style="vertical-align: top;"
-                                            valign="top"
-                                          >
-                                            <td
-                                              height="10"
-                                              style="word-break: break-word; vertical-align: top; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
-                                              valign="top"
-                                            >
-                                              <span></span>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+          <div class="wrap cf">
+            <div class="heading cf">
+              <h1>My Cart</h1>
+              <router-link to="/gadgets" class="continue"
+                >Continue Shopping</router-link
+              >
+            </div>
+            <div class="cart">
+              <!--    <ul class="tableHead">
+      <li class="prodHeader">Product</li>
+      <li>Quantity</li>
+      <li>Total</li>
+       <li>Remove</li>
+    </ul>-->
+              <ul class="cartWrap">
+                <li v-for="(cart, i) in carts" :key="i" class="items odd">
+                  <div class="infoWrap">
+                    <div class="cartSection">
+                      <img
+                        src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg"
+                        alt=""
+                        class="itemImg"
+                      />
+
+                      <h3>{{ cart.productTitle }}</h3>
+
+                      <p>
+                        <input
+                          type="text"
+                          class="qty"
+                          :placeholder="cart.qty"
+                        />
+                        x ₦{{  formatNumber(cart.amount) }}
+                      </p>
+
+                      <p class="stockStatus">In Stock</p>
+                    </div>
+
+                    <div class="prodTotal cartSection">
+                      <p>₦{{  formatNumber(cart.amount * cart.qty)  }}</p>
+                    </div>
+                    <div class="cartSection removeWrap">
+                      <a type="button" @click="removeItem(cart.id)" class="remove">x</a>
                     </div>
                   </div>
-                
-                  <div style="background-color:transparent;">
-                    <div
-                      class="block-grid"
-                      style="Margin: 0 auto; min-width: 320px;  overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #FFFFFF;"
-                    >
-                      <div
-                        style="border-collapse: collapse;display: table;width: 100%;background-color:#FFFFFF;"
-                      >
-                        <div
-                          class="col num12"
-                          style="min-width: 320px;  display: table-cell; vertical-align: top; width: 650px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#052d3d;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;"
-                              >
-                                <div
-                                  style="line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; color: #052d3d;"
-                                >
-                                  <p
-                                    style="line-height: 24px; text-align: center; font-size: 12px; margin: 0;"
-                                  >
-                                    <span style="font-size: 20px;"
-                                      >Your Items in cart</span
-                                    >
-                                  </p>
-                                </div>
-                              </div>
-                              <!--[if mso]></td></tr></table><![endif]-->
-                              <!--[if (!mso)&(!IE)]><!-->
-                            </div>
-                            <!--<![endif]-->
-                          </div>
-                        </div>
-                        <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-                        <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-                      </div>
-                    </div>
-                  </div>
-                  <div style="background-color:transparent;">
-                    <div
-                      class="block-grid four-up no-stack"
-                      style="Margin: 0 auto; min-width: 320px;  overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #F8F8F8;"
-                    >
-                      <div
-                        style="border-collapse: collapse;display: table;width: 100%;background-color:#F8F8F8;"
-                      >
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 162px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid #E8E8E8; padding-top:15px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:10px;"
-                              >
-                                <div
-                                  style="font-size: 12px; line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;"
-                                >
-                                  <p
-                                    style="font-size: 14px; line-height: 16px; text-align: center; margin: 0;"
-                                  >
-                                    <strong>ITEM</strong>
-                                  </p>
-                                </div>
-                              </div>
-                              <!--[if mso]></td></tr></table><![endif]-->
-                              <!--[if (!mso)&(!IE)]><!-->
-                            </div>
-                            <!--<![endif]-->
-                          </div>
-                        </div>
-                      
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 161px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:1px dotted #E8E8E8; padding-top:15px; padding-bottom:5px; padding-right: 15px; padding-left: 15px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:10px;"
-                              >
-                                <div
-                                  style="font-size: 12px; line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;"
-                                >
-                                  <p
-                                    style="font-size: 14px; line-height: 16px; text-align: center; margin: 0;"
-                                  >
-                                    <strong>QTY</strong>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <!--<![endif]-->
-                          </div>
-                        </div>
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 162px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:10px;"
-                              >
-                                <div
-                                  style="font-size: 12px; line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;"
-                                >
-                                  <p
-                                    style="font-size: 14px; line-height: 16px; text-align: center; margin: 0;"
-                                  >
-                                    <strong>PRICE</strong>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <!--<![endif]-->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div style="background-color:transparent;">
-                    <div
-                      class="block-grid four-up no-stack"
-                      style="Margin: 0 auto; min-width: 320px;  overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #FFFFFF;"
-                    >
-                      <div
-                        style="border-collapse: collapse;display: table;width: 100%;background-color:#FFFFFF;"
-                      >
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 162px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <!--<![endif]-->
-                              <div
-                                align="center"
-                                class="img-container center fixedwidth"
-                                style="padding-right: 0px;padding-left: 0px;"
-                              >
-                                <img
-                                  align="center"
-                                  alt="Image"
-                                  border="0"
-                                  class="center fixedwidth"
-                                  src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564284280/2.png"
-                                  style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 130px; display: block;"
-                                  title="Image"
-                                  width="130"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 161px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:1px dotted #E8E8E8; padding-top:30px; padding-bottom:35px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:5px;padding-left:0px;"
-                              >
-                                <div
-                                  style="line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; color: #555555;"
-                                >
-                                  <p
-                                    style="line-height: 14px; text-align: left; font-size: 12px; margin: 0;"
-                                  >
-                                    <span style="color: #2190e3;"
-                                      ><span
-                                        style="font-size: 16px; line-height: 19px;"
-                                        ><strong>Laptop Bag </strong></span
-                                      ></span
-                                    >
-                                  </p>
-                                </div>
-                              </div>
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:0px;"
-                              >
-                                <p
-                                  style="font-size: 12px; line-height: 14px; color: #555555; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; margin: 0;"
-                                >
-                                  Laptop bag
-                                </p>
-                              </div>
-                            </div>
-                            <!--<![endif]-->
-                          </div>
-                        </div>
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 161px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:1px dotted #E8E8E8; padding-top:55px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:10px;"
-                              >
-                                <div
-                                  style="font-size: 12px; line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;"
-                                >
-                                  <p
-                                    style="font-size: 14px; line-height: 24px; text-align: center; margin: 0;"
-                                  >
-                                    <span style="font-size: 20px;"
-                                      ><strong>2</strong></span
-                                    >
-                                  </p>
-                                </div>
-                              </div>
-                              <!--[if mso]></td></tr></table><![endif]-->
-                              
-                              <!--[if (!mso)&(!IE)]><!-->
-                            </div>
-                            <!--<![endif]-->
-                          </div>
-                        </div>
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 162px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:55px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:15px;padding-bottom:0px;padding-left:0px;"
-                              >
-                                <div
-                                  style="line-height: 14px; font-size: 12px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;"
-                                >
-                                  <p
-                                    style="line-height: 24px; text-align: center; font-size: 12px; margin: 0;"
-                                  >
-                                    <span style="font-size: 20px;"
-                                      ><span
-                                        style="line-height: 24px; font-size: 20px;"
-                                        ><strong>45.00</strong></span
-                                      ></span
-                                    >
-                                  </p>
-                                </div>
-                              </div>
-                              <!--[if mso]></td></tr></table><![endif]-->
-                              <!--[if (!mso)&(!IE)]><!-->
-                            </div>
-                            <!--<![endif]-->
-                          </div>
-                        </div>
-                        <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-                        <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-                      </div>
-                    </div>
-                  </div>
-                  <div style="background-color:transparent;">
-                    <div
-                      class="block-grid four-up no-stack"
-                      style="Margin: 0 auto; min-width: 320px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #F9F9F9;"
-                    >
-                      <div
-                        style="border-collapse: collapse;display: table;width: 100%;background-color:#F9F9F9;"
-                      >
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 162px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <!--<![endif]-->
-                              <div
-                                align="center"
-                                class="img-container center fixedwidth"
-                                style="padding-right: 0px;padding-left: 0px;"
-                              >
-                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><!
-                                [endif]--><img
-                                  align="center"
-                                  alt="Image"
-                                  border="0"
-                                  class="center fixedwidth"
-                                  src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564284280/fem.png"
-                                  style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 130px; display: block;"
-                                  title="Image"
-                                  width="130"
-                                />
-                                <!--[if mso]></td></tr></table><![endif]-->
-                              </div>
-                              <!--[if (!mso)&(!IE)]><!-->
-                            </div>
-                            <!--<![endif]-->
-                          </div>
-                        </div>
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 161px;"
-                        >
-                          <div style="width:100% !important;">
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:1px dotted #E8E8E8; padding-top:30px; padding-bottom:35px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:5px;padding-left:0px;"
-                              >
-                                <div
-                                  style="line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; color: #555555;"
-                                >
-                                  <p
-                                    style="line-height: 14px; text-align: left; font-size: 12px; margin: 0;"
-                                  >
-                                    <span style="color: #2190e3;"
-                                      ><span
-                                        style="font-size: 16px; line-height: 19px;"
-                                        ><strong>Winter Hoody</strong></span
-                                      ></span
-                                    >
-                                  </p>
-                                </div>
-                              </div>
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:0px;"
-                              >
-                                <p
-                                  style="font-size: 12px; line-height: 14px; color: #555555; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; margin: 0;"
-                                >
-                                  Winter hoody for men
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 161px;"
-                        >
-                          <div style="width:100% !important;">
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:1px dotted #E8E8E8; padding-top:55px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:10px;padding-bottom:10px;padding-left:10px;"
-                              >
-                                <div
-                                  style="line-height: 14px; font-size: 12px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #555555;"
-                                >
-                                  <p
-                                    style="line-height: 24px; text-align: center; font-size: 12px; margin: 0;"
-                                  >
-                                    <span style="font-size: 20px;"
-                                      ><strong>1</strong></span
-                                    >
-                                  </p>
-                                </div>
-                              </div>
-                              <!--[if mso]></td></tr></table><![endif]-->
-                              <table
-                                border="0"
-                                cellpadding="0"
-                                cellspacing="0"
-                                class="divider"
-                                role="presentation"
-                                style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
-                                valign="top"
-                                width="100%"
-                              >
-                                <tbody>
-                                  <tr style="vertical-align: top;" valign="top">
-                                    <td
-                                      class="divider_inner"
-                                      style="word-break: break-word; vertical-align: top; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"
-                                      valign="top"
-                                    >
-                                      <table
-                                        align="center"
-                                        border="0"
-                                        cellpadding="0"
-                                        cellspacing="0"
-                                        class="divider_content"
-                                        height="30"
-                                        role="presentation"
-                                        style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-top: 0px solid transparent; height: 30px;"
-                                        valign="top"
-                                        width="100%"
-                                      >
-                                        <tbody>
-                                          <tr
-                                            style="vertical-align: top;"
-                                            valign="top"
-                                          >
-                                            <td
-                                              height="30"
-                                              style="word-break: break-word; vertical-align: top; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
-                                              valign="top"
-                                            >
-                                              <span></span>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                        <div
-                          class="col num3"
-                          style="max-width: 320px; min-width: 162px; display: table-cell; vertical-align: top; width: 162px;"
-                        >
-                          <div style="width:100% !important;">
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:55px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <div
-                                style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:0px;padding-right:15px;padding-bottom:0px;padding-left:0px;"
-                              >
-                                <div
-                                  style="line-height: 14px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; color: #555555;"
-                                >
-                                  <p
-                                    style="line-height: 24px; text-align: center; font-size: 12px; margin: 0;"
-                                  >
-                                    <span style="font-size: 20px;"
-                                      ><strong>100</strong></span
-                                    >
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 
-                  <div style="background-color:transparent;">
-                    <div
-                      class="block-grid"
-                      style="Margin: 0 auto;  overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #FFFFFF;"
-                    >
-                      <div
-                        style="border-collapse: collapse;display: table;width: 100%;background-color:#FFFFFF;"
-                      >
-                        <div
-                          class="col num12"
-                          style=" display: table-cell; vertical-align: top; width: 650px;"
-                        >
-                          <div style="width:100% !important;">
-                            <!--[if (!mso)&(!IE)]><!-->
-                            <div
-                              style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:20px; padding-right: 0px; padding-left: 0px;"
-                            >
-                              <!--<![endif]-->
-                              <table
-                                border="0"
-                                cellpadding="0"
-                                cellspacing="0"
-                                class="divider"
-                                role="presentation"
-                                style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
-                                valign="top"
-                                width="100%"
-                              >
-                                <tbody>
-                                  <tr style="vertical-align: top;" valign="top">
-                                    <td
-                                      class="divider_inner"
-                                      style="word-break: break-word; vertical-align: top; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"
-                                      valign="top"
-                                    >
-                                      <table
-                                        align="center"
-                                        border="0"
-                                        cellpadding="0"
-                                        cellspacing="0"
-                                        class="divider_content"
-                                        height="0"
-                                        role="presentation"
-                                        style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-top: 0px solid transparent; height: 0px;"
-                                        valign="top"
-                                        width="100%"
-                                      >
-                                        <tbody>
-                                          <tr
-                                            style="vertical-align: top;"
-                                            valign="top"
-                                          >
-                                            <td
-                                              height="0"
-                                              style="word-break: break-word; vertical-align: top; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
-                                              valign="top"
-                                            >
-                                              <span></span>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <div
-                                align="center"
-                                class="button-container"
-                                style="padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;"
-                              >
-                                <a
-                                  href="#"
-                                  style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #fc7318; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; width: auto; width: auto; border-top: 1px solid #fc7318; border-right: 1px solid #fc7318; border-bottom: 1px solid #fc7318; border-left: 1px solid #fc7318; padding-top: 5px; padding-bottom: 5px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;"
-                                  target="_blank"
-                                  ><span
-                                    style="padding-left:20px;padding-right:20px;font-size:18px;display:inline-block;"
-                                  >
-                                    <span
-                                      style="font-size: 16px; line-height: 32px;"
-                                      ><span
-                                        style="font-size: 18px; line-height: 36px;"
-                                        ><strong
-                                          >FINISHING CHECKING OUT ›
-                                        </strong></span
-                                      ></span
-                                    >
-                                  </span></a
-                                >
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 
-                  
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                </li>
+
+                <!--<li class="items even">Item 2</li>-->
+              </ul>
+            </div>
+
+            <div class="promoCode"></div>
+
+            <div class="subtotal cf">
+              <ul>
+                <li class="totalRow final">
+                  <span class="label">Total</span
+                  ><span class="value">₦{{formatNumber(total)}}</span>
+                </li>
+                <li class="totalRow">
+                  <a href="#" class="btn continue">Checkout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -684,104 +95,438 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {};
   },
+  computed: {
+    ...mapState({
+      carts: (state) => state.audios.cart,
+    }),
+    total(){
+        
+        return this.$store.getters['audios/totalMoney']
+    }
+  },
+  methods: {
+    formatNumber(x) {
+      if (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+      return x;
+    },
+    removeItem(id){
+        this.$store.dispatch('audios/removeItem', id)
+    }
+  },
 };
 </script>
 
-<style scoped>
-table,
-td,
-tr {
-  vertical-align: top;
-  border-collapse: collapse;
-}
+<style lang="scss" scoped>
+$fontSans: "Montserrat", sans-serif;
+$fontSerif: "Droid Serif", serif;
 
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
 * {
-  line-height: inherit;
+  box-sizing: border-box;
 }
 
-a[x-apple-data-detectors="true"] {
-  color: inherit !important;
-  text-decoration: none !important;
+body {
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  font-family: $fontSerif;
+}
+img {
+  max-width: 100%;
+}
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.cf {
+  *zoom: 1;
 }
 
-@media (max-width: 670px) {
-  .block-grid,
-  .col {
-    min-width: 320px !important;
-    max-width: 100% !important;
-    display: block !important;
+.wrap {
+  width: 75%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 5% 0;
+  margin-bottom: 5em;
+}
+
+.projTitle {
+  font-family: $fontSans;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+  padding: 1em 0;
+  border-bottom: 1px solid #dadada;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  span {
+    font-family: $fontSerif;
+    font-weight: normal;
+    font-style: italic;
+    text-transform: lowercase;
+    color: #777;
+  }
+}
+// CART HEADER
+.heading {
+  padding: 1em 0;
+  border-bottom: 1px solid #d0d0d0;
+
+  h1 {
+    font-family: $fontSerif;
+    font-size: 2em;
+    float: left;
+    color: var(--humber-light);
+  }
+  a.continue {
+    &:link,
+    &:visited {
+      text-decoration: none;
+      font-family: $fontSans;
+      letter-spacing: -0.015em;
+      font-size: 0.75em;
+      padding: 1em;
+      color: #fff;
+      background: var(--gray);
+      font-weight: bold;
+      border-radius: 50px;
+      float: right;
+      text-align: right;
+      @include transition(all, 0.25s, linear);
+    }
+    &:after {
+      content: "\276f";
+      padding: 0.5em;
+      position: relative;
+      right: 0;
+      @include transition(all, 0.15s, linear);
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      background: #f69679;
+
+      &:after {
+        right: -10px;
+      }
+    }
+  }
+}
+
+// TABLE HEADING
+
+.tableHead {
+  display: table;
+  width: 100%;
+  font-family: $fontSans;
+  font-size: 0.75em;
+  li {
+    display: table-cell;
+    padding: 1em 0;
+    text-align: center;
+    &.prodHeader {
+      text-align: left;
+    }
+  }
+}
+
+// CART Items
+
+.cart {
+  padding: 1em 0;
+
+  .items {
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+    padding: 1.5em;
+    background: #fafafa;
+
+    border-bottom: 1px solid #fafafa;
+    &.even {
+      background: #fafafa;
+    }
+    .infoWrap {
+      display: table;
+      width: 100%;
+    }
+    .cartSection {
+      display: table-cell;
+
+      vertical-align: middle;
+
+      .itemNumber {
+        font-size: 0.75em;
+        color: #777;
+        margin-bottom: 0.5em;
+      }
+
+      h3 {
+        font-size: 1em;
+        font-family: $fontSans;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+      }
+      p {
+        display: inline-block;
+        font-size: 0.85em;
+
+        color: #777777;
+        font-family: $fontSans;
+        .quantity {
+          font-weight: bold;
+          color: #333;
+        }
+
+        &.stockStatus {
+          color: #82ca9c;
+          font-weight: bold;
+          padding: 0.5em 0 0 1em;
+          text-transform: uppercase;
+          &.out {
+            color: #f69679;
+          }
+        }
+      }
+      .itemImg {
+        width: 4em;
+
+        float: left;
+      }
+      &.qtyWrap,
+      &.prodTotal {
+        text-align: center;
+        p {
+          font-weight: bold;
+          font-size: 1.25em;
+        }
+      }
+
+      input.qty {
+        width: 2em;
+        text-align: center;
+        font-size: 1em;
+        padding: 0.25em;
+        margin: 1em 0.5em 0 0;
+      }
+      .itemImg {
+        width: 8em;
+        display: inline;
+        padding-right: 1em;
+      }
+    }
+  }
+}
+
+.special {
+  display: block;
+  font-family: $fontSans;
+  .specialContent {
+    padding: 1em 1em 0;
+    display: block;
+    margin-top: 0.5em;
+    border-top: 1px solid #dadada;
+    &:before {
+      content: "\21b3";
+      font-size: 1.5em;
+      margin-right: 1em;
+      color: #6f6f6f;
+      font-family: helvetica, arial, sans-serif;
+    }
+  }
+}
+
+a.remove {
+  text-decoration: none;
+  font-family: $fontSans;
+  color: #ffffff;
+  font-weight: bold;
+  background: #e0e0e0;
+  padding: 0.5em;
+  font-size: 0.75em;
+  display: inline-block;
+  border-radius: 100%;
+  line-height: 0.85;
+  @include transition(all, 0.25s, linear);
+  &:hover {
+    background: #f30;
+  }
+}
+
+.promoCode {
+  float: left;
+  width: 35%;
+  padding: 2%;
+  label {
+    display: block;
+    width: 100%;
+    font-style: italic;
+    font-size: 1.15em;
+
+    margin-bottom: 0.5em;
+    letter-spacing: -0.025em;
+  }
+  input {
+    width: 85%;
+    font-size: 1em;
+    padding: 0.5em;
+    float: left;
+    border: 1px solid #dadada;
+    &:active,
+    &:focus {
+      outline: 0;
+    }
+  }
+  a.btn {
+    float: left;
+    width: 15%;
+    padding: 0.75em 0;
+    border-radius: 0 1em 1em 0;
+    text-align: center;
+    border: 1px solid #82ca9c;
+    &:hover {
+      border: 1px solid #f69679;
+      background: #f69679;
+    }
+  }
+}
+
+.btn {
+  &:link,
+  &:visited {
+    text-decoration: none;
+    font-family: $fontSans;
+    letter-spacing: -0.015em;
+    font-size: 1em;
+    padding: 1em 3em;
+    color: #fff;
+    background: var(--gray);
+    font-weight: bold;
+    border-radius: 50px;
+    float: right;
+    text-align: right;
+    @include transition(all, 0.25s, linear);
+  }
+  &:after {
+    content: "\276f";
+    padding: 0.5em;
+    position: relative;
+    right: 0;
+    @include transition(all, 0.15s, linear);
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    background: #f69679;
+    &:after {
+      right: -10px;
+    }
   }
 
-  .block-grid {
-    width: 100% !important;
+  .promoCode & {
+    font-size: 0.85em;
+    paddding: 0.5em 2em;
+  }
+}
+
+/* TOTAL AND CHECKOUT  */
+.subtotal {
+  float: right;
+  width: 35%;
+  color: white;
+  .totalRow {
+    padding: 0.5em;
+    text-align: right;
+
+    &.final {
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+    span {
+      display: inline-block;
+      padding: 0 0 0 1em;
+      text-align: right;
+    }
+    .label {
+      font-family: $fontSans;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .value {
+      letter-spacing: -0.025em;
+      width: 35%;
+    }
+  }
+}
+
+@media only screen and (max-width: 39.375em) {
+  .wrap {
+    width: 98%;
+    padding: 2% 0;
+  }
+  .projTitle {
+    font-size: 1.5em;
+    padding: 10% 5%;
+  }
+  .heading {
+    padding: 1em;
+    font-size: 90%;
+  }
+  .cart {
+    .items {
+      .cartSection {
+        width: 90%;
+        display: block;
+        float: left;
+        &.qtyWrap {
+          width: 10%;
+          text-align: center;
+          padding: 0.5em 0;
+          float: right;
+          &:before {
+            content: "QTY";
+            display: block;
+            font-family: $fontSans;
+            padding: 0.25em;
+            font-size: 0.75em;
+          }
+        }
+        &.prodTotal,
+        &.removeWrap {
+          display: none;
+        }
+        .itemImg {
+          width: 25%;
+        }
+      }
+    }
+  }
+  .promoCode,
+  .subtotal {
+    width: 100%;
   }
 
-  .col {
-    width: 100% !important;
-  }
-
-  .col > div {
-    margin: 0 auto;
-  }
-
-  img.fullwidth,
-  img.fullwidthOnMobile {
-    max-width: 100% !important;
-  }
-
-  .no-stack .col {
-    min-width: 0 !important;
-    display: table-cell !important;
-  }
-
-  .no-stack.two-up .col {
-    width: 50% !important;
-  }
-
-  .no-stack .col.num4 {
-    width: 33% !important;
-  }
-
-  .no-stack .col.num8 {
-    width: 66% !important;
-  }
-
-  .no-stack .col.num4 {
-    width: 33% !important;
-  }
-
-  .no-stack .col.num3 {
-    width: 25% !important;
-  }
-
-  .no-stack .col.num6 {
-    width: 50% !important;
-  }
-
-  .no-stack .col.num9 {
-    width: 75% !important;
-  }
-
-  .video-block {
-    max-width: none !important;
-  }
-
-  .mobile_hide {
-    min-height: 0px;
-    max-height: 0px;
-    max-width: 0px;
-    display: none;
-    overflow: hidden;
-    font-size: 0px;
-  }
-
-  .desktop_hide {
-    display: block !important;
-    max-height: none !important;
+  a.btn.continue {
+    width: 100%;
+    text-align: center;
   }
 }
 </style>

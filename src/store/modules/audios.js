@@ -34,7 +34,7 @@ export default {
   },
   totalMoney(state) {
     return state.cart.reduce(function(acc, obj) {
-      return acc + obj.price * obj.qty;
+      return acc + obj.amount * obj.qty;
     }, 0); 
    
   },
@@ -296,7 +296,7 @@ export default {
       console.log(id)
       // arr.splice(i, 1); 
       for(var i =0; i < state.cart.length; i++){
-        if(state.cart[i]._id == id){
+        if(state.cart[i].id == id){
           console.log(id)
           state.cart.splice(i,1)
         }
