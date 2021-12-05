@@ -56,7 +56,20 @@
 
       <div class="row">
         <div class="col-lg-12">
-          <ul class="list-group" data-aos="fade-up" data-aos-duration="3000">
+          <ul v-if="loading">
+             <li >
+              <Spinner title="Nodata  found this list" />
+            </li>
+           
+          </ul>
+           <ul v-else-if="filterSongs.length == 0">
+            
+            <li >
+              <Nodata title="Nodata  found this list" />
+            </li>
+          </ul>
+          <ul v-else class="list-group" data-aos="fade-up" data-aos-duration="3000">
+
             <li
               class="list-group-item d-flex justify-content-between align-items-center"
             >
@@ -137,6 +150,7 @@
                 </div>
               </div>
             </li>
+           
           </ul>
         </div>
         <!-- <div class="col-md-12 mt-5 ">
@@ -299,13 +313,14 @@ export default {
       searchTerm: "",
       currentPage: 1,
       postPerPage: 10,
+      loading:false
     };
   },
   created() {
     this.getAuthenticatedUser();
     this.current = this.auidioList[this.index];
     this.player.src = this.current.src;
-    this.$store.dispatch("audios/getAllBeats");
+   this. getAllBeats()
   },
   computed: {
     ...mapState({
@@ -331,6 +346,15 @@ export default {
   },
 
   methods: {
+    getAllBeats(){
+         this.$store.dispatch("audios/getAllBeats")
+         .then(()=>{
+            this.loading = false
+         }).catch(err=>{
+            this.loading = false
+         })
+  },
+    
     getDuration(audio) {},
     pagination() {},
 

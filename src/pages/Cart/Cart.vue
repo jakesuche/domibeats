@@ -19,9 +19,9 @@
             </div>
           </div>
         </div>
-        
 
-        <Nodata title="There is no item in the cart" v-if="carts.length === 0"> </Nodata>
+        <Nodata title="There is no item in the cart" v-if="carts.length === 0">
+        </Nodata>
         <div class="row" v-else>
           <div class="wrap cf">
             <div class="heading cf">
@@ -55,17 +55,22 @@
                           class="qty"
                           :placeholder="cart.qty"
                         />
-                        x ₦{{  formatNumber(cart.amount) }}
+                        x ₦{{ formatNumber(cart.amount) }}
                       </p>
 
                       <p class="stockStatus">In Stock</p>
                     </div>
 
                     <div class="prodTotal cartSection">
-                      <p>₦{{  formatNumber(cart.amount * cart.qty)  }}</p>
+                      <p>₦{{ formatNumber(cart.amount * cart.qty) }}</p>
                     </div>
                     <div class="cartSection removeWrap">
-                      <a type="button" @click="removeItem(cart.id)" class="remove">x</a>
+                      <a
+                        type="button"
+                        @click="removeItem(cart.id)"
+                        class="remove"
+                        >x</a
+                      >
                     </div>
                   </div>
                 </li>
@@ -80,10 +85,16 @@
               <ul>
                 <li class="totalRow final">
                   <span class="label">Total</span
-                  ><span class="value">₦{{formatNumber(total)}}</span>
+                  ><span class="value">₦{{ formatNumber(total) }}</span>
                 </li>
                 <li class="totalRow">
-                  <a href="#" class="btn continue">Checkout</a>
+                  <a
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#cart"
+                    class="btn continue"
+                    >Checkout</a
+                  >
                 </li>
               </ul>
             </div>
@@ -91,34 +102,160 @@
         </div>
       </div>
     </section>
+    <CustomModal target="cart">
+       
+       <div v-if="error.phoneNumber || error.email" class="d-flex alert alert-danger justify-content-center mb-4">
+         <span>{{error.phoneNumber || error.email}}</span>
+       </div>
+      <div class="container">
+       
+        <label for="basic-url" class="form-label">Email</label>
+        <div class="input-group mb-3">
+          <input 
+            @input="input()"
+            :disabled="active"
+            v-model="form.email"
+            id="myInput"
+            value="Email"
+            type="text"
+            class="form-control"
+            placeholder="Email"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+          />
+        </div>
+        <label for="basic-url" class="form-label">Number</label>
+        <div class="input-group mb-3">
+          <input
+          @input="input()"
+            v-model="form.number"
+            id="myInput"
+            value="Number"
+            :disabled="active"
+            type="text"
+            class="form-control"
+            placeholder="Number"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+          />
+        </div>
+        <div class="d-flex justify-content-center">
+          <button
+            :disabled="active"
+            @click="ConfirmOrder()"
+            style="width: 152px;"
+            class="btn"
+          >
+            {{ loading ? "Confirming.." : "Confirm " }}
+          </button>
+        </div>
+      </div>
+    </CustomModal>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { OrderRef } from "@/firebase";
+import emailjs from "emailjs-com";
 export default {
   data() {
-    return {};
+    return {
+      form: {
+        number: "",
+        email: "",
+        cart: [],
+        active: false,
+      },
+      error:{
+        email:'',
+        phoneNumber:''
+      },
+      loading: false,
+    };
+  },
+  created() {
+    emailjs.init("user_W4BVlmgnW5t1e1B76uQQx");
   },
   computed: {
     ...mapState({
       carts: (state) => state.audios.cart,
     }),
-    total(){
-        
-        return this.$store.getters['audios/totalMoney']
-    }
+    total() {
+      return this.$store.getters["audios/totalMoney"];
+    },
   },
   methods: {
+    input(){
+      this.error.email = '',
+      this.error.phoneNumber= ''
+    },
+    sendMail(state) {
+      console.log(state);
+      let list = "";
+      for (let i = 0; i < state.cart.length; i++) {
+        list += `<li class="text-warning">${state.cart[i].productTitle}</li>`;
+      }
+
+     
+      emailjs
+        .send("service_sdmz9pi", "template_uuKjALn7", {
+          email: state.email,
+          htmlBody: `<ul>
+                    ${list}
+                    </ul>`,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    ConfirmOrder() {
+      if(!this.form.email){
+        this.error.email = 'Email is required'
+
+      }else if(!this.form.number){
+        this.error.phoneNumber = 'Number is required'
+
+      }else {
+      console.log(this.form);
+      this.form.cart = this.carts;
+      this.loading = true;
+      this.form.createAt = Date.now();
+
+      OrderRef({ ...this.form })
+        .then((res) => {
+          console.log(res);
+          this.loading = false;
+          this.$toasted.success("Your has been recorded successfully", {
+            duration: 6000,
+          });
+          this.sendMail(this.form);
+          this.$store.dispatch("audios/clearCart");
+          this.active = true;
+        })
+        .catch((err) => {
+          this.loading = false;
+          console.log(err);
+
+          this.$toasted.error("An error occurred while creating ", {
+            duration: 4000,
+          });
+        });
+      }
+     
+    },
     formatNumber(x) {
       if (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
       return x;
     },
-    removeItem(id){
-        this.$store.dispatch('audios/removeItem', id)
-    }
+    removeItem(id) {
+      this.$store.dispatch("audios/removeItem", id);
+    },
   },
 };
 </script>
@@ -142,6 +279,10 @@ body {
   color: #333;
   -webkit-font-smoothing: antialiased;
   font-family: $fontSerif;
+}
+
+.form-label {
+  color: white;
 }
 img {
   max-width: 100%;
@@ -194,22 +335,21 @@ img {
     float: left;
     color: var(--humber-light);
   }
+
   a.continue {
-    &:link,
-    &:visited {
-      text-decoration: none;
-      font-family: $fontSans;
-      letter-spacing: -0.015em;
-      font-size: 0.75em;
-      padding: 1em;
-      color: #fff;
-      background: var(--gray);
-      font-weight: bold;
-      border-radius: 50px;
-      float: right;
-      text-align: right;
-      @include transition(all, 0.25s, linear);
-    }
+    text-decoration: none;
+    font-family: $fontSans;
+    letter-spacing: -0.015em;
+    font-size: 0.75em;
+    padding: 1em;
+    color: #fff;
+    background: var(--gray);
+    font-weight: bold;
+    border-radius: 50px;
+    float: right;
+    text-align: right;
+    @include transition(all, 0.25s, linear);
+
     &:after {
       content: "\276f";
       padding: 0.5em;
@@ -220,8 +360,6 @@ img {
     &:hover,
     &:focus,
     &:active {
-      background: #f69679;
-
       &:after {
         right: -10px;
       }
@@ -403,7 +541,7 @@ a.remove {
     border: 1px solid #82ca9c;
     &:hover {
       border: 1px solid #f69679;
-      background: #f69679;
+      // background: #f69679;
     }
   }
 }
@@ -434,7 +572,7 @@ a.remove {
   &:hover,
   &:focus,
   &:active {
-    background: #f69679;
+    // background: #f69679;
     &:after {
       right: -10px;
     }

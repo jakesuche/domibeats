@@ -61,7 +61,7 @@
             >Contact</router-link
           >
         </li>
-        <li @click="routerName = 'contact', $eventBus.$emit('stop'), $router.push('/cart')" class="nav-item" :class="routerName == 'contact' ? 'active' : ''">
+        <li @click="routerName = 'cart', $eventBus.$emit('stop'), $router.push('/cart')" class="nav-item" :class="routerName == 'cart' ? 'active' : ''">
          <i class="fas fa-cart-plus position-relative" style="font-size: 20px;color:white;margin-top: 9px;"><span style="top: -12px;
     left: 23px;" class="position-absolute">{{cartTotal()}}</span></i>
         </li>

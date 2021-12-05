@@ -133,7 +133,7 @@ export default {
         commit("StoreBeats", array);
       } else {
         console.log(state.falbackList);
-        commit("StoreBeats", state.falbackList);
+        commit("StoreBeats", []);
       }
     },
     async getAllGadgets({ commit, state }) {
@@ -288,9 +288,10 @@ export default {
     clearCart(state){
       console.log('cleared')
       // state.cart = []
-      for(var i = 0; i < state.cart.length; i++){
-        state.cart.splice(i,1)
-      }
+      state.cart = []
+      // for(var i = 0; i < state.cart.length; i++){
+      //   state.cart.splice(i,1)
+      // }
     },
     removeItem(state, id){
       console.log(id)

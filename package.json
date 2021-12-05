@@ -23,6 +23,7 @@
     "core-js": "^3.6.5",
     "css-loader": "1.0.1",
     "echarts": "4.9.0",
+    "emailjs-com": "^3.2.0",
     "expose-loader": "^3.0.0",
     "express": "^4.17.1",
     "express-validator": "5.3.0",
@@ -99,7 +100,7 @@
       "no-unreachable": "warn",
       "vue/return-in-computed-property": "warn",
       "no-mixed-spaces-and-tabs": "warn",
-      "no-irregular-whitespace":"off"
+      "no-irregular-whitespace": "off"
     }
   },
   "browserslist": [

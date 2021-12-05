@@ -19,6 +19,7 @@ import 'aos/dist/aos.css'
 import 'animate.css';
 import Nodata from '@/components/NoItem'
 import Spinner from '@/components/Spinner'
+import Modal from '@/components/modal/modal'
 const eventBus = new Vue()
 Vue.prototype.$eventBus = eventBus 
 
@@ -107,7 +108,7 @@ import { MonthPickerInput } from 'vue-month-picker'
 
 Vue.use(MonthPicker)
 Vue.use(MonthPickerInput)
-
+Vue.component('CustomModal', Modal)
 Vue.use(VueSweetalert2);
 
 Vue.use(BootstrapVue);
