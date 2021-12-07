@@ -103,7 +103,7 @@
               :style="{ backgroundImage: `${item.songImg ? `url(${item.songImg })` : 'var(--humber-black)'}` }"
             >
               <div class="tags">
-                <i class="fas fa-hashtag"></i> {{item.genre}}
+                <i class="fas fa-hashtag"></i> {{item.genre ? item.genre : ''}}
               </div>
               <div class="time">
                 <i class="fas fa-clock"></i> 40 mins
@@ -114,7 +114,7 @@
                 ><img src="img/play.png" alt=""
               /></a>
               <div class="episodes__text">
-                <h4>{{item.songName}}</h4>
+                <h4>{{item.songName ? item.songName : ''}}</h4>
                 <p><span class="icon_calendar"></span> 16 Feb 2019</p>
               </div>
             </div>

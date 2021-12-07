@@ -143,7 +143,7 @@ export default {
   color: #fff !important;
 }
 .navbar {
-  /* background-color: var(--black-color)!important; */
+  background-color: var(--black-color)!important;
   border-bottom: 1px solid var(--primary-color);
   /* height: 77px; */
   position: absolute;

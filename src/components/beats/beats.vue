@@ -7,34 +7,33 @@
     <div class="container">
       <div class="row mb-4">
         <div class= " col-sm-6 col-md-3 mb-4 custom-col ">
-          <select @change="selectGenre($event)" class="form-control ">
+          <Select label="All moods"  :options="Moods" />
+          <!-- <select @change="selectGenre($event)" class="form-control ">
             <option selected disabled>All Moods</option>
-            <option value="afrobeat">Afrobeat</option>
-            <option value="dance hall">Dance hall</option>
-            <option value="hip hop">Hip hop</option>
-            <option value="gospel">Gospel</option>
-            <option value="R and B">R and B</option>
-          </select>
+            <option  v-for="(Mood, i) in Moods" :key="i"  :value="Mood.value">{{Mood.label}}</option>
+            
+          </select> -->
         </div>
         <div class="col-sm-6 col-md-3 mb-4 custom-col ">
-          <select @change="selectGenre($event)" class="form-control ">
+          <Select  label="All Bpm" :options="BPM" />
+          <!-- <select  @change="selectGenre($event)" class="form-control optgroup ">
+             <optgroup class="optgroup">
             <option selected disabled>All Bpm</option>
-            <option value="afrobeat">Afrobeat</option>
-            <option value="dance hall">Dance hall</option>
-            <option value="hip hop">Hip hop</option>
-            <option value="gospel">Gospel</option>
-            <option value="R and B">R and B</option>
-          </select>
+            <option v-for="(B,i) in  BPM"  :key ="i" value="afrobeat">{{B.bpm}}</option>
+            </optgroup>
+          </select> -->
+          
         </div>
          <div class=" col-xs-6 col-md-3 mb-4  custom-col ">
-          <select @change="selectGenre($event)" class="form-control ">
+           <Select  label="All Genres" :options="Genres" />
+          <!-- <select @change="selectGenre($event)" class="form-control ">
             <option selected disabled>All genre</option>
             <option value="afrobeat">Afrobeat</option>
             <option value="dance hall">Dance hall</option>
             <option value="hip hop">Hip hop</option>
             <option value="gospel">Gospel</option>
             <option value="R and B">R and B</option>
-          </select>
+          </select> -->
         </div>
          <div class=" col-xs-6 col-md-3 mb-4 custom-col ">
           <select @change="selectGenre($event)" class="form-control ">
@@ -110,7 +109,7 @@
                   @click="$eventBus.$emit('chooseSong', i)"
                   style="font-size:1rem;"
                   class="text-light"
-                  >{{ audio.songName }}</span
+                  >{{ audio.songName ? audio.songName : '' }}</span
                 >
               </div>
 
@@ -119,7 +118,7 @@
               >
                 <span class="text-light"
                   >{{ audio.songDuration
-                  }}{{ getDuration(audio.songLive) }}</span
+                  }}{{ audio.songLive ? getDuration(audio.songLive) : ''  }}</span
                 >
                 <div class="d-flex  gap-1">
                   <span class="text-center badge badge-secondary"
@@ -243,52 +242,17 @@
     </div>
     <AudioPlayer :playlist="auidioList" />
 
-    <!-- <div class="tract_selected bg-light">
-      <div class="container">
-        <p class="track">Erlandsson <span>Memories (Radio Edit)</span></p>
-        <button data-am-button="small" id="btn-mute">
-          <i class="fa fa-volume-off"></i>
-        </button>
-        <button data-am-button="large" id="btn-play-pause">
-          <i class="fa fa-play"></i>
-        </button>
-        <button data-am-button="small" id="btn-stop">
-          <i class="fa fa-stop"></i>
-        </button>
-        <div id="progress-bar"><span id="progress"></span></div>
-      </div>
-
-      <footer>
-        &#169; Music by Erlandsson (aka
-        <a href="https://soundcloud.com/tr1ll1on" target="_blank">Trillion</a>)
-        avaible on
-        <a
-          href="https://itunes.apple.com/se/album/memories-single/id648712939?l=en"
-          target="_blank"
-          >iTunes</a
-        >,
-        <a
-          href="https://open.spotify.com/track/7qnVbMFkP2yCkiQ2XJCDOp"
-          target="_blank"
-          >Spotify</a
-        >
-        &
-        <a
-          href="https://www.beatport.com/ensisrecordsofficial1/tracks/kg8s2rgsrunc/memories-original-mix"
-          target="_blank"
-          >BeatPort</a
-        >
-      </footer>
-    </div> -->
   </section>
 </template>
 
 <script>
 import { signInGoogle, onAuthStateChanged, signOut, auth } from "@/firebase";
+import { Moods, BPM, Genres } from './constants'
 import CustomModal from "@/components/modal/modal.vue";
 import { CopyIcon } from "vue-feather-icons";
 import { mapState } from "vuex";
 import AudioPlayer from "@/components/visualizer/audioplayer";
+import Select from '@/components/select/select.vue'
 import Fuse from "fuse.js";
 import axios from "axios";
 export default {
@@ -296,6 +260,8 @@ export default {
     CopyIcon,
     CustomModal,
     AudioPlayer,
+    Select
+    
   },
 
   // const indexOfLastPost2 = currentPage * postPerPage;
@@ -313,13 +279,16 @@ export default {
       searchTerm: "",
       currentPage: 1,
       postPerPage: 10,
-      loading:false
+      loading:false,
+      Moods,
+      BPM,
+      Genres
     };
   },
   created() {
     this.getAuthenticatedUser();
     this.current = this.auidioList[this.index];
-    this.player.src = this.current.src;
+    this.player.src = this.current ? this.current.src : null
    this. getAllBeats()
   },
   computed: {
@@ -444,7 +413,9 @@ export default {
 </script>
 
 <style scoped>
-
+.optgroup{
+  background:'red'
+}
 input[type=text] {
   width: 100%;
   box-sizing: border-box;
@@ -622,11 +593,12 @@ input:hover:placeholder{
 }
 
 .form-control {
-  background: #7b7b7b;
-  border: none;
-  color: white;
-  font-size:1.2rem;
-  font-weight: 600;
+ background: #212121;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    height: 49px;
+    font-weight: 600;
 }
 
 .input-group-text {
@@ -767,6 +739,7 @@ footer a:hover {
 
 option {
   background-color: var(--humber-dark);
+  border:'none'
 }
 option:hover {
   background-color: var(--humber-dark) !important;
