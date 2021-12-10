@@ -11,6 +11,9 @@ import Enroll from './pages/enroll/enroll'
 import Exclusive from './pages/exclusive/exclusive.vue'
 import Instrument from './pages/Instruments/Instrument.vue'
 import Cart from './pages/Cart/Cart.vue'
+import notFound from './pages/notFound'
+import drum_kit from './pages/drumkit/drumkit'
+import drumkitDetails from './pages/drumkit/drumkitdetails'
 
 
 
@@ -21,10 +24,10 @@ const router =  new Router({
   routes: [
     {
       path:'/',
-      redirect:'/home'
+      redirect:'/beats'
     },
     {
-      path: "/home",
+      path: "/beats",
       name: "home",
       component: home,
       meta:{onlyGuestUser:true}
@@ -81,6 +84,21 @@ const router =  new Router({
       path:'/cart',
       name:'cart',
       component: Cart
+    },
+    {
+      path:'/drum_kit',
+      name:'drum_kit',
+      component:drum_kit
+    },  
+    {
+      path:'/drum_kit/:id',
+      name:'drum_kit',
+      component:drumkitDetails
+    }, 
+    {
+      path:'*',
+      name:'cart',
+      component: notFound
     }
     
     

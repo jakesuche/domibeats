@@ -70,3 +70,8 @@ export const Genres = [
     label: "R and B",
   },
 ];
+
+export const sort = [
+  { value: "latest", label: "Latest" },
+  { value: "newest", label: "Newest" },
+];

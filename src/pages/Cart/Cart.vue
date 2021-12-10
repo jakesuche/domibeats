@@ -82,7 +82,7 @@
             <div class="promoCode"></div>
 
             <div class="subtotal cf">
-              <ul>
+              <ul style="list-style: none;">
                 <li class="totalRow final">
                   <span class="label">Total</span
                   ><span class="value">₦{{ formatNumber(total) }}</span>
@@ -330,7 +330,7 @@ img {
   border-bottom: 1px solid #d0d0d0;
 
   h1 {
-    font-family: $fontSerif;
+    font-family: 'Poppins';
     font-size: 2em;
     float: left;
     color: var(--humber-light);
@@ -390,13 +390,16 @@ img {
   padding: 1em 0;
 
   .items {
+   margin-top: 12px;
     display: block;
     width: 100%;
     vertical-align: middle;
     padding: 1.5em;
-    background: #fafafa;
+    background: #212121;
+    /* border-bottom: 1px solid #fafafa; */
 
-    border-bottom: 1px solid #fafafa;
+
+    // border-bottom: 1px solid #fafafa;
     &.even {
       background: #fafafa;
     }
@@ -417,10 +420,11 @@ img {
 
       h3 {
         font-size: 1em;
-        font-family: $fontSans;
+        font-family: 'Poppins';
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 0.025em;
+        color:#ffffff
       }
       p {
         display: inline-block;
@@ -494,7 +498,7 @@ img {
 a.remove {
   text-decoration: none;
   font-family: $fontSans;
-  color: #ffffff;
+  color: #000;
   font-weight: bold;
   background: #e0e0e0;
   padding: 0.5em;

@@ -13,13 +13,14 @@
             <div class="col-lg-5">
               <div class="footer__subscriber__text">
                 <h3>Sign up for our newsletter!</h3>
-                <p>Subscribe to receive info on our latest news and episodes</p>
+                <p>Comming soon !!</p>
+                <!-- <p>Subscribe to receive info on our latest news and episodes</p> -->
               </div>
             </div>
             <div class="col-lg-5 offset-lg-2">
               <form action="#" class="footer__subscriber__form">
-                <input type="text" placeholder="Your email address" />
-                <button type="submit" class="site-btn">Subscribe</button>
+                <input disabled type="text" placeholder="Your email address" />
+                <button disabled type="submit" class="site-btn">Subscribe</button>
               </form>
             </div>
           </div>

@@ -20,8 +20,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <div class="section-title">
-              <h2>Studio Gadgets</h2>
+            <div STYLE="    text-align: left;" class="section-title">
+              <h2>Drum kit</h2>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
                ₦ {{ item.amount | formatMoney}}
               </div>
               <div>
-                <button @click="addTocart(item)" class="add_item">ADD ITEM</button>
+                <button @click="$router.push('/drum_kit/id')"  class="add_item">DETAILS</button>
               </div>
             </div>
           </div>

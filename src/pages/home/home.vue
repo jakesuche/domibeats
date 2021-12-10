@@ -108,7 +108,7 @@
               <div class="time">
                 <i class="fas fa-clock"></i> 40 mins
               </div>
-              <a
+              <a target="_blank"
                 :href="item.link"
                 class="play-btn video-popup"
                 ><img src="img/play.png" alt=""

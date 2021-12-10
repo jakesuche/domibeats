@@ -23,13 +23,16 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul style="gap:20px" class="navbar-nav ml-auto">
-        <li @click="routerName = 'home', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'home' ? 'active' : ''">
+        <li @click="routerName = 'beats', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'beats' ? 'active' : ''">
           <router-link class="nav-link" to="/"
-            >Home <span class="sr-only">(current)</span></router-link
+            >Beats <span class="sr-only">(current)</span></router-link
           >
         </li>
-         <li @click="routerName = 'about', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'exclusive' ? 'active' : ''">
+         <li @click="routerName = 'exclusive', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'exclusive' ? 'active' : ''">
           <router-link to="/exclusive"  class="nav-link">Exclusive Beats</router-link>
+        </li>
+         <li @click="routerName = 'drum_kit', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'drum_kit' ? 'active' : ''">
+          <router-link to="/drum_kit"  class="nav-link">Drum kit</router-link>
         </li>
         <li @click="routerName = 'academy', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'academy' ? 'active' : ''">
           <router-link to="/academy"  class="nav-link">Academy</router-link>
@@ -37,9 +40,9 @@
         <li @click="routerName = 'about', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'about' ? 'active' : ''">
           <router-link to="/about"  class="nav-link">About</router-link>
         </li>
-        <li @click="routerName = 'about', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'about' ? 'active' : ''">
+        <!-- <li @click="routerName = 'about', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'about' ? 'active' : ''">
           <router-link to="/about"  class="nav-link">Hire</router-link>
-        </li>
+        </li> -->
        
         <li @click="routerName = 'gadgets', $eventBus.$emit('stop')" class="nav-item" :class="routerName == 'gadgets' ? 'active' : ''">
           <router-link to="/gadgets"  class="nav-link">Buy studio Gadgets</router-link>

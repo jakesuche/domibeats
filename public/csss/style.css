@@ -2214,15 +2214,16 @@ ol {
 }
 
 .contact__form form input {
-    height: 50px;
+	height: 50px;
     width: 100%;
     font-size: 15px;
     color: var(--humber-light);
-    border: 1px solid var(--humber-golden);
+    /* border: 1px solid var(--humber-golden); */
     padding-left: 20px;
     border-radius: 5px;
     margin-bottom: 30px;
-    background: transparent;
+    background: #212121;
+    border: none;
 }
 
 .contact__form form input::-webkit-input-placeholder {
@@ -2256,7 +2257,8 @@ ol {
     margin-bottom: 34px;
     padding-top: 14px;
     resize: none;
-    background: var(--humber-black);
+    background: #212121;
+    border: none;
 }
 
 .contact__form form textarea::-webkit-input-placeholder {

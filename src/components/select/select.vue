@@ -1,7 +1,7 @@
 <template>
   <div class="custom-select" :tabindex="tabindex" @blur="open = false">
     
-     <div  class="selected" :class="{ open: open }" @click="open = !open; show = false" >
+     <div  class="selected" :class="{ open: open }" @click="open = !open" >
       {{ label &&  show ?  label : selected }}
     </div>
 
@@ -12,6 +12,7 @@
         :key="i"
         @click="
           selected = option.value;
+          show = false
           
           open = false;
           $emit('input', option.value);"
@@ -122,6 +123,7 @@ export default {
   z-index: 999;
       max-height: 400px;
     overflow-y: auto;
+        top: 51px;
 
 }
 

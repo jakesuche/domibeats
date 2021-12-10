@@ -16,34 +16,23 @@
         </div>
         <div class="col-sm-6 col-md-3 mb-4 custom-col ">
           <Select  label="All Bpm" :options="BPM" />
-          <!-- <select  @change="selectGenre($event)" class="form-control optgroup ">
-             <optgroup class="optgroup">
-            <option selected disabled>All Bpm</option>
-            <option v-for="(B,i) in  BPM"  :key ="i" value="afrobeat">{{B.bpm}}</option>
-            </optgroup>
-          </select> -->
+      
           
         </div>
          <div class=" col-xs-6 col-md-3 mb-4  custom-col ">
            <Select  label="All Genres" :options="Genres" />
-          <!-- <select @change="selectGenre($event)" class="form-control ">
-            <option selected disabled>All genre</option>
-            <option value="afrobeat">Afrobeat</option>
-            <option value="dance hall">Dance hall</option>
-            <option value="hip hop">Hip hop</option>
-            <option value="gospel">Gospel</option>
-            <option value="R and B">R and B</option>
-          </select> -->
+         
         </div>
          <div class=" col-xs-6 col-md-3 mb-4 custom-col ">
-          <select @change="selectGenre($event)" class="form-control ">
+           <Select  :options="sort" label="Sort"  />
+          <!-- <select @change="selectGenre($event)" class="form-control ">
             <option selected disabled>Sort</option>
             <option value="afrobeat">Afrobeat</option>
             <option value="dance hall">Dance hall</option>
             <option value="hip hop">Hip hop</option>
             <option value="gospel">Gospel</option>
             <option value="R and B">R and B</option>
-          </select>
+          </select> -->
         </div>
       </div>
 
@@ -81,16 +70,16 @@
               </div>
 
               <div
-                class="d-flex gap-3 justify-content-center align-items-center  hide"
+                class="d-flex gap-6 justify-content-center align-items-center  hide"
               >
                 <span class="text-light">Duration</span>
-                <div class="d-flex  gap-1">
-                  <span class="text-center text-muted ">genre</span>
+                <div class="d-flex  gap-2">
+                  <span class="text-center text-light ">Genre</span>
                   <!-- <span class="text-center  text-muted tags">#sombody</span> -->
                 </div>
               </div>
               <div
-                class="d-flex justify-content-end align-items-center gap-1 right"
+                class=" text-light d-flex justify-content-end align-items-center gap-1 right"
               >
                 Actions
               </div>
@@ -117,7 +106,7 @@
                 class="d-flex gap-3 justify-content-center align-items-center  hide"
               >
                 <span class="text-light"
-                  >{{ audio.songDuration
+                  >{{ audio.duration || 'N/A'
                   }}{{ audio.songLive ? getDuration(audio.songLive) : ''  }}</span
                 >
                 <div class="d-flex  gap-1">
@@ -194,7 +183,7 @@
       <b-tabs content-class="mt-3">
         <b-tab title="Share Url" active>
           <div class="container">
-            <label for="basic-url" class="form-label">Your vanity URL</label>
+            <label for="basic-url" class="form-label">Your URL</label>
             <div class="input-group mb-3">
               <input
                 id="myInput"
@@ -247,7 +236,7 @@
 
 <script>
 import { signInGoogle, onAuthStateChanged, signOut, auth } from "@/firebase";
-import { Moods, BPM, Genres } from './constants'
+import { Moods, BPM, Genres, sort } from './constants'
 import CustomModal from "@/components/modal/modal.vue";
 import { CopyIcon } from "vue-feather-icons";
 import { mapState } from "vuex";
@@ -282,7 +271,8 @@ export default {
       loading:false,
       Moods,
       BPM,
-      Genres
+      Genres,
+      sort
     };
   },
   created() {
