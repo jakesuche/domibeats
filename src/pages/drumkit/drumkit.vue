@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Hero> 
+    <!-- <Hero> 
       <div class="container">
       <div class="row">
         <div class="col-lg-6">
@@ -12,11 +12,11 @@
       </div>
     </div>
    
-    </Hero>
+    </Hero> -->
   
  
   
-     <section class="episodes spad">
+     <section class="episodes spad mt-5">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">

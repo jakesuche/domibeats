@@ -1,18 +1,8 @@
 <template>
   <div>
-    <Hero>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="hero__text">
-                
-            </div>
-          </div>
-        </div>
-      </div>
-    </Hero>
+    
 
-    <section style="margin-top: -152px;" class="episodes spad">
+    <section class="episodes spad">
       <div class="container mt-5 mb-5">
            <div class="row d-flex justify-content-start">
         <div class="col-md-10">
