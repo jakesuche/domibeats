@@ -38,6 +38,8 @@
             :key="i + 'uchech'"
           >
             <div  style="height: 273px;border-radius: 3px;
+            background-size: cover;
+    background-position: center;
 "
               class="episodes__item set-bg"
               :style="{ backgroundImage: `${item.image ? `url(${item.image })` : 'var(--humber-black)'}` }"
@@ -59,13 +61,13 @@
             </div>
             <div style="margin-top:-10px" class="d-flex details_wrapper">
               <h4 class="product_title">
-                {{item.productTitle}}
+                {{item.title}}
               </h4>
               <div class="product_price">
                ₦ {{ item.amount | formatMoney}}
               </div>
               <div>
-                <button @click="$router.push('/drum_kit/id')"  class="add_item">DETAILS</button>
+                <button @click="$router.push('/drum_kit/' + item.id)"  class="add_item">DETAILS</button>
               </div>
             </div>
           </div>
@@ -97,7 +99,7 @@ export default {
   },
   computed:{
     ...mapState({
-      audios:state=>state.audios.products
+      audios:state=>state.audios.drumkit
     })
   },
   methods: {
@@ -107,9 +109,9 @@ export default {
       this.$toasted.show(`Item added to cart`, {duration:3000})
       
     },
-    getAllGadgets(){
+    getDrunkit(){
       this.loading = true
-       this.$store.dispatch('audios/getAllGadgets')
+       this.$store.dispatch('audios/getDrunkit')
        .then(()=>{
          this.loading = false
        })
@@ -134,7 +136,7 @@ export default {
     this.getDuration()
   },  
   created() {
-   this.getAllGadgets()
+   this.getDrunkit()
     // setTimeout(() => {
     //   this.loading = false;
     // }, 2000);
@@ -165,6 +167,15 @@ export default {
 }
 .product_title{
     color: white;
+    color: white;
+    width: 193px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
 }
 .product_price{
   color:white

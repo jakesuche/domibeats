@@ -32,6 +32,15 @@ export default {
       return post
 
   },
+  isdrumkit:state=>postId=>{
+    const isdrumkit = post => post.id == postId
+    const drumkit = state.drumkit.find(isdrumkit)
+    console.log(drumkit)
+    
+    return drumkit
+
+},
+
   totalMoney(state) {
     return state.cart.reduce(function(acc, obj) {
       return acc + obj.amount * obj.qty;
@@ -55,6 +64,7 @@ export default {
     audioList: [],
     products:[],
     cart:[],
+    drumkit:[],
     falbackList: [
       {
         songName: "Agnes",
@@ -131,6 +141,22 @@ export default {
       // commit("StoreBeats", array);
       if (array.length > 0) {
         commit("StoreBeats", array);
+      } else {
+        console.log(state.falbackList);
+        commit("StoreBeats", []);
+      }
+    },
+    async getDrunkit({ commit, state }) {
+      const array = [];
+      const querySnapshot = await getDocs(collection(db, "drumKit"));
+
+      querySnapshot.forEach((doc) => {
+        const data = { id: doc.id, ...doc.data() };
+        array.push(data);
+      });
+      // commit("StoreBeats", array);
+      if (array.length > 0) {
+        commit("storeDrumKit", array);
       } else {
         console.log(state.falbackList);
         commit("StoreBeats", []);
@@ -233,6 +259,9 @@ export default {
     },
     storeProducts(state, posts) {
       state.products = posts;
+    },
+    storeDrumKit(state, post){
+      state.drumkit = post
     },
     setItemTcart(state, payload) {
       

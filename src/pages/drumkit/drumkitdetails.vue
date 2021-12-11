@@ -4,21 +4,23 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <div class="hero__text"></div>
+            <div class="hero__text">
+                
+            </div>
           </div>
         </div>
       </div>
     </Hero>
 
-    <section class="episodes spad">
+    <section style="margin-top: -152px;" class="episodes spad">
       <div class="container mt-5 mb-5">
-           <div class="row d-flex justify-content-center">
+           <div class="row d-flex justify-content-start">
         <div class="col-md-10">
             <div class="card">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="images p-3">
-                            <div class="text-center p-4"> <img id="main-image" src="https://i.imgur.com/Dhebu4F.jpg" width="250" /> </div>
+                            <div class="text-center p-4"> <img id="main-image" :src="postDetails.image" /> </div>
                            
                         </div>
                     </div>
@@ -28,12 +30,14 @@
                                 <div class="d-flex align-items-center">  <span class="ml-1 text-light"></span> </div>
                             </div>
                             <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand text-light"></span>
-                                <h5 class="text-uppercase text-light">Title</h5>
-                                <div class="price d-flex flex-row align-items-center"> <span class="act-price text-light">#444</span>
-                                    <div class="ml-2"> <small class="dis-price text-light">#59</small> <span class="text-light"></span> </div>
+                                <h4  style="width: 1300px;
+    font-weight: 600;
+    margin-bottom: 5px;" class="text-uppercase text-light">{{postDetails.title}}</h4>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price text-light">Sound kit by intellectual property</span>
+                                    <div class="ml-2"> <small class="dis-price text-light">#{{postDetails.amount | formatMoney}}</small> <span class="text-light"></span> </div>
                                 </div>
                             </div>
-                            <p class="about">Shop from a wide range of t-shirt from orianz. Pefect for your everyday use, you could pair it with a stylish pair of jeans or trousers complete the look.</p>
+                            <p style="color:white" v-html="postDetails.description" class="about"></p>
                            
                             <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Request a demo</button></div>
                         </div>
@@ -63,8 +67,21 @@ export default {
       image,
       myAudio: new Audio(),
       duration: "",
+      postDetails:''
     };
   },
+    created() {
+        this.populatedDetails()
+    },
+  methods:{
+      populatedDetails() {
+      this.postDetails = {
+        ...this.postDetails,
+        ...this.$store.getters["audios/isdrumkit"](this.$route.params.id),
+      };
+     
+    },
+  }
  
 };
 </script>
@@ -133,8 +150,8 @@ label.radio input:checked+span {
 }
 
 .btn-danger:hover {
-    background-color: #da0606 !important;
-    border-color: #da0606 !important
+    /* background-color: #da0606 !important;
+    border-color: #da0606 !important */
 }
 
 .btn-danger:focus {
