@@ -20,8 +20,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <div STYLE="    text-align: left;" class="section-title">
-              <h2>Drum kit</h2>
+            <div STYLE="" class="section-title">
+              <h2 style="font-size: 35px;">Drum kit</h2>
             </div>
           </div>
         </div>
@@ -30,11 +30,11 @@
         <Nodata title="Data not found gadgets" v-else-if="audios.length === 0" >
             
         </Nodata>
-        <div class="row" v-else>
+        <div class="row justify-content-center" v-else>
           <!-- audios.slice(0,4) -->
           <div 
             class="col-lg-3 col-md-6 sound"
-            v-for="(item, i) in audios"
+            v-for="(item, i) in audios.slice(0,1)"
             :key="i + 'uchech'"
           >
             <div  style="height: 273px;border-radius: 3px;
@@ -67,7 +67,7 @@
                ₦ {{ item.amount | formatMoney}}
               </div>
               <div>
-                <button @click="$router.push('/drum_kit/' + item.id)"  class="add_item">DETAILS</button>
+                <button @click="$router.push('/drum_kit')"  class="add_item">BROWSE ALL SOUND KIT</button>
               </div>
             </div>
           </div>
@@ -146,11 +146,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .add_item{
   background: #212121;
     border: none;
-    height: 40px;
+    height: 63px;
     line-height: 40px;
     margin: 0;
     padding: 0 16px;
@@ -170,7 +170,7 @@ export default {
 .product_title{
     color: white;
     color: white;
-    width: 193px;
+    width: 207px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

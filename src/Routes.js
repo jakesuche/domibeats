@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import store from "./store/index";
-import home from './pages/home/home.vue'
+import beats from './pages/beats/beats.vue'
 import Contact from './pages/contact/contact.vue'
 import About from './pages/about/about.vue'
 import Admin from './pages/admin/admin.vue'
@@ -14,6 +14,9 @@ import Cart from './pages/Cart/Cart.vue'
 import notFound from './pages/notFound'
 import drum_kit from './pages/drumkit/drumkit'
 import drumkitDetails from './pages/drumkit/drumkitdetails'
+import home from './pages/home/home'
+import BeatDeatil from './pages/beat_details/beats_details'
+
 
 
 
@@ -24,13 +27,20 @@ const router =  new Router({
   routes: [
     {
       path:'/',
-      redirect:'/beats'
+      name:'home',
+      component:home 
     },
     {
       path: "/beats",
-      name: "home",
-      component: home,
+      name: "beats",
+      component: beats,
       meta:{onlyGuestUser:true}
+    },
+    {
+      path: "/beats/:id",
+      name: "beats",
+      component:  BeatDeatil,
+      // meta:{onlyGuestUser:true}
     },
     {
       path:'/contact',

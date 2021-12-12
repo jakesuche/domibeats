@@ -5,123 +5,28 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="hero__text">
-            <!-- <h5 class="animate__animated animate__slideInLeft">
-              <span class="fas fa-headphones-alt"></span> Beat master,
+            <h5 class="animate__animated animate__slideInLeft">
+              
             
-            </h5> -->
+            </h5>
           
-            <!-- <a
-              style="margin-right:30px"
-              href="https://soundbetter.com/profiles/449673-intellectualproperty"
-              class="primary-btn white-btn animate__zoomIn animate__animated"
-              >Click to Hire</a
-            > -->
-            <!-- <a 
-              href="https://soundbetter.com/profiles/449673-intellectualproperty"
-              rel="noopener noreferrer"
-              target="_blank"
-              title="Intellectualproperty profile on SoundBetter"
-              ><img class="animate__zoomIn animate__animated"
-                alt="Intellectualproperty on SoundBetter"
-                src="https://d2p6ecj15pyavq.cloudfront.net/assets/SoundBetterBadge-c84cb3e75c4267f5bee41f7f617a81d9.svg"
-                style="max-width: 130px;"
-            /></a> -->
-            <!-- <a href="#" class="primary-btn">Subscribe with iTunes</a> -->
           </div>
         </div>
-        <!-- <div class="col-lg-6 animate__slideInRight animate__animated">
-          <div 
-            class="hero__pic set-bg"
-            data-setbg="img/hero/hero-video.png"
-            :style="{
-              'background-image':
-                'url(' + require('@/assets/img/hero/hero-video1.png') + ')',
-            }"
-          >
-            <a
-              href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/249690664&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-              class="play-btn video-popup"
-              ><img src="img/hero/play-btn.png" alt=""
-            /></a>
-          </div>
-        </div> -->
+      
       </div>
     </div>
-   
+
     </Hero>
-    <Beats />
-     <!-- <audio-visualizer
-     avHeight="82px"
-     :playlist="playlist"
-     :canvas="true"
-    ></audio-visualizer> -->
 
-    <!-- Call To Action Section Begin -->
-    <!-- <section
-      class="callto spad set-bg"
-      :style="{
-        'background-attachment': 'fixed',
-    'background-size': 'cover',
-        'background-image': 'url(' + require('@/assets/img/call-bg1.png') + ')',
-      }"
-      data-setbg="img/call-bg.jpg"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12" data-aos="zoom-in">
-            <div class="callto__text">
-              <h2 >Support The Beat</h2>
-              <p>Enjoy listening to our beats? Consider making a donation!</p>
-              <a href="#" class="primary-btn">Make a Donation</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- Call To Action Section End -->
-    <!-- Episodes Section Begin -->
+        <Beatlist />
   
-     <section class="episodes spad">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="section-title">
-              <h2>Latest Uploads</h2>
-            </div>
-          </div>
-        </div>
+       <Drumkitlist style=" margin-top: -100px;" />
+      
+    <Contact style=" margin-top: -231px;" :show="false" />
+   
 
-        <div class="row">
-          <div data-aos="fade-up"
-     data-aos-duration="3000"
-            class="col-lg-4 col-md-6"
-            v-for="(item, i) in audios"
-            :key="i + 'uchech'"
-          >
-            <div 
-              class="episodes__item set-bg"
-              :style="{ backgroundImage: `${item.songImg ? `url(${item.songImg })` : 'var(--humber-black)'}` }"
-            >
-              <div class="tags">
-                <i class="fas fa-hashtag"></i> {{item.genre ? item.genre : ''}}
-              </div>
-              <div class="time">
-                <i class="fas fa-clock"></i> 40 mins
-              </div>
-              <a target="_blank"
-                :href="item.link"
-                class="play-btn video-popup"
-                ><img src="img/play.png" alt=""
-              /></a>
-              <div class="episodes__text">
-                <h4>{{item.songName ? item.songName : ''}}</h4>
-                <p><span class="icon_calendar"></span> 16 Feb 2019</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
+
    
  
   </div>
@@ -132,9 +37,13 @@ import { episode_items } from "@/components/datas/card_data.js";
 import Beats from '@/components/beats/beats'
 import Hero from "@/components/hero/hero.vue";
 import image from "@/assets/img/hero/hero-video1.png";
+import Contact from '../contact/contact.vue'
+import Drumkit from '../drumkit/drumkit.vue'
 import { mapState } from 'vuex'
+import Beatlist from './components/beatlist.vue';
+import Drumkitlist from './components/Drumkitlist.vue'
 export default {
-  components: { Hero, Beats },
+  components: { Hero, Beats, Contact, Drumkit, Beatlist,  Drumkitlist },
   data() {
     return {
       loading: true,
@@ -161,13 +70,21 @@ export default {
         
         this.duration =  time.toFixed(2)
       }.bind(this))
-    }
+    },
+    getAllBeats(){
+         this.$store.dispatch("audios/getAllBeats")
+         .then(()=>{
+            this.loading = false
+         }).catch(err=>{
+            this.loading = false
+         })
+  },
   },
   mounted(){
     this.getDuration()
   },  
   created() {
-    this.$store.dispatch('audios/getAllBeats')
+    this.getAllBeats()
     setTimeout(() => {
       this.loading = false;
     }, 2000);

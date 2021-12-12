@@ -870,6 +870,7 @@ ol {
 	margin-bottom: 30px;
 	background: #313438ed;
 	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .episodes__item:hover .play-btn {

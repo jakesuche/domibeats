@@ -4,60 +4,157 @@
     style="background:black"
     data-setbg="img/call-bg.jpg"
   >
-    <div class="container">
-      <div class="row mb-4">
-        <div class= " col-sm-6 col-md-3 mb-4 custom-col ">
-          <Select label="All moods"  :options="Moods" />
-          <!-- <select @change="selectGenre($event)" class="form-control ">
-            <option selected disabled>All Moods</option>
-            <option  v-for="(Mood, i) in Moods" :key="i"  :value="Mood.value">{{Mood.label}}</option>
-            
-          </select> -->
-        </div>
-        <div class="col-sm-6 col-md-3 mb-4 custom-col ">
-          <Select  label="All Bpm" :options="BPM" />
-      
+    <div class="track_details_container">
+      <section class="max-layout-width">
+        <div class="track-details-header">
+          <div class="track-details-artwork">
+            <img
+              src="https://main.v2.beatstars.com/fit-in/300x300/filters:format(.jpeg):quality(50):fill(000000)/users/prod/719419/image/1638945884/big-mood.png"
+              alt=""
+            />
+          </div>
+          <div class="track-details-info">
+            <div
+              class="track-details-title ng-isolate-scope"
+              playlist-control="play"
+              add-track="track"
+            >
+              <div class="btn-play primary-btn-color primary-btn-bg-color">
+                <i
+                  class="icon-play"
+                  ng-class="{'hide': track.details.track_id == currentTrack.track_id &amp;&amp; playerRunning}"
+                ></i>
+                <i
+                  class="icon-pause hide"
+                  ng-class="{'hide': track.details.track_id !== currentTrack.track_id || !playerRunning}"
+                ></i>
+              </div>
+              <span class="primary-text-color text-ellipsis ng-binding"
+                >Big Mood</span
+              >
+            </div>
+            <div class="track-details-musician primary-text-color">
+              <span class="ng-binding">Ransom Beatz</span>
+            </div>
+            <div class="track-details-bpm-release-keynote">
+              <!-- ngIf: track.details.bpm > 0 --><span
+                class="track-details-bpm primary-text-color ng-scope"
+               
+                style=""
+                ><i class="icon-bpm"></i>
+                <span class="ng-binding">101</span> </span
+              ><!-- end ngIf: track.details.bpm > 0 --><!-- ngIf: track.details.key_note !== 'NONE' --><span
+                class="track-details-release primary-text-color"
+                ><i class="icon-time"></i>
+                <span class="ng-binding">December 8, 2021</span></span
+              >
+            </div>
+            <!-- ngIf: ::track.details.description -->
+            <div
+              
+              class="track-details-description primary-text-color ng-binding ng-scope"
           
+              style=""
+            >
+              produced by Ransom Beatz x Marvey Muzique
+            </div>
+            <!-- end ngIf: ::track.details.description -->
+            <div class="track-details-actions-tags">
+              <div class="track-details-actions">
+                <button
+                  href=""
+                  class="detail_btn"
+                
+                  
+                  ><span class="inline hide-active"
+                    ><i class="icon-add-cart"></i> </span
+                  ><span class="inline hide-active ng-binding">$29.98 </span
+                  ><span class="inline show-active"
+                    ><span>IN CART</span>
+                  </span></button
+                ><button
+                  href=""
+                  class="detail_btn"
+                 
+                  ><i class="icon-download"></i> Download </button
+                ><button
+                  href=""
+                  class="detail_btn hide"
+                  
+                  ><i class="icon-download"></i> Download </button
+                >
+              </div>
+              <!-- <div class="track-details-tags static-color-tags">
+                <span class="track-tags"
+                  ><span
+                    class="secondary-btn text-ellipsis ng-binding ng-scope"
+                  
+                    role="button"
+                    tabindex="0"
+                    style=""
+                    >#wizkid type beat</span
+                  ><span
+                    class="secondary-btn text-ellipsis ng-binding ng-scope"
+                   
+                    role="button"
+                    tabindex="0"
+                    >#burna boy type beat</span
+                  ><span
+                    class="secondary-btn text-ellipsis ng-binding ng-scope"
+                   
+                    role="button"
+                    tabindex="0"
+                    >#afrobeat type beat</span
+                  ></span
+                >
+              </div> -->
+            </div>
+          </div>
         </div>
-         <div class=" col-xs-6 col-md-3 mb-4  custom-col ">
-           <Select  label="All Genres" :options="Genres" />
-         
-        </div>
-         <div class=" col-xs-6 col-md-3 mb-4 custom-col ">
-           <Select  :options="sort" label="Sort"  />
-          <!-- <select @change="selectGenre($event)" class="form-control ">
-            <option selected disabled>Sort</option>
-            <option value="afrobeat">Afrobeat</option>
-            <option value="dance hall">Dance hall</option>
-            <option value="hip hop">Hip hop</option>
-            <option value="gospel">Gospel</option>
-            <option value="R and B">R and B</option>
-          </select> -->
+      </section>
+    </div>
+    <Visualizer />
+    <div class="container">
+      <div class="row mb-4 justify-content-center">
+        <div class="buy_quality">
+          Search for related Beats
         </div>
       </div>
-
-      <div class="row mb-4">
-        <div class="col-md-12">
-          <input type="text" name="search" placeholder="Search the track you are looking..." />
+      <div
+        class="row mb-4"
+        style="max-width: 83%;
+    margin: auto;"
+      >
+        <div class="col-md-12 position-relative">
+          <button @click="$router.push('/beats')" class="btn_search">
+            Search
+          </button>
+          <input
+            type="text"
+            name="search"
+            placeholder="Search the track you are looking..."
+          />
         </div>
       </div>
 
       <div class="row">
         <div class="col-lg-12">
           <ul v-if="loading">
-             <li >
+            <li>
               <Spinner title="Nodata  found this list" />
             </li>
-           
           </ul>
-           <ul v-else-if="filterSongs.length == 0">
-            
-            <li >
+          <ul v-else-if="filterSongs.length == 0">
+            <li>
               <Nodata title="Nodata  found this list" />
             </li>
           </ul>
-          <ul v-else class="list-group" data-aos="fade-up" data-aos-duration="3000">
-
+          <ul
+            v-else
+            class="list-group"
+            data-aos="fade-up"
+            data-aos-duration="3000"
+          >
             <li
               class="list-group-item d-flex justify-content-between align-items-center"
             >
@@ -85,7 +182,7 @@
               </div>
             </li>
             <li
-              v-for="(audio, i) in filterSongs"
+              v-for="(audio, i) in filterSongs.slice(0, 10)"
               :key="i"
               class="list-group-item d-flex justify-content-between align-items-center"
             >
@@ -98,7 +195,7 @@
                   @click="$eventBus.$emit('chooseSong', i)"
                   style="font-size:1rem;"
                   class="text-light"
-                  >{{ audio.songName ? audio.songName : '' }}</span
+                  >{{ audio.songName ? audio.songName : "" }}</span
                 >
               </div>
 
@@ -106,8 +203,10 @@
                 class="d-flex gap-3 justify-content-center align-items-center  hide"
               >
                 <span class="text-light"
-                  >{{ audio.duration || 'N/A'
-                  }}{{ audio.songLive ? getDuration(audio.songLive) : ''  }}</span
+                  >{{ audio.duration || "N/A"
+                  }}{{
+                    audio.songLive ? getDuration(audio.songLive) : ""
+                  }}</span
                 >
                 <div class="d-flex  gap-1">
                   <span class="text-center badge badge-secondary"
@@ -138,7 +237,6 @@
                 </div>
               </div>
             </li>
-           
           </ul>
         </div>
         <!-- <div class="col-md-12 mt-5 ">
@@ -230,18 +328,18 @@
       <div></div>
     </div>
     <AudioPlayer :playlist="auidioList" />
-
   </section>
 </template>
 
 <script>
 import { signInGoogle, onAuthStateChanged, signOut, auth } from "@/firebase";
-import { Moods, BPM, Genres, sort } from './constants'
+
 import CustomModal from "@/components/modal/modal.vue";
 import { CopyIcon } from "vue-feather-icons";
 import { mapState } from "vuex";
 import AudioPlayer from "@/components/visualizer/audioplayer";
-import Select from '@/components/select/select.vue'
+import Select from "@/components/select/select.vue";
+import Visualizer from './visualizer'
 import Fuse from "fuse.js";
 import axios from "axios";
 export default {
@@ -249,8 +347,8 @@ export default {
     CopyIcon,
     CustomModal,
     AudioPlayer,
-    Select
-    
+    Select,
+    Visualizer
   },
 
   // const indexOfLastPost2 = currentPage * postPerPage;
@@ -268,18 +366,15 @@ export default {
       searchTerm: "",
       currentPage: 1,
       postPerPage: 10,
-      loading:false,
-      Moods,
-      BPM,
-      Genres,
-      sort
+      loading: false,
     };
   },
   created() {
     this.getAuthenticatedUser();
     this.current = this.auidioList[this.index];
-    this.player.src = this.current ? this.current.src : null
-   this.getAllBeats()
+    this.player.src = this.current ? this.current.src : null;
+    this.getAllBeats();
+    
   },
   computed: {
     ...mapState({
@@ -305,15 +400,17 @@ export default {
   },
 
   methods: {
-    getAllBeats(){
-         this.$store.dispatch("audios/getAllBeats")
-         .then(()=>{
-            this.loading = false
-         }).catch(err=>{
-            this.loading = false
-         })
-  },
-    
+    getAllBeats() {
+      this.$store
+        .dispatch("audios/getAllBeats")
+        .then(() => {
+          this.loading = false;
+        })
+        .catch((err) => {
+          this.loading = false;
+        });
+    },
+
     getDuration(audio) {},
     pagination() {},
 
@@ -403,10 +500,172 @@ export default {
 </script>
 
 <style scoped>
-.optgroup{
-  background:'red'
+.track_details_container {
+  background: linear-gradient(rgba(75, 81, 179, 0.5), rgba(0, 0, 0, 0)),
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  margin-top: -50px;
+  padding: 35px 34px 250px;
+  margin-bottom: -26px;
+  display: flex;
+  flex-direction: row;
 }
-input[type=text] {
+
+section.max-layout-width {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 1166px;
+  padding: 0;
+}
+.track-details-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  text-align: center;
+}
+@media (min-width: 962px) {
+  .track-details-header {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+@media (min-width: 962px) {
+  .track-details-artwork img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (min-width: 962px) {
+  .track-details-info {
+    flex: 1;
+    margin-left: 24px;
+  }
+}
+
+.track-details-info {
+  overflow: hidden;
+  line-height: 1.7;
+}
+.track-details-artwork img {
+  width: 160px;
+  height: 160px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+@media (min-width: 962px) {
+  .track-details-info .track-details-title {
+    justify-content: stretch;
+  }
+}
+
+.track-details-info .track-details-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media (min-width: 962px) {
+  .track-details-info .track-details-title span {
+    font-size: 28px;
+  }
+}
+@media (min-width: 962px) {
+  .track-details-info .track-details-title {
+    justify-content: stretch;
+  }
+}
+
+.track-details-info .track-details-title span {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.track-details-info .track-details-actions-tags .track-tags {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.track-tags {
+    display: flex;
+}
+.track-tags>span {
+    height: 40px;
+    margin-left: 8px;
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 20px;
+}
+
+@media (min-width: 962px){
+.track-details-info .track-details-actions-tags {
+    flex-direction: row;
+}
+}
+
+
+.track-details-info .track-details-actions-tags {
+        margin-top: 20px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px; */
+}
+
+.detail_btn{
+    background: #292929;
+    display: 21px;
+    height: 39px;
+    border: none;
+    margin-right: 12px;
+    border-radius: 3px;
+    padding: 12px 9px;
+    font-size: 12px;
+}
+
+
+
+.track-tags>span:first-child {
+    margin-left: 0;
+}
+.primary-text-color {
+  color: #fff !important;
+}
+
+.buy_quality {
+  font-size: 52px;
+  font-weight: bold;
+  color: white;
+}
+
+@media (max-width: 967px) {
+  .buy_quality {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 860px) {
+  .buy_quality {
+    font-size: 30px;
+  }
+}
+@media (max-width: 507px) {
+  .buy_quality {
+    font-size: 19px !important;
+  }
+}
+
+.optgroup {
+  background: "red";
+}
+input[type="text"] {
   width: 100%;
   box-sizing: border-box;
   border: 2px solid #ccc;
@@ -414,26 +673,26 @@ input[type=text] {
   font-size: 16px;
   background-color: white;
   /* background-image: url('searchicon.png'); */
-  background-position: 10px 10px; 
+  background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
   transition: width 0.4s ease-in-out;
+  height: 77px;
 }
 
-input[type=text]:focus {
+input[type="text"]:focus {
   width: 100%;
-  
 }
-input::placeholder { 
-  color:rgb(22, 21, 21);
-  opacity: 1; 
-  font-size:1rem;
+input::placeholder {
+  color: rgb(22, 21, 21);
+  opacity: 1;
+  font-size: 1rem;
   font-weight: 600;
   transition: padding 0.5s;
 }
 
 input::-webkit-input-placeholder {
-  color: #CCCCCC;
+  color: #cccccc;
   position: relative;
   padding-left: 0;
   -webkit-transition: padding 0.5s;
@@ -443,7 +702,7 @@ input::-webkit-input-placeholder {
 
 input:-moz-placeholder {
   /* Firefox 18- */
-  color: #CCCCCC;
+  color: #cccccc;
   position: relative;
   padding-left: 0;
   -moz-transition: padding 0.5s;
@@ -453,7 +712,7 @@ input:-moz-placeholder {
 
 input::-moz-placeholder {
   /* Firefox 19+ */
-  color: #CCCCCC;
+  color: #cccccc;
   position: relative;
   padding-left: 0;
   -moz-transition: padding 0.5s;
@@ -462,7 +721,7 @@ input::-moz-placeholder {
 }
 
 input:-ms-input-placeholder {
-  color: #CCCCCC;
+  color: #cccccc;
   position: relative;
   padding-left: 0;
   -ms-transition: padding 0.5s;
@@ -481,9 +740,9 @@ input:focus:-ms-input-placeholder {
   padding-left: 90px;
 }
 
-input:hover:placeholder{
-    padding-left: 90px;
-} 
+input:hover:placeholder {
+  padding-left: 90px;
+}
 .filter {
   /* width: 20%; */
   /* background: var(--gradient-primary) !important; */
@@ -583,12 +842,12 @@ input:hover:placeholder{
 }
 
 .form-control {
- background: #212121;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    height: 49px;
-    font-weight: 600;
+  background: #212121;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  height: 49px;
+  font-weight: 600;
 }
 
 .input-group-text {
@@ -729,18 +988,30 @@ footer a:hover {
 
 option {
   background-color: var(--humber-dark);
-  border:'none'
+  border: "none";
 }
 option:hover {
   background-color: var(--humber-dark) !important;
 }
 
-@media (max-width: 576px){
-.col-sm-6 {
+@media (max-width: 576px) {
+  .col-sm-6 {
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
-}
+  }
 }
 
+.btn_search {
+  position: absolute;
+  z-index: 999;
+  top: 13px;
+  right: 24px;
+  border: none;
+  background: black;
+  border-radius: 4px;
+  height: 54px;
+  padding: 6px 20px 7px 18px;
+  font-size: 15px;
+}
 </style>

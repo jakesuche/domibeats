@@ -5,40 +5,26 @@
     data-setbg="img/call-bg.jpg"
   >
     <div class="container">
-      <div class="row mb-4">
-        <div class= " col-sm-6 col-md-3 mb-4 custom-col ">
-          <Select label="All moods"  :options="Moods" />
-          <!-- <select @change="selectGenre($event)" class="form-control ">
-            <option selected disabled>All Moods</option>
-            <option  v-for="(Mood, i) in Moods" :key="i"  :value="Mood.value">{{Mood.label}}</option>
-            
-          </select> -->
-        </div>
-        <div class="col-sm-6 col-md-3 mb-4 custom-col ">
-          <Select  label="All Bpm" :options="BPM" />
-      
-          
-        </div>
-         <div class=" col-xs-6 col-md-3 mb-4  custom-col ">
-           <Select  label="All Genres" :options="Genres" />
-         
-        </div>
-         <div class=" col-xs-6 col-md-3 mb-4 custom-col ">
-           <Select  :options="sort" label="Sort"  />
-          <!-- <select @change="selectGenre($event)" class="form-control ">
-            <option selected disabled>Sort</option>
-            <option value="afrobeat">Afrobeat</option>
-            <option value="dance hall">Dance hall</option>
-            <option value="hip hop">Hip hop</option>
-            <option value="gospel">Gospel</option>
-            <option value="R and B">R and B</option>
-          </select> -->
+     
+        <div class="row mb-4 justify-content-center">
+        <div class="buy_quality">
+          Buy High Quality Beats Today!
         </div>
       </div>
-
-      <div class="row mb-4">
-        <div class="col-md-12">
+      <div class="row mb-4" style="max-width: 83%;
+    margin: auto;">
+        <div class="col-md-12 position-relative">
+            <button @click="$router.push('/beats')" class="btn_search">
+                Search
+            </button>
           <input type="text" name="search" placeholder="Search the track you are looking..." />
+          <ul class="list-group search_dropdown position-absolute">
+  <li class="list-group-item">Cras justo odio</li>
+  <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Morbi leo risus</li>
+  <li class="list-group-item">Porta ac consectetur ac</li>
+  <li class="list-group-item">Vestibulum at eros</li>
+</ul>
         </div>
       </div>
 
@@ -85,7 +71,7 @@
               </div>
             </li>
             <li
-              v-for="(audio, i) in filterSongs"
+              v-for="(audio, i) in filterSongs.slice(0,10)"
               :key="i"
               class="list-group-item d-flex justify-content-between align-items-center"
             >
@@ -236,7 +222,7 @@
 
 <script>
 import { signInGoogle, onAuthStateChanged, signOut, auth } from "@/firebase";
-import { Moods, BPM, Genres, sort } from './constants'
+
 import CustomModal from "@/components/modal/modal.vue";
 import { CopyIcon } from "vue-feather-icons";
 import { mapState } from "vuex";
@@ -269,10 +255,7 @@ export default {
       currentPage: 1,
       postPerPage: 10,
       loading:false,
-      Moods,
-      BPM,
-      Genres,
-      sort
+      
     };
   },
   created() {
@@ -403,6 +386,34 @@ export default {
 </script>
 
 <style scoped>
+
+.buy_quality{
+    font-size: 52px;
+    font-weight: bold;
+    color: white;
+}
+
+@media (max-width:967px){
+   .buy_quality{
+   
+    font-size: 38px;
+
+} 
+}
+
+@media (max-width: 860px){
+
+.buy_quality {
+    font-size: 30px;
+}
+}
+@media (max-width: 507px){
+
+.buy_quality {
+    font-size: 19px!important;
+}
+}
+
 .optgroup{
   background:'red'
 }
@@ -418,6 +429,7 @@ input[type=text] {
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
   transition: width 0.4s ease-in-out;
+      height: 77px;
 }
 
 input[type=text]:focus {
@@ -743,4 +755,23 @@ option:hover {
 }
 }
 
+.btn_search{
+   position: absolute;
+    z-index: 999;
+    top: 13px;
+    right: 24px;
+    border: none;
+    background: black;
+    border-radius: 4px;
+    height: 54px;
+    padding: 6px 20px 7px 18px;
+    font-size: 15px;
+}
+.search_dropdown{
+    z-index: 999;
+    display:none;
+    width: 97%;
+    background: #f8f9fa;
+    top: 88px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Hero>
+    <Hero v-if="show">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -60,7 +60,7 @@
                   </div>
                   <div class="col-lg-12 text-center">
                     <textarea v-model="form.message" placeholder="Your message"></textarea>
-                    <button  @click="sendMessage()" type="button" class="site-btn">{{loading ? 'Sending..' : 'Send Message'}}</button>
+                    <button   @click="sendMessage()" type="button" class="site-btn">{{loading ? 'Sending..' : 'Send Message'}}</button>
                   </div>
                 </div>
               </form>
@@ -79,6 +79,7 @@ import Hero from "@/components/hero/hero.vue";
 import image from "@/assets/img/hero/hero-video1.png";
 import { Contact } from "@/firebase";
 export default {
+  props:["show"],
   components: { Hero, Beats },
   data() {
     return {
@@ -135,6 +136,9 @@ export default {
 </script>
 
 <style scoped>
+.site-btn{
+  background: #353637eb;
+}
 .center {
   display: flex;
   justify-content: center;
