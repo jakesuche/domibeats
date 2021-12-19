@@ -6,7 +6,7 @@
       <div class="col-lg-4">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
-            <h5 class="card-title text-light text-uppercase text-center">Module 1</h5>
+            <h5 class="card-title text-light text-uppercase text-center">BASIC</h5>
             
             <hr>
          
@@ -18,7 +18,7 @@
               <li><span class="fa-li"><i class="fas fa-check"></i></span>Drum Samples & Programming</li>
              
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Sign up</a>
+            <a @click="signup('basic')" role="button" class="btn btn-block btn-primary text-uppercase">Sign up</a>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
       <div class="col-lg-4">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
-            <h5 class="card-title text-light text-uppercase text-center">Module 2</h5>
+            <h5 class="card-title text-light text-uppercase text-center">Professional</h5>
             
             <hr>
             <ul class="fa-ul">
@@ -38,7 +38,7 @@
              
              
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Sign up</a>
+            <a @click="signup('professionals')" role="button"  class="btn btn-block btn-primary text-uppercase">Sign up</a>
           </div>
         </div>
 
@@ -48,7 +48,7 @@
       <div class="col-lg-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title text-light text-uppercase text-center">Module 3</h5>
+            <h5 class="card-title text-light text-uppercase text-center">Experts</h5>
          
             <hr>
             <ul class="fa-ul">
@@ -59,7 +59,7 @@
               <li><span class="fa-li"><i class="fa fa-check"></i></span>Final Project</li>
             
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Sign up</a>
+            <a @click="signup('experts')" role="button"  class="btn btn-block btn-primary text-uppercase">Sign up</a>
           </div>
         </div>
       </div>
@@ -70,6 +70,12 @@
 
 <script>
 export default {
+
+    methods: {
+        signup(title){
+            this.$router.push(`/academy/signup/${title}`)
+        }
+    }
 
 }
 </script>
@@ -127,7 +133,8 @@ li{
   opacity: 0.7;
   transition: all 0.2s;
   background:#000;
-  border:none
+  border:none;
+  color:white
 }
 
 /* Hover Effects on Card */

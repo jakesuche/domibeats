@@ -19,7 +19,13 @@
     </Hero>
 
         <Beatlist />
-  
+        <div class="text-center  mt-3 ">
+            <h2 style="color:white">Course Curriculum</h2>
+        </div>
+        <div class="container">
+          <PricingTable />
+        </div>
+
        <Drumkitlist style=" margin-top: -100px;" />
       
     <Contact style=" margin-top: -231px;" :show="false" />
@@ -42,8 +48,9 @@ import Drumkit from '../drumkit/drumkit.vue'
 import { mapState } from 'vuex'
 import Beatlist from './components/beatlist.vue';
 import Drumkitlist from './components/Drumkitlist.vue'
+import PricingTable from '../../pages/academy/pricingTable.vue'
 export default {
-  components: { Hero, Beats, Contact, Drumkit, Beatlist,  Drumkitlist },
+  components: { Hero, Beats, Contact, Drumkit, Beatlist,  Drumkitlist,  PricingTable },
   data() {
     return {
       loading: true,

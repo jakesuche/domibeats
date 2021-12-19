@@ -10,7 +10,7 @@
                 </ul>
                 <ul class="list-unstyled my-xl-4 my-md-3">
                     <li>Copyright</li>
-                    <li>&#9400; Intellectual proper {{ new Date().getFullYear() }} </li>
+                    <li>&#9400; Intellectual property {{ new Date().getFullYear() }} </li>
                 </ul>
             </div>
             <div class=" column col-xs-6 col-sm-6 col-xl-2 col-md-3 pt-4 order-1">

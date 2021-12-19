@@ -7,7 +7,7 @@ import About from './pages/about/about.vue'
 import Admin from './pages/admin/admin.vue'
 import Academy from './pages/academy/academy.vue'
 import Overview from './pages/academy/overview.vue'
-import Enroll from './pages/enroll/enroll'
+import Enroll from './pages/enroll/enroll.vue'
 import Exclusive from './pages/exclusive/exclusive.vue'
 import Instrument from './pages/Instruments/Instrument.vue'
 import Cart from './pages/Cart/Cart.vue'
@@ -68,7 +68,7 @@ const router =  new Router({
       component:Overview
     },
     {
-      path:'/academy/overview/:id/enroll/:title',
+      path:'/academy/signup/:title',
       name:'Overview',
       component:Enroll
     },
@@ -120,6 +120,9 @@ const router =  new Router({
     // },
    
   ],
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
   mode: "history",
 });
 

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Hero>
+    <Hero class="position-relative" :style="{'background-image': 'url(' +
+require('@/assets/img/hero/bg_image.jpg') + ')'}">
+    <div class="position-absolute overlay"/>
+
+    
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -96,6 +100,76 @@
               <PricingTable/>
             
         </div>
+         <div class="d-flex justify-content-start">
+          <h2 style="color:var(--humber-light); font-size:17px">
+            WHAT IS INCLUDER
+          </h2>
+        </div>
+        <div class="row mt-3 mb-5">
+          <div class="col-md-12 text-light" :style="{ fontWeight: '300' }">
+            
+
+            Intellectual proparty training system gets the producers on track to validation through:
+          </div>
+          <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }">
+            
+
+           Virtual workshops
+          </div>
+           <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }">
+            
+
+          1 : 1 video and simulation coaching
+          </div>
+          <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }">
+           
+
+            Proven techniques to beat making
+          </div>
+           <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }">
+           
+
+            Support for continued development
+          </div>
+        </div>
+         <div class="d-flex justify-content-start">
+          <h2 style="color:var(--humber-light); font-size:17px">
+            WHAT YOU WILL ACHIEVE
+          </h2>
+        </div>
+        <div class="row mt-3 mb-5">
+          <div class="col-md-12 text-light" :style="{ fontWeight: '300' }">
+            
+
+            After the training, the students will be able to 
+          </div>
+          <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }">
+            
+
+           Understand music theory
+          </div>
+           <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }">
+            
+
+          
+Make basic/Advance beats( Afrobeats, Amapiano, Trap etc)
+          </div>
+          <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }">
+           
+
+            Design sounds
+          </div>
+           <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }">
+           
+
+           Mix and master
+          </div>
+          <div class="col-md-12 text-light mt-3" :style="{ fontWeight: '300' }"> 
+            How to  create and build unique melodies &
+
+How to manipulate loops
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -142,6 +216,16 @@ export default {
   align-items: center;
   height: 200px;
   border: 3px solid green;
+}
+
+.overlay{
+    background: #251f1fbf;
+  
+    /* display: block; */
+    height: 100%;
+    /* flex: 1; */
+    width: 100%;
+    top: 0;
 }
 
 .breadcrumb__links span {
