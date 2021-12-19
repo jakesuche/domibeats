@@ -1,15 +1,15 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light ">
     <!-- bg-dark -->
-      <!-- data-toggle="collapse"
+    <!-- data-toggle="collapse"
       data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation" -->
-    <button @click="$eventBus.$emit('toggle')"
+    <button
+      @click="$eventBus.$emit('toggle')"
       class="navbar-toggler"
       type="button"
-    
     >
       <i
         style="color:var(--humber-light); font-size: 28px;"
@@ -21,35 +21,43 @@
       ><router-link to="/"
         ><img class="logo" src="img/logo2.png" alt=""/></router-link
     ></a>
-   
+
     <div></div>
     <div></div>
     <div></div>
-     <div></div>
     <div></div>
-    <li style="margin:13px;"
-          @click="
-            (routerName = 'cart'),
-              $eventBus.$emit('stop'),
-              $router.push('/cart')"
-          class="nav-item cart"
-          :class="routerName == 'cart' ? 'active' : ''"
-        >
-          <i
-            class="fas fa-cart-plus position-relative"
-            style="font-size: 20px;color:white;margin-top: 9px;"
-            ><span
-              style="top: -12px;
+    <div></div>
+    <li
+      style="margin:13px;"
+      @click="
+        (routerName = 'cart'), $eventBus.$emit('stop'), $router.push('/cart')
+      "
+      class="nav-item cart"
+      :class="routerName == 'cart' ? 'active' : ''"
+    >
+      <i
+        class="fas fa-shopping-bag position-relative"
+        style="font-size: 20px;color:white;margin-top: 9px;"
+        ><span
+          style="top: -12px;
+              background: red;
+    height: 20px;
+    width: 20px;
+    justify-content: center;  
+    align-items: center;
+    display: flex;
+    border-radius: 70px;
+    font-size: 13px;
     left: 23px;"
-              class="position-absolute"
-              >{{ cartTotal() }}</span
-            ></i
-          >
-        </li>
+          class="position-absolute"
+          >{{ cartTotal() }}</span
+        ></i
+      >
+    </li>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul style="gap:20px" class="navbar-nav ml-auto">
-         <li
+        <li
           @click="(routerName = 'beats'), $eventBus.$emit('stop')"
           class="nav-item home"
           :class="routerName == 'beats' ? 'active' : ''"
@@ -135,11 +143,31 @@
           @click="
             (routerName = 'cart'),
               $eventBus.$emit('stop'),
-              $router.push('/cart')"
+              $router.push('/cart')
+          "
           class="nav-item cart1"
           :class="routerName == 'cart' ? 'active' : ''"
         >
           <i
+            class="fas fa-shopping-bag position-relative"
+            style="font-size: 20px;color:white;margin-top: 9px;margin-right:22px"
+          >
+            <p
+              style="top: -12px;
+              background: red;
+    height: 20px;
+    width: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 70px;
+    left: 23px;"
+              class="position-absolute"
+            >
+              {{ cartTotal() }}
+            </p>
+          </i>
+          <!-- <i
             class="fas fa-cart-plus position-relative"
             style="font-size: 20px;color:white;margin-top: 9px;"
             ><span
@@ -148,7 +176,7 @@
               class="position-absolute"
               >{{ cartTotal() }}</span
             ></i
-          >
+          > -->
         </li>
       </ul>
       <!-- <form class="form-inline my-2 my-lg-0">
@@ -171,7 +199,7 @@
 
 <script>
 import { mapState } from "vuex";
-import Sidebar from '@/components/sidebar/sidebar'
+import Sidebar from "@/components/sidebar/sidebar";
 export default {
   data() {
     return {
@@ -180,7 +208,7 @@ export default {
   },
 
   components: {
-      Sidebar
+    Sidebar,
   },
   methods: {
     ...mapState({
@@ -272,26 +300,24 @@ input[type="text"]:focus {
   width: 100%;
 }
 
-@media (min-width:968px){
-  .cart{
+@media (min-width: 968px) {
+  .cart {
     display: none;
   }
-  .home{
+  .home {
     display: none;
   }
 
   .logo {
     width: 59%;
+  }
 }
-}
-@media (max-width:968px){
-  
-
+@media (max-width: 968px) {
   .logo {
     width: 59%;
-}
-.cart1{
-  display: none;
-}
+  }
+  .cart1 {
+    display: none;
+  }
 }
 </style>

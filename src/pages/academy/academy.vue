@@ -9,7 +9,7 @@ require('@/assets/img/hero/bg_image.jpg') + ')'}">
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb__text">
-              <h2>Register now for september 2022</h2>
+              <h2>Register now for  2022</h2>
               <div class="breadcrumb__links">
                 <!-- <router-link to="/"
                   ><i class="fas fa-home"></i> Home
@@ -102,7 +102,7 @@ require('@/assets/img/hero/bg_image.jpg') + ')'}">
         </div>
          <div class="d-flex justify-content-start">
           <h2 style="color:var(--humber-light); font-size:17px">
-            WHAT IS INCLUDER
+            WHAT IS INCLUDED
           </h2>
         </div>
         <div class="row mt-3 mb-5">
