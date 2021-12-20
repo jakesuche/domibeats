@@ -17,13 +17,10 @@
             <button @click="$router.push('/beats')" class="btn_search">
                 Search
             </button>
-          <input type="text" name="search" placeholder="Search the track you are looking..." />
-          <ul class="list-group search_dropdown position-absolute">
-  <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
+          <input type="text" name="search" v-model="search" placeholder="Search the track you are looking..." />
+          <ul v-if="search.length > 0" class="list-group search_dropdown position-absolute">
+  <li v-for="(beat, i) in seachBeats()"  :key="i" @click="$router.push(`/beats/ks`)" class="list-group-item">{{beat.songName}}</li>
+
 </ul>
         </div>
       </div>
@@ -255,6 +252,7 @@ export default {
       currentPage: 1,
       postPerPage: 10,
       loading:false,
+      search:''
       
     };
   },
@@ -268,6 +266,18 @@ export default {
     ...mapState({
       auidioList: (state) => state.audios.audioList,
     }),
+  //     if (players) {
+  //     const fuse = new Fuse(players, { keys: ["name", "email", "id"] });
+
+  //     const results = fuse.search(searchTerm).map(({ item }) => item);
+
+  //     if (players.length > 0 && searchTerm.length > 3 && results.length > 0) {
+  //       setPlayers(results);
+  //     } else {
+  //       setPlayers(initial);
+  //     }
+  //   }
+  // }, [searchTerm]);
     filterSongs() {
       if (this.auidioList) {
         const fuse = new Fuse(this.auidioList, { keys: ["genre"] });
@@ -279,12 +289,15 @@ export default {
           this.searchTerm.length > 3 &&
           results.length > 0
         ) {
+          console.log(results);
           return results;
+          
         } else {
           return this.auidioList;
         }
       }
     },
+    
   },
 
   methods: {
@@ -296,6 +309,24 @@ export default {
             this.loading = false
          })
   },
+  seachBeats(){
+     
+      if (this.auidioList) {
+        const fuse = new Fuse(this.auidioList, { keys: ["genre", "artistName", "songName", "bpm", "genre", "  mood"] });
+
+        const results = fuse.search(this.search).map(({ item }) => item);
+
+        if (
+          this.auidioList.length > 0 &&
+          this.search.length > 0 &&
+          results.length > 0
+        ) {
+          return results;
+        } else {
+          return this.auidioList;
+        }
+      }
+    },
     
     getDuration(audio) {},
     pagination() {},
@@ -386,7 +417,16 @@ export default {
 </script>
 
 <style scoped>
+.list-group-item:hover{
 
+      background: #bbb!important;
+    border: none;
+}
+.list-group-item{
+ 
+    cursor: pointer;
+    border: none;
+}
 .buy_quality{
     font-size: 52px;
     font-weight: bold;
@@ -430,6 +470,15 @@ input[type=text] {
   padding: 12px 20px 12px 40px;
   transition: width 0.4s ease-in-out;
       height: 77px;
+}
+
+@media (max-width:600px){
+  input[type=text]{
+   
+  
+ 
+    height: 57px;
+  }
 }
 
 input[type=text]:focus {
@@ -767,9 +816,19 @@ option:hover {
     padding: 6px 20px 7px 18px;
     font-size: 15px;
 }
+
+@media (max-width:600px){
+  .btn_search{
+     
+    top: 8px;
+    right: 19px;
+    height: 42px;
+   
+  }
+}
 .search_dropdown{
     z-index: 999;
-    display:none;
+   
     width: 97%;
     background: #f8f9fa;
     top: 88px;

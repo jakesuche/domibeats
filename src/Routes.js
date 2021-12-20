@@ -14,7 +14,7 @@ import Cart from './pages/Cart/Cart.vue'
 import notFound from './pages/notFound'
 import drum_kit from './pages/drumkit/drumkit'
 import drumkitDetails from './pages/drumkit/drumkitdetails'
-import home from './pages/home/home'
+import home from './pages/home/home.vue'
 import BeatDeatil from './pages/beat_details/beats_details'
 
 

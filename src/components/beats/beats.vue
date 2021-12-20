@@ -420,6 +420,8 @@ input[type=text] {
   transition: width 0.4s ease-in-out;
 }
 
+
+
 input[type=text]:focus {
   width: 100%;
   

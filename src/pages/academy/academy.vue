@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Hero class="position-relative" :style="{'background-image': 'url(' +
+    <Hero class="position-relative" :viewstyle="{'background-image': 'url(' +
 require('@/assets/img/hero/bg_image.jpg') + ')'}">
     <div class="position-absolute overlay"/>
 

@@ -5,6 +5,7 @@
   <a @click="selected = 'exclusive'; goto('/exclusive')" :class="selected == 'exclusive' ? 'selected':''" ><i class="fab icon  fa-bandcamp"></i>Exclusive Beats</a>
   <a @click="selected = 'beats';goto('/beats')" :class="selected == 'beats' ? 'selected':''" ><i class=" icon  fas fa-music"></i>Beats</a>
     <a @click="selected = 'drum'; goto('/drum_kit')" :class="selected == 'drum' ? 'selected':''" ><i class=" icon  fas fa-drum"></i>drum kit</a>
+     <a @click="selected = 'academy'; goto('/academy')" :class="selected == 'academy' ? 'selected':''" ><i class=" icon fas fa-graduation-cap"></i>Academy</a>
   <a @click="selected = 'gadgets'; goto('/gadgets')" :class="selected == 'gadgets' ? 'selected':''" ><i class=" icon fab fa-instalod"></i>Studio gadgets</a>
   <a @click="selected = 'about'; goto('/about')" :class="selected == 'about' ? 'selected':''" ><i class=" icon fas fa-address-card"></i>About</a>
   <a @click="selected = 'contact'; goto('/contact')"  :class="selected == 'contact' ? 'selected':''" ><i class=" icon  far fa-envelope"></i>Contact</a>

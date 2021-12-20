@@ -11,7 +11,7 @@ require('@/assets/img/hero/hero-bg1.png') + ')', // }"
 
       'background-image':
         'url(https://firebasestorage.googleapis.com/v0/b/intellectual-property-37fae.appspot.com/o/images%2Fepisodes-4.d0e87777.jpg?alt=media&token=9bff24ea-ad14-4ea5-9ca9-093a8ae9ebac)',
-    ...style}"
+    ...viewstyle}"
   >
     <slot />
   </section>
@@ -19,7 +19,7 @@ require('@/assets/img/hero/hero-bg1.png') + ')', // }"
 
 <script>
 export default {
-  props: ["style"],
+  props: ["viewstyle"],
 };
 </script>
 

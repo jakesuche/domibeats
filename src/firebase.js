@@ -45,6 +45,10 @@ const Contact = (contact) => {
 const OrderRef = (order) => {
   return addDoc(collection(db, "order"), order)
 }
+const AcedamyRef = (student) => {
+  return addDoc(collection(db, "students"), student)
+}
+
 
 
 const provider = new GoogleAuthProvider();
@@ -74,5 +78,6 @@ export {
   PostRef,
   doc,
   Contact,
-  OrderRef
+  OrderRef,
+  AcedamyRef
 };
