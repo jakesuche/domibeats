@@ -1,7 +1,7 @@
 <template>
   <div id="mySidenav" class="sidenav" :style="{width:toggle ? '250px' :'0'}">
   <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
-  <a  @click="selected = 'home'; goto('/')" :class="selected == 'home' ? 'selected':''" > <i class=" icon fas fa-home"></i>Home</a>
+  <a   @click="selected = 'home'; goto('/')" :class="selected == 'home' ? 'selected':''" > <i class=" icon fas fa-home"></i>Home</a>
   <a @click="selected = 'exclusive'; goto('/exclusive')" :class="selected == 'exclusive' ? 'selected':''" ><i class="fab icon  fa-bandcamp"></i>Exclusive Beats</a>
   <a @click="selected = 'beats';goto('/beats')" :class="selected == 'beats' ? 'selected':''" ><i class=" icon  fas fa-music"></i>Beats</a>
     <a @click="selected = 'drum'; goto('/drum_kit')" :class="selected == 'drum' ? 'selected':''" ><i class=" icon  fas fa-drum"></i>drum kit</a>
@@ -28,6 +28,7 @@ export default {
     methods:{
         goto(router){
             this.$router.push(router)
+            this.toggle = !this.toggle
         }
     }
 

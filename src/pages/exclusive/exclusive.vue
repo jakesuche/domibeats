@@ -1,57 +1,61 @@
 <template>
   <div>
-    <Hero> 
-      <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="hero__text">
-            
-          </div>
-        </div>
-       
-      </div>
-    </div>
    
-    </Hero>
   
  
   
-     <section class="episodes spad">
+     <section class="episodes spad mt-5">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <div class="section-title">
-              <h2>Exclusive Beats</h2>
+            <div style="text-align:left" class="section-title">
+              <h2 style="font-size: 35px;">Exclusive beats</h2>
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div data-aos="fade-up"
-     data-aos-duration="3000"
-            class="col-lg-4 col-md-6"
-            v-for="(item, i) in audios.slice(0,4)"
+       <Spinner v-if="loading" />
+      
+        <Nodata title="Data not found gadgets" v-else-if="audios.length === 0" >
+             
+        </Nodata>
+        <div class="row justify-content-left" v-else>
+          <!-- audios.slice(0,4) -->
+          <div 
+            class="col-lg-3 col-md-6 sound"
+            v-for="(item, i) in audios.slice(0,1)"
             :key="i + 'uchech'"
           >
-            <div 
+          {{item}}
+            <div  style="height: 273px;width: 273px;border-radius: 100%;
+            background-size: cover;
+    background-position: center;
+"
               class="episodes__item set-bg"
-              :style="{ backgroundImage: `${item.songImg ? `url(${item.songImg })` : 'var(--humber-black)'}` }"
+              :style="{ backgroundImage: `${item.image ? `url(${item.image })` : 'var(--humber-black)'}` }"
             >
-              <div class="tags">
-                <i class="fas fa-hashtag"></i> {{item.genre}}
-              </div>
-              <div class="time">
-                <i class="fas fa-clock"></i> 40 mins
-              </div>
-              <a
-                :href="item.link"
+              <!-- <div class="tags">
+                <i class="fas fa-hashtag"></i> {{item.amount}}
+              </div> -->
+              <!-- <div class="time">
+                total:{{item.qty}}
+              </div> -->
+              <!-- <a
+                type="button" @click="addTocart(item)"
                 class="play-btn video-popup"
-                ><img src="img/play.png" alt=""
-              /></a>
-              <div class="episodes__text">
-                <h4>{{item.songName}}</h4>
+                ><i class="fas fa-cart-plus" style="font-size: 60px;color:white"></i></a> -->
+              <!-- <div class="episodes__text">
+                <h4>{{item.productTitle}}</h4>
                 <p><span class="icon_calendar"></span> 16 Feb 2019</p>
+              </div> -->
+            </div>
+            <div style="margin-top:-10px" class="d-flex justify-content-center details_wrapper">
+              <h4 class="product_title">
+               Exclusive Beats Only
+              </h4>
+              <div class="product_price">
+               November 24, 2021 
               </div>
+              
             </div>
           </div>
         </div>
@@ -67,8 +71,11 @@ import { episode_items } from "@/components/datas/card_data.js";
 import Beats from '@/components/beats/beats'
 import Hero from "@/components/hero/hero.vue";
 import image from "@/assets/img/hero/hero-video1.png";
+
 import { mapState } from 'vuex'
+
 export default {
+  props:["show"],
   components: { Hero, Beats },
   data() {
     return {
@@ -81,10 +88,26 @@ export default {
   },
   computed:{
     ...mapState({
-      audios:state=>state.audios.audioList
+      audios:state=>state.audios.drumkit
     })
   },
   methods: {
+    addTocart(item){
+      console.log(item)
+     this.$store.dispatch('audios/addTocart', item)
+      this.$toasted.show(`Item added to cart`, {duration:3000})
+      
+    },
+    getDrunkit(){
+      this.loading = true
+       this.$store.dispatch('audios/getDrunkit')
+       .then(()=>{
+         this.loading = false
+       })
+       .catch((err)=>{
+          this.loading = false
+       })
+    },
     getDuration(song){
       //
       this.myAudio.src = this.audios[0].songLive
@@ -102,15 +125,62 @@ export default {
     this.getDuration()
   },  
   created() {
-    this.$store.dispatch('audios/getAllBeats')
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+   this.getDrunkit()
+    // setTimeout(() => {
+    //   this.loading = false;
+    // }, 2000);
   },
 };
 </script>
 
-<style>
+<style scoped>
+.add_item{
+  background: #212121;
+    border: none;
+    height: 63px;
+    line-height: 40px;
+    margin: 0;
+    padding: 0 16px;
+    min-height: auto!important;
+    min-width: auto!important;
+    text-shadow: none;
+    font-weight: 600!important;
+    border-radius: 3px;
+    overflow: hidden;
+    color: white;
+    margin-top: 11px;
+}
+.details_wrapper{
+  flex-direction: column;
+  align-items: center;
+}
+.product_title{
+    color: white;
+    color: white;
+    width: 207px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+.product_price{
+  color:white
+}
+.play-btn{
+  background: #596571f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin-left: 150px;
+    margin-right: 160px;
+    padding: 17px;
+    border-radius: 89px;
+    cursor: pointer;
+}
 .podcast_item_text {
   border: 1px solid #ebebeb;
   padding: 10px 32px 10px 54px;
@@ -167,6 +237,17 @@ export default {
     display: none!important;
 }
 }
+
+
+  @media (max-width:768px){
+    .sound{
+      
+    padding: 0px 59px;
+    margin-bottom: 27px;
+
+    }
+  }
+
 
 
 
